@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Fragment 坑爹泄漏笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="不可见的 Fragment 的成员变量持有 View ,导致整个布局不能被 GC 回收，最终出现内存泄漏">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fragment 坑爹泄漏笔记">
+<meta property="og:url" content="https://moshuanghua.com/2018/12/29/48-Fragment内存泄漏解析/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="不可见的 Fragment 的成员变量持有 View ,导致整个布局不能被 GC 回收，最终出现内存泄漏">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-29T06:33:55.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Fragment 坑爹泄漏笔记">
+<meta name="twitter:description" content="不可见的 Fragment 的成员变量持有 View ,导致整个布局不能被 GC 回收，最终出现内存泄漏">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-48-Fragment内存泄漏解析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/12/29/48-Fragment内存泄漏解析/" class="article-date">
+  	<time datetime="2018-12-28T16:00:00.000Z" itemprop="datePublished">2018-12-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Fragment 坑爹泄漏笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <hr>
+<p>不可见的 Fragment 的成员变量持有 View ,导致整个布局不能被 GC 回收，最终出现内存泄漏</p>
+<a id="more"></a>
+<p>代码例子：<br>环境条件：DataBinding + Navigation + Fragment</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LeakFragment</span> : <span class="type">Fragment</span></span>()&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 成员变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> binding: FragmentLeakBinding</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 成员变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">lateinit</span> <span class="keyword">var</span> adapter: RecyclerViewAdapter</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        inflater: <span class="type">LayoutInflater</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        container: <span class="type">ViewGroup</span>?,</span></span></span><br><span class="line"><span class="function"><span class="params">        savedInstanceState: <span class="type">Bundle</span>?</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: View? &#123;</span><br><span class="line">        binding = FragmentLeakBinding.inflate(inflater, container, <span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">return</span> binding.root</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onViewCreated</span><span class="params">(view: <span class="type">View</span>, savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onViewCreated(view, savedInstanceState)</span><br><span class="line">		binding.recyclerView.adapter = adapter</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码平常看起来没啥问题，但是当你使用了 Navigation 来导航到别的Fragment 时，内存泄漏就出来了，这里我们假设第二个 Fragment 名字叫 FragmentB.</p>
+<p>当我们从 LeakFragment 导航到 FragmentB 的时候，此时 LeakFragment 不可见，LeakFragment 会和布局View 进行分离解绑，解绑之后 GC 会回收 布局View,但不会回收 LeakFragment。所以 LeakFragment 一直会在内存中，LeakFragment 一直在内存中，那么其内部的全局变量 adapter 也会在内存中。现在问题来了，本要被 GC 回收的 布局View 持有了该 adapter（一个生命周期短的持有了生命周期长的实例），结果就可想而知了。</p>
+<ul>
+<li>解决的办法大概有两种，<br>1 导航跳转时，让 binding.recyclerview.adapter = null<br>2 让布局 View 持有的全局对象替换成局部对象，这样就不会造成生命周期不一致的情况</li>
+</ul>
+<p>第一种方法在 View 数量比较少的时候可以使用，多的话就不推荐，因为要写很多个 = null<br>第二种方法比较推荐，我们直接使用 kotlin 的 get() = 这么一个局部对象的获取函数.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private val binding: FragmentLeakBinding</span><br><span class="line">        get() =</span><br></pre></td></tr></table></figure></p>
+<p>具体代码：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LeakFragment</span> : <span class="type">Fragment</span></span>()&#123;</span><br><span class="line">	<span class="comment">//不了解 kotlin 的同学可能会疑问，这不是全局对象吗？上面怎么说是局部对象【请自己查看编译后的 kotlin 字节码对应的 java 代码】</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">val</span> binding: FragmentLeakBinding</span><br><span class="line">        <span class="keyword">get</span>() = view?.tag <span class="keyword">as</span> FragmentLeakBinding</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreateView</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        inflater: <span class="type">LayoutInflater</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">        container: <span class="type">ViewGroup</span>?,</span></span></span><br><span class="line"><span class="function"><span class="params">        savedInstanceState: <span class="type">Bundle</span>?</span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: View? &#123;</span><br><span class="line">        <span class="keyword">val</span> binding = FragmentLeakBinding.inflate(inflater, container, <span class="literal">false</span>)</span><br><span class="line"></span><br><span class="line">		<span class="comment">//----------------画重点----------------------------</span></span><br><span class="line">        binding.root.tag = binding</span><br><span class="line">		<span class="comment">//-------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> binding.root</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onViewCreated</span><span class="params">(view: <span class="type">View</span>, savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onViewCreated(view, savedInstanceState)</span><br><span class="line">		<span class="keyword">val</span> adapter = RecyclerViewAdapter()</span><br><span class="line">        binding.recyclerView.adapter = adapter</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityCreated</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onActivityCreated(savedInstanceState)</span><br><span class="line">		<span class="comment">//后续使用 adapter 时</span></span><br><span class="line">		<span class="keyword">val</span> adapter = binding.recyclerView.adapter <span class="keyword">as</span> RecyclerViewAdapter</span><br><span class="line">		adapter.setData()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>tag 解释，很多人会问，为什么要多设置一个 tag ，因为这是 Fragment ,你无法直接把 val binding = FragmentLeakBinding.inflate(inflater, container, false) 这段代码用 get() = 去获取呀。</p>
+<h2 id="activity-setSupportActionBar-toolbar-导致-Fragment-泄漏"><a href="#activity-setSupportActionBar-toolbar-导致-Fragment-泄漏" class="headerlink" title="activity.setSupportActionBar(toolbar) 导致 Fragment 泄漏"></a>activity.setSupportActionBar(toolbar) 导致 Fragment 泄漏</h2><p> FragmetA 中没有设置 OptionsMenu , FragmentB 中设置了  setHasOptionsMenu(true) ，并且 ctivity.setSupportActionBar(toolbar) set 一个 Toolbar, 重写了 onCreateOptionsMenu。</p>
+<blockquote>
+<p>泄漏发生步骤： FragmentA 跳转到 FragmentB，然后点击返回到 FragmentA，FragmentB 出现了泄漏</p>
+</blockquote>
+<blockquote>
+<p>原因分析1：  Activity 持有 FragmentManangerImpl 这个类，这个 FragmentManangerImpl 类中 的 mCreatedMenus 持有我们的 FragmentB ，最终导致 FragmentB 出现了泄漏，那么只需想办法把泄漏的 FragmentB 从这个集合中移除掉，很幸运，我们能很快的通过具体的代码分析找到关键的移除代码</p>
+</blockquote>
+<blockquote>
+<p>FragmentManangerImpl : 与 Activity 相关的 Fragment 管理器类</p>
+</blockquote>
+<ul>
+<li>FragmentManangerImpl -&gt; dispatchCreateOptionsMenu<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">dispatchCreateOptionsMenu</span><span class="params">(@NonNull Menu menu, @NonNull MenuInflater inflater)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mCurState &lt; Fragment.CREATED) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">boolean</span> show = <span class="keyword">false</span>;</span><br><span class="line">    ArrayList&lt;Fragment&gt; newMenus = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; mAdded.size(); i++) &#123;</span><br><span class="line">        Fragment f = mAdded.get(i);</span><br><span class="line">        <span class="keyword">if</span> (f != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (f.performCreateOptionsMenu(menu, inflater)) &#123;</span><br><span class="line">                show = <span class="keyword">true</span>;</span><br><span class="line">                <span class="keyword">if</span> (newMenus == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    newMenus = <span class="keyword">new</span> ArrayList&lt;Fragment&gt;();</span><br><span class="line">                &#125;</span><br><span class="line">                newMenus.add(f);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//--------------------------------------------------------------</span></span><br><span class="line">    <span class="keyword">if</span> (mCreatedMenus != <span class="keyword">null</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;mCreatedMenus.size(); i++) &#123;</span><br><span class="line">            Fragment f = mCreatedMenus.get(i);</span><br><span class="line">            <span class="keyword">if</span> (newMenus == <span class="keyword">null</span> || !newMenus.contains(f)) &#123;</span><br><span class="line">                f.onDestroyOptionsMenu();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    mCreatedMenus = newMenus;</span><br><span class="line">     <span class="comment">//--------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> show;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>原因分析2：从上面代码可以知道，mCreatedMenus = newMenus 这个替换的操作能清掉原来泄漏的 FragmentB, 前提是 newMenus 里面的 Fragment 不能和 FragmentB 相同，而且 dispatchCreateOptionsMenu() 这个方法能被调用到。我们通过 查看方法调用查看面板，清楚的知道在 FragmentActivity 中的 onCreatePanelMenu() 这个方法可以触发调用到 dispatchCreateOptionsMenu() </p>
+</blockquote>
+<blockquote>
+<p>综合： Activity 持有了 Menu , Menu 持有 Toolbar ,最终 Fragment 泄漏</p>
+</blockquote>
+<blockquote>
+<p>解决方法1：让 Fragment 来持有 Menu,也就是说创建一个属于 Fragment 的 Menu, 这样他们的生命周期就是一样的了<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> toolbar = view?.findViewById(R.id.toolbar)</span><br><span class="line">toolbar.inflateMenu(R.menu.search_menu)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<blockquote>
+<p>解决方法2：继续让 Activity 来持有 Menu, 但必须让 dispatchCreateOptionsMenu 能被调用到，也就说 FragmentA 也必须要设置 setHasOptionsMenu(true)<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setHasOptionsMenu(<span class="literal">true</span>)</span><br><span class="line">activity.setSupportActionBar(<span class="literal">null</span>)</span><br><span class="line">(activity <span class="keyword">as</span> Activity).onCreatePanelMenu(<span class="number">0</span>, <span class="literal">null</span>)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/01/01/49-亮屏幕广播-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android 解锁屏广播监听笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/12/25/47-AlarmManager-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AlarmManager 笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

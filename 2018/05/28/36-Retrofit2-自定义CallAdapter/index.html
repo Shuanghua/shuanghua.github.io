@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Retrofit2-自定义 CallAdapter | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Retrofit2-自定义 CallAdapter">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit2-自定义 CallAdapter">
+<meta property="og:url" content="https://moshuanghua.com/2018/05/28/36-Retrofit2-自定义CallAdapter/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Retrofit2-自定义 CallAdapter">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:42:45.331Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit2-自定义 CallAdapter">
+<meta name="twitter:description" content="Retrofit2-自定义 CallAdapter">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-36-Retrofit2-自定义CallAdapter" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/28/36-Retrofit2-自定义CallAdapter/" class="article-date">
+  	<time datetime="2018-05-27T16:00:00.000Z" itemprop="datePublished">2018-05-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Retrofit2-自定义 CallAdapter
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h1><blockquote>
+<p>以下代码来自：<a href="https://github.com/googlesamples/android-architecture-components" target="_blank" rel="noopener">https://github.com/googlesamples/android-architecture-components</a></p>
+</blockquote>
+<p>这里要把 <strong>Call&lt; JavaBean&gt;</strong> 包装成 <strong>LiveData&lt; ApiResponse&lt; JavaBean&gt;&gt;</strong> ,除了 LiveData 外，Apisponse 和 JavaBean 都是自己写的</p>
+<a id="more"></a>
+<h4 id="自定义-XXXCallAdapterFactoty-继承-Retrofit2-CallAdapter-Factory"><a href="#自定义-XXXCallAdapterFactoty-继承-Retrofit2-CallAdapter-Factory" class="headerlink" title="自定义 XXXCallAdapterFactoty 继承 Retrofit2.CallAdapter.Factory"></a>自定义 XXXCallAdapterFactoty 继承 Retrofit2.CallAdapter.Factory</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 日后这里基本上就是直接复制粘贴</span></span><br><span class="line"><span class="comment"> * 像 Call 改成 LiveData Response 换成 ApiResponse</span></span><br><span class="line"><span class="comment"> * 只需要把 LiveData::class.java 和 ApiResponse::class.java 换成自定义的类型</span></span><br><span class="line"><span class="comment"> * 如果只需要自定义 Call ，请将下面的 ApiResponse 换成默认 Response</span></span><br><span class="line"><span class="comment"> * getRaw():通过参数拿到包装该参数的类型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapterFactory</span> : <span class="type">Factory</span></span>() &#123;</span><br><span class="line">    <span class="comment">//重写get函数</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">get</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            returnType: <span class="type">Type</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            annotations: <span class="type">Array</span>&lt;<span class="type">Annotation</span>&gt;,</span></span></span><br><span class="line"><span class="function"><span class="params">            retrofit: <span class="type">Retrofit</span></span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span>: CallAdapter&lt;*, *&gt;? &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 检查接口中函数的 Call 类型是否一致</span></span><br><span class="line">        <span class="keyword">if</span> (getRawType(returnType) != LiveData::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>) <span class="title">return</span> <span class="title">null</span></span></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 检查 Call / LiveData</span></span><br><span class="line">        <span class="keyword">if</span> (observableType !<span class="keyword">is</span> ParameterizedType) &#123;</span><br><span class="line">            <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"resource must be parameterized"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取默认 Response 类型 </span></span><br><span class="line">        <span class="keyword">val</span> observableType = getParameterUpperBound(<span class="number">0</span>, returnType <span class="keyword">as</span> ParameterizedType)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 获取 Response 位置的真实类型，这里是 ApiResponse</span></span><br><span class="line">        <span class="keyword">val</span> rawObservableType = getRawType(observableType)</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 检查 Response / ApiResponse</span></span><br><span class="line">        <span class="keyword">if</span> (rawObservableType != ApiResponse::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">throw</span> IllegalArgumentException(<span class="string">"type must be a resource"</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过 Call/ LiveData 来生成 body 类型</span></span><br><span class="line">        <span class="keyword">val</span> bodyType = Factory.getParameterUpperBound(<span class="number">0</span>, observableType)</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 返回自定义的 CallAdapter</span></span><br><span class="line">        <span class="keyword">return</span> LiveDataCallAdapter&lt;Any&gt;(bodyType)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h1><h4 id="自定义-XXXCallAdapter-继承-Retrofit2-CallAdapter"><a href="#自定义-XXXCallAdapter-继承-Retrofit2-CallAdapter" class="headerlink" title="自定义 XXXCallAdapter 继承 Retrofit2.CallAdapter"></a>自定义 XXXCallAdapter 继承 Retrofit2.CallAdapter</h4><ul>
+<li>为了能接收到 Factory 传过来的 responseBody，别忘了给构造函数添加参数： val responseType: Type。</li>
+<li>为了能接收到 Factory 传过来的 泛型 any ，记得定义泛型参数。</li>
+<li>基类的 CallAdapter 需要传两个泛型参数: Factoty 传过来的 any; 第二个就是我们要包装成的类型 <strong>LiveData&lt; ApiResponse&lt; R&gt;&gt;</strong>。<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 为了能接收到 Factory 传过来的 responseBody</span></span><br><span class="line"><span class="comment"> * 别忘了添加构造函数的参数 val responseType: Type</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LiveDataCallAdapter</span>&lt;<span class="type">R</span>&gt;</span>(<span class="keyword">private</span> <span class="keyword">val</span> responseType: Type) :</span><br><span class="line">        CallAdapter&lt;R, LiveData&lt;ApiResponse&lt;R&gt;&gt;&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Factory 传过来的 body</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">responseType</span><span class="params">()</span></span> = responseType</span><br><span class="line"></span><br><span class="line">	<span class="comment">//该函数返回的就是我们要包装成的类型，这里返回 LiveData&lt; ApiResponse&lt; R&gt;&gt; </span></span><br><span class="line">	<span class="comment">//所以直接创建一个 LiveData&lt; ApiResponse&lt; R&gt;&gt; 对象并将其返回</span></span><br><span class="line">	<span class="comment">//期间可以利用 LiveData 对象来处理各种调用逻辑</span></span><br><span class="line">	<span class="comment">//熟悉的 Call 对象，可以直接对数据进行操作</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">adapt</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">R</span>&gt;)</span></span>: LiveData&lt;ApiResponse&lt;R&gt;&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">object</span> : LiveData&lt;ApiResponse&lt;R&gt;&gt;() &#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">var</span> started = AtomicBoolean(<span class="literal">false</span>)<span class="comment">//借助原子类来保证线程安全</span></span><br><span class="line">            <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActive</span><span class="params">()</span></span> &#123;</span><br><span class="line">                <span class="keyword">super</span>.onActive()</span><br><span class="line">                <span class="keyword">if</span> (started.compareAndSet(<span class="literal">false</span>, <span class="literal">true</span>)) &#123;<span class="comment">//确保里面代码不被多线程抢占</span></span><br><span class="line">                    call.enqueue(<span class="keyword">object</span> : Callback&lt;R&gt; &#123;</span><br><span class="line">                        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onResponse</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">R</span>&gt;, response: <span class="type">Response</span>&lt;<span class="type">R</span>&gt;)</span></span> &#123;</span><br><span class="line">                            postValue(ApiResponse.create(response))</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFailure</span><span class="params">(call: <span class="type">Call</span>&lt;<span class="type">R</span>&gt;, throwable: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">                            postValue(ApiResponse.create(throwable))</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>再推荐一个类：<a href="https://github.com/twtstudio/WePeiYang-Android/blob/62bc1da7e34ecb4a8cc4592ef1a41af8059ef006/WePeiYang/commons/src/main/java/com/twt/wepeiyang/commons/experimental/network/CoroutineCallAdapter.kt" target="_blank" rel="noopener">Retrofit2 + Kotlin 协程</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/06/12/37-Style样式-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android Style 笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/27/35-Retrofit2-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Retrofit2-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

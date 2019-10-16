@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Dagger2-Android 官方例子笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本笔记不涉及 Dagger2 的详细使用，比如某某个注解的作用，含义都不会介绍到，本笔记仅介绍 Dagger2-Android 在 Android 项目的使用,内容都是基于 Dagger2,如果对 Dagger2 还不了解，请先去了解 Dagger2 的使用。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dagger2-Android 官方例子笔记">
+<meta property="og:url" content="https://moshuanghua.com/2018/07/17/41-Android-Dagger2/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="本笔记不涉及 Dagger2 的详细使用，比如某某个注解的作用，含义都不会介绍到，本笔记仅介绍 Dagger2-Android 在 Android 项目的使用,内容都是基于 Dagger2,如果对 Dagger2 还不了解，请先去了解 Dagger2 的使用。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:36:05.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dagger2-Android 官方例子笔记">
+<meta name="twitter:description" content="本笔记不涉及 Dagger2 的详细使用，比如某某个注解的作用，含义都不会介绍到，本笔记仅介绍 Dagger2-Android 在 Android 项目的使用,内容都是基于 Dagger2,如果对 Dagger2 还不了解，请先去了解 Dagger2 的使用。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-41-Android-Dagger2" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/17/41-Android-Dagger2/" class="article-date">
+  	<time datetime="2018-07-16T16:00:00.000Z" itemprop="datePublished">2018-07-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dagger2-Android 官方例子笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>本笔记不涉及 Dagger2 的详细使用，比如某某个注解的作用，含义都不会介绍到，本笔记仅介绍 Dagger2-Android 在 Android 项目的使用,内容都是基于 Dagger2,如果对 Dagger2 还不了解，请先去了解 Dagger2 的使用。</p>
+<a id="more"></a>
+<h1 id="Dagger2-Android"><a href="#Dagger2-Android" class="headerlink" title="Dagger2-Android"></a>Dagger2-Android</h1><p>想在 Android 项目中使用 Dagger2-Android 这个模块，首先要了解自己项目的结构，结合自己项目的结构来使用 Dagger2-Android 是最好的。使用 Dagger2-Android 一般有两种方式：</p>
+<h2 id="使用方式1-个人推荐"><a href="#使用方式1-个人推荐" class="headerlink" title="使用方式1 (个人推荐)"></a>使用方式1 (个人推荐)</h2><p>这种方式是 Google IO/2018-Android App 代码中的方式。 例子参考于:<a href="https://github.com/google/iosched" target="_blank" rel="noopener"> Google IO/2018-Android App</a></p>
+<h3 id="MyApplication-继承-DaggerApplication"><a href="#MyApplication-继承-DaggerApplication" class="headerlink" title="MyApplication 继承 DaggerApplication{}"></a>MyApplication 继承 DaggerApplication{}</h3><p>这种方式中，DaggerApplication 其实就是在方式 2 上做了封装</p>
+<ul>
+<li><p>1 Application</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> : <span class="type">DaggerApplication&#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">applicationInjector</span><span class="params">()</span></span>: AndroidInjector&lt;<span class="keyword">out</span> DaggerApplication&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> DaggerAppComponent.builder().create(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 AppComponent</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Singleton</span></span><br><span class="line"><span class="meta">@Component(</span></span><br><span class="line"><span class="meta">        modules = [</span></span><br><span class="line"><span class="meta">            AndroidInjectionModule::class,</span></span><br><span class="line"><span class="meta">            AppModule::class,</span></span><br><span class="line"><span class="meta">            ActivityBindingModule::class,</span></span><br><span class="line"><span class="meta">            SharedModule::class,</span></span><br><span class="line"><span class="meta">            ViewModelModule::class</span></span><br><span class="line"><span class="meta">        ]</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> : <span class="type">AndroidInjector</span>&lt;<span class="type"> MyApplication</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Component</span>.Builder</span><br><span class="line">    <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Builder</span> : <span class="type">AndroidInjector.Builder</span>&lt;<span class="type"> MyApplication</span>&gt;</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其中 AndroidInjectionModule::class 是 Dagger2-Android 中自带的，他是一个 Module，说明他专门生产实例（提供依赖实例），它专门生产 Android 四大组件的实例；在 AppComponent 中引入它，是为了更方便在四大组件中使用别的相关实例。</p>
+<p>ActivityBindingModule::class 是自己写的，专门用于生产和管理具体的 Activity 实例; 假设我们的 Activity 名字叫 MainActivity，那么 ActivityBindingModule 中必须包含一个返回 MainActivity 实例的抽象函数（除非你不想在这个 Activity 使用 Dagger 注入），同时为了解耦，我们在新建一个 MainActivityModule 来专门为 MainActivity 生产实例， 然后就像下面这个样子:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityBindingModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ActivityScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector(</span></span><br><span class="line"><span class="meta">                modules = [</span></span><br><span class="line"><span class="meta">                    MainActivityModule::class</span></span><br><span class="line"><span class="meta">		]</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">mainActivity</span><span class="params">()</span></span>: MainActivity</span><br><span class="line"></span><br><span class="line">    <span class="comment">//以下代码在本文中无关紧要</span></span><br><span class="line">    <span class="meta">@ActivityScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">LauncherActivity</span><span class="params">()</span></span>: LauncherActivity</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>再假设，我们的 MainActivity 中有很多个 Fragment (WeatherFragment、FavoriteFragment、CityFragment…)，我们就必须要为每个 Fragment 都新建一个 Module 来专门提供该 Fragment 的实例。然后 ActivityBindingModule 应该是这个样子:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">ActivityBindingModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ActivityScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector(</span></span><br><span class="line"><span class="meta">            modules = [</span></span><br><span class="line"><span class="meta">		MainActivityModule::class,</span></span><br><span class="line"><span class="meta">                WeatherModule::class,</span></span><br><span class="line"><span class="meta">                FavoriteModule::class,</span></span><br><span class="line"><span class="meta">                ProvinceModule::class,</span></span><br><span class="line"><span class="meta">                CityModule::class,</span></span><br><span class="line"><span class="meta">                StationAreaModule::class,</span></span><br><span class="line"><span class="meta">                StationModule::class</span></span><br><span class="line"><span class="meta">            ]</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">mainActivity</span><span class="params">()</span></span>: MainActivity</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ActivityScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">LauncherActivity</span><span class="params">()</span></span>: LauncherActivity</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>只要该 Activity 下存在 Fragment ，就需要在 ContributesAndroidInjector 中引入一个的 Module, 并且这个 Module 必须是抽象的，其中还有必须有一个返回该 Fragment 实例的抽象函数 （否则编译出错）。比如像 WeatherModule:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@FragmentScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeWeatherFragment</span><span class="params">()</span></span>: WeatherFragment<span class="comment">//必须</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>当 WeatherFragment 中需要注入实例时，为了解耦，我们还需新建一个 Module 来专门为 WeatherFragment 生产实例。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">WeatherModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@FragmentScoped</span></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector(</span></span><br><span class="line"><span class="meta">                modules = [</span></span><br><span class="line"><span class="meta">                    WeatherFragmentModule::class</span></span><br><span class="line"><span class="meta">		]</span></span><br><span class="line"><span class="meta">    )</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeWeatherFragment</span><span class="params">()</span></span>: WeatherFragment<span class="comment">//必须</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">WeatherFragmentModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Provides</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">provideNetworkApiClient</span><span class="params">()</span></span>: OkHttpClient&#123;</span><br><span class="line">        <span class="keyword">return</span> OkHttpClient.Builder()</span><br><span class="line">                    .connectTimeout(TIMEOUT_CONNECT, TimeUnit.MILLISECONDS)</span><br><span class="line">                    .writeTimeout(TIMEOUT_WRITE, TimeUnit.MILLISECONDS)</span><br><span class="line">                    .readTimeout(TIMEOUT_READ, TimeUnit.MILLISECONDS)</span><br><span class="line">                    .build()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Activity Fragment<br>最后在需要注入依赖的 Activity 继承 DaggerAppCompatActivity / DaggerActivity<br>最后在需要注入依赖的 Fragment 继承 DaggerFragment</li>
+</ul>
+<h2 id="使用方式2"><a href="#使用方式2" class="headerlink" title="使用方式2"></a>使用方式2</h2><p>这种方式是 Android Architecture Components samples - GithubBrowserSample 代码中的方式。例子参考于 :<a href="https://github.com/googlesamples/android-architecture-components/tree/master/GithubBrowserSample" target="_blank" rel="noopener">Android Architecture Components samples - GithubBrowserSample</a></p>
+<h3 id="MyApplication-继承-Application-实现-HasActivityInjector"><a href="#MyApplication-继承-Application-实现-HasActivityInjector" class="headerlink" title="MyApplication 继承 Application 实现 HasActivityInjector{}"></a>MyApplication 继承 Application 实现 HasActivityInjector{}</h3><ul>
+<li><p>1 Application</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyApplication</span> : <span class="type">Application</span></span>(), HasActivityInjector &#123;</span><br><span class="line">    <span class="meta">@Inject</span></span><br><span class="line">    <span class="keyword">lateinit</span> <span class="keyword">var</span> dispatchingAndroidInjector: DispatchingAndroidInjector&lt;Activity&gt;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">        AppInjector.init(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">activityInjector</span><span class="params">()</span></span> = dispatchingAndroidInjector</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2 AppInjector</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> AppInjector &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">init</span><span class="params">(application: <span class="type">MyApplication</span>)</span></span> &#123;</span><br><span class="line">        DaggerAppComponent.builder().application(application)</span><br><span class="line">            .build().inject(application)</span><br><span class="line">        application</span><br><span class="line">            .registerActivityLifecycleCallbacks(<span class="keyword">object</span> : Application.ActivityLifecycleCallbacks &#123;</span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityCreated</span><span class="params">(activity: <span class="type">Activity</span>, savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">                    handleActivity(activity)</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityStarted</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityResumed</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityPaused</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityStopped</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivitySaveInstanceState</span><span class="params">(activity: <span class="type">Activity</span>, outState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onActivityDestroyed</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">handleActivity</span><span class="params">(activity: <span class="type">Activity</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (activity <span class="keyword">is</span> HasSupportFragmentInjector) &#123;<span class="comment">//Activity 注入时，注意这里</span></span><br><span class="line">            AndroidInjection.inject(activity)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (activity <span class="keyword">is</span> FragmentActivity) &#123;</span><br><span class="line">            activity.supportFragmentManager</span><br><span class="line">                .registerFragmentLifecycleCallbacks(</span><br><span class="line">                    <span class="keyword">object</span> : FragmentManager.FragmentLifecycleCallbacks() &#123;</span><br><span class="line">                        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onFragmentCreated</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">                            fm: <span class="type">FragmentManager</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                            f: <span class="type">Fragment</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                            savedInstanceState: <span class="type">Bundle</span>?</span></span></span><br><span class="line"><span class="function"><span class="params">                        )</span></span> &#123;</span><br><span class="line">                            <span class="keyword">if</span> (f <span class="keyword">is</span> Injectable) &#123;<span class="comment">//在 Fragment 注入时，注意这里有个接口</span></span><br><span class="line">                                AndroidSupportInjection.inject(f)</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;, <span class="literal">true</span></span><br><span class="line">                )</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Injectable</span>//定义接口</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3 AppComponent</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Singleton</span></span><br><span class="line"><span class="meta">@Component(</span></span><br><span class="line"><span class="meta">    modules = [</span></span><br><span class="line"><span class="meta">        AndroidInjectionModule::class,</span></span><br><span class="line"><span class="meta">        AppModule::class,</span></span><br><span class="line"><span class="meta">        MainActivityModule::class]</span></span><br><span class="line"><span class="meta">)</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">AppComponent</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Component</span>.Builder</span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">Builder</span> </span>&#123;</span><br><span class="line">        <span class="meta">@BindsInstance</span></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">application</span><span class="params">(application: <span class="type">Application</span>)</span></span>: Builder</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">build</span><span class="params">()</span></span>: AppComponent</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">inject</span><span class="params">(application: <span class="type">MyApplication</span>)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4 MainActivityModule (假设 MainActivity 下存在 RepoFragment、UserFragment 和 SearchFragment 三个 Fragment)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivityModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ContributesAndroidInjector(modules = [FragmentBuildersModule::class])</span><span class="comment">//因为存在 Fragment，所以必需新建一个 FragmentBuildersModule</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeMainActivity</span><span class="params">()</span></span>: MainActivity</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5 FragmentBuildersModule</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Module</span></span><br><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">FragmentBuildersModule</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeRepoFragment</span><span class="params">()</span></span>: RepoFragment</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeUserFragment</span><span class="params">()</span></span>: UserFragment</span><br><span class="line"></span><br><span class="line">    <span class="meta">@ContributesAndroidInjector</span></span><br><span class="line">    <span class="keyword">abstract</span> <span class="function"><span class="keyword">fun</span> <span class="title">contributeSearchFragment</span><span class="params">()</span></span>: SearchFragment</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>6 Activity Fragment<br>Activity 继承 AppCompatActivity() 实现 HasSupportFragmentInjector<br>Fragment 继承 Fragment() 实现 Injectable</p>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>以上两种方式的好处都是避免了在 Activity 或 Fragment 中初始化 Dagger；根据 Dagger 的设计使用原则，在 Android 中不应该让四大组件知道注入的实例从哪里而来。就像 Dagger 的名字一样“匕首”,突然的从身后刺入，让敌人毫无察觉。</p>
+<p>Android Architecture Components 的 MVVM 很依赖 Dagger。</p>
+<p>Dagger 对刚上手的朋友还是有点难度的，熟能生巧，熟巧之后，每天出门都想带一把“匕首”!</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/07/28/43-我的常用命令笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          我的常用命令笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/10/40-ImageViewScaleType-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ImageView.ScaleType 笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

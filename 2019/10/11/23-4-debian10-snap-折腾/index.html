@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Debian 从 snap 上安装 ss-libev | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="debian10 从 snap 上安装 ss-libev">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Debian 从 snap 上安装 ss-libev">
+<meta property="og:url" content="https://moshuanghua.com/2019/10/11/23-4-debian10-snap-折腾/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="debian10 从 snap 上安装 ss-libev">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-16T07:17:36.549Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Debian 从 snap 上安装 ss-libev">
+<meta name="twitter:description" content="debian10 从 snap 上安装 ss-libev">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-23-4-debian10-snap-折腾" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/10/11/23-4-debian10-snap-折腾/" class="article-date">
+  	<time datetime="2019-10-10T16:00:00.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Debian 从 snap 上安装 ss-libev
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-snap"><span class="toc-number">1.</span> <span class="toc-text">安装 snap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-ss-libev-开发版-非稳定版"><span class="toc-number">2.</span> <span class="toc-text">安装 ss-libev 开发版(非稳定版)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-ss"><span class="toc-number">3.</span> <span class="toc-text">配置 ss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-Golang"><span class="toc-number">4.</span> <span class="toc-text">安装 Golang</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-v2ray-plugin"><span class="toc-number">5.</span> <span class="toc-text">安装 v2ray-plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-Caddy"><span class="toc-number">6.</span> <span class="toc-text">安装 Caddy</span></a></li></ol>
+			</div>
+		
+		
+        <h1 id="安装-snap"><a href="#安装-snap" class="headerlink" title="安装 snap"></a>安装 snap</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install snapd</span><br><span class="line">sudo snap install core</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h1 id="安装-ss-libev-开发版-非稳定版"><a href="#安装-ss-libev-开发版-非稳定版" class="headerlink" title="安装 ss-libev 开发版(非稳定版)"></a>安装 ss-libev 开发版(非稳定版)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install shadowsocks-libev --edge</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上面执行完会有一个警告:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Warning: /snap/bin was not found in your $PATH. If you&apos;ve not restarted your session since you</span><br><span class="line">         installed snapd, try doing that. Please see https://forum.snapcraft.io/t/9469 for more</span><br><span class="line">         details.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面执行完, 其实 ss-libev 就安装好了, 那个警告是我们需要把配置文件放到/snap/bin 目录中,但我们还没有创建我们的配置文件; 下面开始配置.</p>
+<h1 id="配置-ss"><a href="#配置-ss" class="headerlink" title="配置 ss"></a>配置 ss</h1><ul>
+<li><p>配置文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: <span class="string">"0.0.0.0"</span>,</span><br><span class="line">  <span class="attr">"nameserver"</span>: <span class="string">"8.8.8.8"</span>,</span><br><span class="line">  <span class="attr">"server_port"</span>: <span class="number">443</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"你的密码"</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"chacha20-ietf-poly1305"</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">600</span>,</span><br><span class="line">  <span class="attr">"no_delay"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"mode"</span>: <span class="string">"tcp_and_udp"</span>,</span><br><span class="line">  <span class="attr">"plugin"</span>: <span class="string">"v2ray-plugin"</span>,</span><br><span class="line">  <span class="attr">"plugin_opts"</span>: <span class="string">"server;tls;fast-open;host=xxxxxxx.com;cert=/证书目录/fullchain.cer;key=/证书目录/xxxxxxx.com.key;loglevel=none"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非 snap 启动的 ss 的命令 (<strong>这里只用做对比参考</strong>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Shadowsocks Server</span><br><span class="line">After=network.target</span><br><span class="line">[Service]</span><br><span class="line">Restart=on-abnormal</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/ss-server -c /etc/shadowsocks-libev/config.json</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>snap 启动的 ss 的命令 (开机自启文件)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Shadowsocks Server</span><br><span class="line">After=network.target</span><br><span class="line">[Service]</span><br><span class="line">Restart=on-abnormal</span><br><span class="line">ExecStart=/usr/<span class="built_in">local</span>/bin/ss-server -c /etc/shadowsocks-libev/config.json</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="安装-Golang"><a href="#安装-Golang" class="headerlink" title="安装 Golang"></a>安装 Golang</h1><ul>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snap install go --channel=1.13/stable --classic</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="安装-v2ray-plugin"><a href="#安装-v2ray-plugin" class="headerlink" title="安装 v2ray-plugin"></a>安装 v2ray-plugin</h1><ul>
+<li><a href="https://gist.github.com/shuanghua/c9c448f9bd12ebbfd720b34f4e1dd5c6" target="_blank" rel="noopener">安装 v2ray-plugin</a></li>
+</ul>
+<h1 id="安装-Caddy"><a href="#安装-Caddy" class="headerlink" title="安装 Caddy"></a>安装 Caddy</h1>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/08/17/61-Android-Kotlin-Delegate/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin Delegate 代码笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

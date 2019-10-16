@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 类的生命周期-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="类在虚拟机层的创建到销毁过程">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 类的生命周期-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2018/11/30/45-Java 类的生命周期-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="类在虚拟机层的创建到销毁过程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:31:01.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 类的生命周期-笔记">
+<meta name="twitter:description" content="类在虚拟机层的创建到销毁过程">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-45-Java 类的生命周期-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/11/30/45-Java 类的生命周期-笔记/" class="article-date">
+  	<time datetime="2018-11-29T16:00:00.000Z" itemprop="datePublished">2018-11-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 类的生命周期-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Java/">Java</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="类的生命周期"><a href="#类的生命周期" class="headerlink" title="类的生命周期"></a>类的生命周期</h1><p>创建进程-创建虚拟机实例-&gt;&gt; {加载类-【验证-准备-解析】-初始化-实例化-【使用实例-gc工作】- 卸载类}</p>
+<a id="more"></a>
+<h2 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h2><p>类的加载一般用虚拟机自带类加载器来加载，也可以自定义加载器 ClassLoader。Java中的类加载器采用双亲委托机制，也就是先看这个类是否有父类，有则只需加载父类。此处的双亲可以理解为包含关系，并不是单单的继承关系。<br>静态常量赋值（编译期）-&gt;加载开始-&gt;静态代码块-&gt;静态变量</p>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>连接包含以下三个阶段：</p>
+<ul>
+<li><p>验证：类的正确性，比如语法是否正确。具体包括 文件格式验证、元数据验证、字节码验证和符号引用验证。</p>
+</li>
+<li><p>准备：为静态变量（非静态常量和非普通变量）分配内存，并设置一个默认值（由虚拟机设置的值，不是用户写死的值，一般基本数据类型默认赋值为 0，引用数据类型默认赋值为 null ）；静态常量直接赋值为用户写死的值，静态常量的值存储在虚拟机内存的常量区中，在不用加载类的情况下就可以直接访问。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> AGE = <span class="number">5</span>; <span class="comment">// AGE 是静态常量，在类不用加载就可以访问 AGE，因为在编译期就已经初始化了。</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> AGE = <span class="keyword">new</span> Randon(<span class="number">10</span>).nextInt(); <span class="comment">// AGE 是静态常量，但是存在 new 关键字，对象的创建分配实在程序运行期，所以 new 关键字会触发该类的加载和后续的类初始化。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解析：将类中的符号引用转换为直接引用（例子：根据身份号（符号引用）来查找具体的住址（直接引用））</p>
+</li>
+</ul>
+<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p>给静态变量赋值（用户设置的值），并不是所有的类都会自动初始化的，比如一个类里面空空如也，这初始化它干嘛呢对吧？<br>自动初始化也叫主动初始化，符合以下情况的类会自动初始化：</p>
+<ol>
+<li>该类中有 new 关键字、反射、序列化</li>
+<li>该类中调用了别的类的静态方法</li>
+<li>该类存在 main 方法</li>
+<li>对别的类或接口中的静态字段赋值（final 修饰的静态字段除外） </li>
+<li>该类中有调用 java api 中的反射方法</li>
+<li>初始化该类的子类<br>7.在虚拟机启动时，将该类标记为启动类</li>
+</ol>
+<h1 id="内存分配"><a href="#内存分配" class="headerlink" title="内存分配"></a>内存分配</h1><ul>
+<li><p>方法区：存储类的二进制数据，其中方法区中分有一个常量区，专门存放常量和符号引用的信息。</p>
+</li>
+<li><p>堆区：存储对象实例，当类的二进制数据在方法区存放好了之后，会创建该类的一个 Class 对象，然后将该对象存放在堆区，方便共享调用，该对象包含该类在方法区内数据结构，通过该 Class 对象我们可以利用 java 代码调用该类在方法区内的数据接口，像反射调用。</p>
+</li>
+<li><p>栈区：先进先出，方法的调用会创建一个调用栈，在栈顶会有一个独立的栈帧。主要存放每个方法的局部变量、方法参数、编译的临时变量和方法出口等信息。该区域容量小访问速度快，每个方法是一个栈帧，当放执行完成后，改栈帧会被清除；如果方法中调用了其他方法，则继续在该栈顶创建新的栈桢。</p>
+</li>
+</ul>
+<h2 id="帧栈"><a href="#帧栈" class="headerlink" title="帧栈"></a>帧栈</h2><p>每一次函数的调用,都会在调用栈(call stack)上维护一个独立的栈帧(stack frame)<br>一个帧栈包含两个指针：帧指针（ebp 寄存器）和栈指针（esp 寄存器），ebp 指向当前栈帧的底部，esp 指向栈帧的顶部。</p>
+<h1 id="类的卸载（类生命结束）"><a href="#类的卸载（类生命结束）" class="headerlink" title="类的卸载（类生命结束）"></a>类的卸载（类生命结束）</h1><ol>
+<li>执行 System.exit()</li>
+<li>程序执行完成（Android App 除外）</li>
+<li>异常导致的退出终止</li>
+<li>虚拟机进程终止</li>
+</ol>
+<h1 id="类加载器的种类"><a href="#类加载器的种类" class="headerlink" title="类加载器的种类"></a>类加载器的种类</h1><ol>
+<li>启动 类加载器</li>
+<li>扩展 类加载器</li>
+<li>应用程序（系统） 类加载器</li>
+<li>自定义 类加载器</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/12/01/46-AS无鼠标版快捷键/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          AS无鼠标常用快捷键-Ubuntu
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/09/30/44-Android-ViewModel-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ViewModel LiveData 笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

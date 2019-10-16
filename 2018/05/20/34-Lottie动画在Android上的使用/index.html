@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Lottie 在 Android 上快速实现复杂的动画效果 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Lottie 是一个第三方的动画开源库，它利用 Adobe After Effects （后面统一称为AE）和 Adobe After Effects 插件 Bodymovin 来解析 AE 动画，最终将 AE 动画解析成为 json 文件或 xml 类型的 AVD(AnimatedVectorDrawable) 文件。 最后把 json 文件或 xml 文件导入到 AS 中，利用 Lottie">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lottie 在 Android 上快速实现复杂的动画效果">
+<meta property="og:url" content="https://moshuanghua.com/2018/05/20/34-Lottie动画在Android上的使用/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Lottie 是一个第三方的动画开源库，它利用 Adobe After Effects （后面统一称为AE）和 Adobe After Effects 插件 Bodymovin 来解析 AE 动画，最终将 AE 动画解析成为 json 文件或 xml 类型的 AVD(AnimatedVectorDrawable) 文件。 最后把 json 文件或 xml 文件导入到 AS 中，利用 Lottie">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E5%AF%BC%E5%87%BA.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E5%AF%BC%E5%87%BA1.png">
+<meta property="og:updated_time" content="2019-04-09T11:44:32.188Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lottie 在 Android 上快速实现复杂的动画效果">
+<meta name="twitter:description" content="Lottie 是一个第三方的动画开源库，它利用 Adobe After Effects （后面统一称为AE）和 Adobe After Effects 插件 Bodymovin 来解析 AE 动画，最终将 AE 动画解析成为 json 文件或 xml 类型的 AVD(AnimatedVectorDrawable) 文件。 最后把 json 文件或 xml 文件导入到 AS 中，利用 Lottie">
+<meta name="twitter:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E5%AF%BC%E5%87%BA.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-34-Lottie动画在Android上的使用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/05/20/34-Lottie动画在Android上的使用/" class="article-date">
+  	<time datetime="2018-05-19T16:00:00.000Z" itemprop="datePublished">2018-05-20</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Lottie 在 Android 上快速实现复杂的动画效果
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>Lottie 是一个第三方的动画开源库，它利用 Adobe After Effects （后面统一称为AE）和 Adobe After Effects 插件 Bodymovin 来解析 AE 动画，最终将 AE 动画解析成为 json 文件或 xml 类型的 AVD(AnimatedVectorDrawable) 文件。 最后把 json 文件或 xml 文件导入到 AS 中，利用 Lottie 代码把 json  动画显示到 Android 设备界面上。</p>
+<a id="more"></a>
+<p>Lottie Github :<a href="https://github.com/airbnb/lottie-android" target="_blank" rel="noopener">https://github.com/airbnb/lottie-android</a></p>
+<p>我们都知道，在 Android 上用纯代码来绘制动画是一件非常麻烦的事情，各种参数的计算让开发头疼不已，而有了 Lottie ,动画参数计算和效果绘制交给UI设计的妹子就好了。</p>
+<p>用了 Lottie 之后咱们就天天看设计人员忙就行了，因为设计绘制动画的事已经不归你管了[滑稽]，当然有时候也得自己设计动画（前提是能够熟练使用AE），比如个人项目或者项目压根就没有设计人员[笑哭]，再或者设计是个妹子，你不希望她劳累[阴险]</p>
+<p>以下只是关于 Lottie 使用，不涉及如何使用 AE 来设计好看的动画。</p>
+<h1 id="安装-Adobe-After-Effects-和-Bodymovin-插件"><a href="#安装-Adobe-After-Effects-和-Bodymovin-插件" class="headerlink" title="安装 Adobe After Effects 和 Bodymovin 插件"></a>安装 Adobe After Effects 和 Bodymovin 插件</h1><ul>
+<li>Adobe After Effects 下载：“都是干技术活的，自行搜索破解版”，或“自行搜索官网支持正版”</li>
+<li><p>Bodymovin 插件下载地址：<a href="https://www.adobeexchange.com/creativecloud.details.12557.html" target="_blank" rel="noopener">https://www.adobeexchange.com/creativecloud.details.12557.html</a></p>
+</li>
+<li><p>如果是破解版，安装 Bodymovin 建议通过 ZXPInstaller 这个软件来安装。因为破解版不支持直接安装插件。</p>
+</li>
+<li><p>ZXPInstall : <a href="http://zxpinstaller.com/" target="_blank" rel="noopener">http://zxpinstaller.com/</a></p>
+</li>
+</ul>
+<h1 id="使用流程"><a href="#使用流程" class="headerlink" title="使用流程"></a>使用流程</h1><p>比如需要给 App 的启动引导页面设计一个好看的过度动画</p>
+<ul>
+<li><p>1.让设计美工绘制</p>
+</li>
+<li><p>2.利用 Bodymovin 插件导出 Glyphs(json 文件)或者 AVD(xml 文件)</p>
+<blockquote>
+<p>窗口 -&gt; 扩展 -&gt; Bodymovin 导出</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/%E5%AF%BC%E5%87%BA.png" alt=""><br><img src="http://7xrysc.com1.z0.glb.clouddn.com/%E5%AF%BC%E5%87%BA1.png" alt=""></p>
+<ul>
+<li><p>3.将 json 或 xml 文件导入到 AndroidStudio 中</p>
+<blockquote>
+<p>推荐 AndroidStudio 3.0 + ,同时将 buildToolsVersion 升级到27.0.1+(此版本修复了 原先 xml 嵌套资源文件的 Bug，如果使用 json 可以忽略)</p>
+</blockquote>
+</li>
+<li><p>4.添加 Lottie Gradle 依赖</p>
+</li>
+</ul>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">  implementation <span class="string">'com.airbnb.android:lottie:2.5.4'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>布局文件中使用</li>
+</ul>
+<p>这里我把 json 文件放到 raw 目录下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">android.support.constraint.ConstraintLayout</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:app</span>=<span class="string">"http://schemas.android.com/apk/res-auto"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">com.airbnb.lottie.LottieAnimationView</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:id</span>=<span class="string">"@+id/animation_view"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintBottom_toBottomOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintEnd_toEndOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintStart_toStartOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:layout_constraintTop_toTopOf</span>=<span class="string">"parent"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:lottie_autoPlay</span>=<span class="string">"true"</span>"</span></span><br><span class="line"><span class="tag">            <span class="attr">app:lottie_loop</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">            <span class="attr">app:lottie_rawRes</span>=<span class="string">"@raw/data"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">android.support.constraint.ConstraintLayout</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后运行就好了</li>
+</ul>
+<p>整个过程非常的简单，麻烦的事情都托付给设计同事了，哈哈。如果你也像设计出好看的动画，学会 AE 就好了。</p>
+<h1 id="Lottie-优点"><a href="#Lottie-优点" class="headerlink" title="Lottie 优点"></a>Lottie 优点</h1><ul>
+<li>快速动画开发（高难度动画情况）</li>
+<li>跨平台</li>
+<li>服务器后台控制调整动画</li>
+<li>进度控制，像利用触摸滑动来控制动画执行的进度</li>
+<li>最低 Android API 14 （AVD 需要 API24+）</li>
+<li>代码开源</li>
+</ul>
+<h1 id="Lottie-缺点"><a href="#Lottie-缺点" class="headerlink" title="Lottie 缺点"></a>Lottie 缺点</h1><ul>
+<li><strong>json 加载性能差</strong>,<strong>通过 json 加载</strong>的形式来绘制动画，性能是非常差的，所以推荐在启动引导页面上使用，或不需要和用户交互时使用，从而避免用户感受到页面卡顿；这个就要看你是否愿意牺牲性能来换取效果。</li>
+</ul>
+<blockquote>
+<p>而通过 AVD(AnimatedVectorDrawable)的xml 的加载方式性能会很好，但 AnimatedVectorDrawable 需要在 API24+ 上才能使用。</p>
+</blockquote>
+<ul>
+<li><strong>不好调试</strong>，一旦导入到 AS 后，就很难调试动画了，除非你吃透源码看懂 json 里面的数据参数。在这方面，AnimatedVectorDrawable 可读性就好很多。</li>
+</ul>
+<h1 id="Lottie-使用注意点"><a href="#Lottie-使用注意点" class="headerlink" title="Lottie 使用注意点"></a>Lottie 使用注意点</h1><ul>
+<li><p>AVD 只支持 矢量文件资源，不支持普通资源，例如把 png 图片放到 AE 里面去添加动画，然后导出成 AVD（xml）,最后引用该 xml 是会报错的。所以使用 AVD 导出，请让 Designer 画吧。 </p>
+</li>
+<li><p>json 支持应用 普通资源文件，导出后会有一个 image 的资源文件夹，请复制到 AS 中，然后需要在代码中或布局xml控件中指定该文件夹</p>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">com.airbnb.lottie.LottieAnimationView</span></span></span><br><span class="line"><span class="tag">	//这里我把 <span class="attr">image</span> 文件加放到了 <span class="attr">assets</span> 目录下</span></span><br><span class="line"><span class="tag">       <span class="attr">app:lottie_imageAssetsFolder</span>=<span class="string">"images"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//kotlin 代码</span></span><br><span class="line">   animation_view.apply &#123;</span><br><span class="line">       imageAssetsFolder = <span class="string">"images/"</span>  <span class="comment">//指定资源目录</span></span><br><span class="line">       setAnimation(<span class="string">"data.json"</span>)</span><br><span class="line">       loop(<span class="literal">true</span>)</span><br><span class="line">       playAnimation()</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/05/27/35-Retrofit2-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Retrofit2-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/29/33-Activity-启动模式-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Activity 启动模式-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

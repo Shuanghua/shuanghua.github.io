@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Handler MessageQueue Looper 学习 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Handler MessageQueue Looper 在 Android 中板扮演着不同线程间传递消息的角色，最常见的就是在子线程和 UI 线程之间的消息交流,原理就是一个线程发消息，另一个线程取消息。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Handler MessageQueue Looper 学习">
+<meta property="og:url" content="https://moshuanghua.com/2016/07/03/5-Handler-MessageQueue-Looper-源码简单分析/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Handler MessageQueue Looper 在 Android 中板扮演着不同线程间传递消息的角色，最常见的就是在子线程和 UI 线程之间的消息交流,原理就是一个线程发消息，另一个线程取消息。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/dispatchMessage.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/Callback.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/MessageQueue%E5%8F%91%E6%B6%88%E6%81%AF.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/MessageQueueNext.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/looper%E5%88%9B%E5%BB%BA.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/preparemainlooper.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/loop.png">
+<meta property="og:updated_time" content="2019-04-09T11:57:36.802Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Handler MessageQueue Looper 学习">
+<meta name="twitter:description" content="Handler MessageQueue Looper 在 Android 中板扮演着不同线程间传递消息的角色，最常见的就是在子线程和 UI 线程之间的消息交流,原理就是一个线程发消息，另一个线程取消息。">
+<meta name="twitter:image" content="http://7xrysc.com1.z0.glb.clouddn.com/dispatchMessage.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-5-Handler-MessageQueue-Looper-源码简单分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/03/5-Handler-MessageQueue-Looper-源码简单分析/" class="article-date">
+  	<time datetime="2016-07-02T16:00:00.000Z" itemprop="datePublished">2016-07-03</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Handler MessageQueue Looper 学习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、介绍"><span class="toc-number">1.</span> <span class="toc-text">一、介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、-Handler"><span class="toc-number">2.</span> <span class="toc-text">二、 Handler</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sendMessage-和-post"><span class="toc-number">2.1.</span> <span class="toc-text">sendMessage 和 post</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dispatchMessage-Message-msg"><span class="toc-number">2.2.</span> <span class="toc-text">dispatchMessage(Message msg)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Callback"><span class="toc-number">2.3.</span> <span class="toc-text">Callback</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、MessageQueue"><span class="toc-number">3.</span> <span class="toc-text">三、MessageQueue</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入数据"><span class="toc-number">3.1.</span> <span class="toc-text">插入数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#返回数据"><span class="toc-number">3.2.</span> <span class="toc-text">返回数据</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、-Looper"><span class="toc-number">4.</span> <span class="toc-text">四、 Looper</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal"><span class="toc-number">4.1.</span> <span class="toc-text">ThreadLocal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepare"><span class="toc-number">4.2.</span> <span class="toc-text">prepare()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#prepareMainLooper"><span class="toc-number">4.3.</span> <span class="toc-text">prepareMainLooper()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#loop"><span class="toc-number">4.4.</span> <span class="toc-text">loop()</span></a></li></ol></li></ol>
+			</div>
+		
+		
+        <h1 id="一、介绍"><a href="#一、介绍" class="headerlink" title="一、介绍"></a>一、介绍</h1><p>Handler MessageQueue Looper 在 Android 中板扮演着不同线程间传递消息的角色，最常见的就是在子线程和 UI 线程之间的消息交流,原理就是一个线程发消息，另一个线程取消息。</p>
+<a id="more"></a>
+<h1 id="二、-Handler"><a href="#二、-Handler" class="headerlink" title="二、 Handler"></a>二、 Handler</h1><p>Handler 作用是对消息队列里的数据进行插入</p>
+<h2 id="sendMessage-和-post"><a href="#sendMessage-和-post" class="headerlink" title="sendMessage 和 post"></a>sendMessage 和 post</h2><p>不管发消息用 sendMessage 还是 post 其最终是调用 MessageQueue 的 enqueueMessage() 方法，这里发送消息时，MessageQueue 队列里有数据了就会调用 Looper 中的 loop() 方法来取出数据 ，然后分发处理</p>
+<h2 id="dispatchMessage-Message-msg"><a href="#dispatchMessage-Message-msg" class="headerlink" title="dispatchMessage(Message msg)"></a>dispatchMessage(Message msg)</h2><ul>
+<li>分发处理消息</li>
+</ul>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/dispatchMessage.png" alt="dispatchMessage"></p>
+<p>先判断消息里是否含有 Callback,（这里的 Callback 其实是一个 Runable 类型，例如我们经常 post(new Runable) 这种写法），如果含有，那就将消息交给 handleCallback（）处理，不含有就重新派生一个handler,并重写 handlerMessage进行处理。</p>
+<h2 id="Callback"><a href="#Callback" class="headerlink" title="Callback"></a>Callback</h2><p><img src="http://7xrysc.com1.z0.glb.clouddn.com/Callback.png" alt="Callback"></p>
+<p>当我们查看到 Callback 这接口的时候，发现还有它里面还有一个 handleMessage（Message msg） 抽象方法，那么我们也可以在不需要创建 一个 Handler 子类 的时候去进行消息的处理。</p>
+<h1 id="三、MessageQueue"><a href="#三、MessageQueue" class="headerlink" title="三、MessageQueue"></a>三、MessageQueue</h1><p>说到 MessageQueue 那肯定离不开 Message 而 Message 恰好在 MessageQueue 类中出现了, Message 其实是一个单链表，其实现了 Android 的 Parcelable 的序列化接口，既然 Message 是链表形式，那么 MessageQueue 应该就好理解了，MessageQueue 就是对这个链表进行操作的而存在的。</p>
+<h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><p>enqueueMessage(Mesage msg, long when){}</p>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/MessageQueue%E5%8F%91%E6%B6%88%E6%81%AF.png" alt=""></p>
+<p>先是判断链表是否为空，为空的话就插入数据，不为空就就一直循环着，因为我们知道 MessageQueue 是消息队列，它就是循环的“ 处理 ” 消息用的(不是循环 “ 发送 ”消息， 发送传递消息是 Looper 干的)而不为空的情况下，其会根据数据存放的先后进行数据处理，就是先存入的先处理。依此循环。</p>
+<h2 id="返回数据"><a href="#返回数据" class="headerlink" title="返回数据"></a>返回数据</h2><p>Message next() {}</p>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/MessageQueueNext.png" alt=""></p>
+<p>返回数据也是一个循环,(这里的返回数据不是直接向线程需要数据的地方返回)，但这个循环多了个阻塞方法 nativePollOnce(ptr, nextPollTimeoutMillis); 这是 native 方法 ，一般在调用该方法之前会先调用 Binder.flushPendingCommands();</p>
+<p>不管是插入数据还是返回数据其实都是基于 Meesage 这个单链表来展开操作。而Message 的链表的 next 方法，在 package 中已经封装好了，所以 MessageQueue 的理解就更加简单了，其就本意就是对链表里的数据进行有条件的取出和插入，这是一个循环的过程。</p>
+<h1 id="四、-Looper"><a href="#四、-Looper" class="headerlink" title="四、 Looper"></a>四、 Looper</h1><p>在讲 Looper 之前 先来知道一个事情 ，就是不同的线程会有不同的 Looper 对象，前提是我们 Looper.prepare() 创建了 Looper 对象。那么问题来了，那么多线程就会有那么多的 Looper 对象，要怎么保存才好呢？</p>
+<h2 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal<t></t></h2><p>一个线程对应一个实例 那就最好用 ThreadLocal<t> 了，而源码中使用的正是ThreadLocal<looper></looper></t></p>
+<h2 id="prepare"><a href="#prepare" class="headerlink" title="prepare()"></a>prepare()</h2><p>创建一个 Looper 对象并保存到 ThreadLocal 集合中去。</p>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/looper%E5%88%9B%E5%BB%BA.png" alt=""></p>
+<h2 id="prepareMainLooper"><a href="#prepareMainLooper" class="headerlink" title="prepareMainLooper()"></a>prepareMainLooper()</h2><p>创建主线程的 Looper 对象</p>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/preparemainlooper.png" alt=""></p>
+<p>在 prepare() 和 prepareMainLooper() 方法中看到都调用了一个 prepare 的重载方法，其参数是一个 boolean 类型，翻译过来可以认为是 “能否退出”,在 prepareMainLooper() 中传入的是一个 false, prepare() 传入的是 true ，false 意味该 looper 可以退出，而主线程的 looper 为 false 意味着主线程不能退出，会一致循环 looper。</p>
+<p>当看到在创建 MessageQueue 实例的地方，需要一个退出确认参数 quitAllowed ，一路追踪，最终到了 MessageQueue 里的 quit 方法，通过这个方法知道：要退出整个过程，需要移除所有的 MessagesLocked，而主线城的 Looper 对象是退出不了的；如果主线程的 Looper 实例能退出销毁，那应用绝对 Crash。</p>
+<h2 id="loop"><a href="#loop" class="headerlink" title="loop()"></a>loop()</h2><p><img src="http://7xrysc.com1.z0.glb.clouddn.com/loop.png" alt=""></p>
+<p>看到方法 loop() 里面是一个死循环，队列有消息就取出消息，并判断消息的 taget 交给 Handler 分发处理 ,没有消息就 return 继续循环取下一个消息。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/03/6-Realm-Android/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Realm for Android 学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/19/4-Android-高级学习笔记（一）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android高级笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

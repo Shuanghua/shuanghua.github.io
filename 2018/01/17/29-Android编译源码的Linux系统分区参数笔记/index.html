@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Ubuntu 系统安装分区参数（用于编译 Android 源码） | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="用于编译 Android 源码，Home 分区的大小尽量给大点">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 系统安装分区参数（用于编译 Android 源码）">
+<meta property="og:url" content="https://moshuanghua.com/2018/01/17/29-Android编译源码的Linux系统分区参数笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="用于编译 Android 源码，Home 分区的大小尽量给大点">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-10T02:32:14.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 系统安装分区参数（用于编译 Android 源码）">
+<meta name="twitter:description" content="用于编译 Android 源码，Home 分区的大小尽量给大点">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-29-Android编译源码的Linux系统分区参数笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/01/17/29-Android编译源码的Linux系统分区参数笔记/" class="article-date">
+  	<time datetime="2018-01-16T16:00:00.000Z" itemprop="datePublished">2018-01-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 系统安装分区参数（用于编译 Android 源码）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>以下参数仅供参考：</p>
+<h2 id="用于-BOOT-引导启动的-Bios"><a href="#用于-BOOT-引导启动的-Bios" class="headerlink" title="用于 BOOT 引导启动的 Bios"></a>用于 BOOT 引导启动的 Bios</h2><blockquote>
+<p>主要设置一下 4 个分区即可</p>
+</blockquote>
+<ul>
+<li><p><strong>/.</strong> 30G~70  主分区-空间起始位置-EXT4日志文件-/（系统安装存放区）</p>
+</li>
+<li><p><strong>/boot</strong> 256~512M 逻辑分区-空间起始位置-/boot （存放启动系统的引导文件)</p>
+</li>
+<li><p><strong>swap</strong> 16G  逻辑分区-空间起始位置-交换空间 （’相当’内存，硬件内存是8G以下大小通常设置为硬件内存的2倍，我硬件内存是16G，直接设置为16G，反正看着给尽量不低于实际内存就行，也不用太高）</p>
+</li>
+<li><p><strong>/home</strong>  逻辑分区-空间起始位置-EXT4日志文件-/home  (工作区大小，存放视频图片等、像要编译 Android 源码，Home 分区的大小尽量给大点，以免存放不下)</p>
+</li>
+<li><p>安装启动引导器的设备：选择刚刚分好的 boot 分区</p>
+</li>
+</ul>
+<h2 id="用于-UEFI-引导启动（先关闭安全启动secure-boot）"><a href="#用于-UEFI-引导启动（先关闭安全启动secure-boot）" class="headerlink" title="用于 UEFI 引导启动（先关闭安全启动secure boot）"></a>用于 UEFI 引导启动（先关闭安全启动secure boot）</h2><h3 id="UEFI单系统-只安装-Ubuntu-系统"><a href="#UEFI单系统-只安装-Ubuntu-系统" class="headerlink" title="UEFI单系统-只安装 Ubuntu 系统"></a>UEFI单系统-只安装 Ubuntu 系统</h3><blockquote>
+<p>也是主要设置一下 4 个分区即可</p>
+</blockquote>
+<ul>
+<li><p><strong>/.</strong> 30G~70  主分区-空间起始位置-EXT4日志文件-/（系统安装存放区）</p>
+</li>
+<li><p><strong>/efi系统引导</strong> 256~512M 逻辑分区-空间起始位置-/efi （存放启动系统的引导文件)</p>
+</li>
+<li><p><strong>swap</strong> 16G  逻辑分区-空间起始位置-交换空间 （’相当’内存，硬件内存是8G以下大小通常设置为硬件内存的2倍，我硬件内存是16G，直接设置为16G，反正看着给尽量不低于实际内存就行，也不用太高）</p>
+</li>
+<li><p><strong>/home</strong>  逻辑分区-空间起始位置-EXT4日志文件-/home  (工作区大小，存放视频图片等、像要编译 Android 源码，Home 分区的大小尽量给大点，以免存放不下)</p>
+</li>
+<li><p>安装启动引导器的设备：选择刚刚分好的 /efi系统引导分区</p>
+</li>
+</ul>
+<h3 id="UEFI双系统（有-Win10-系统，安装-Ubuntu-系统）"><a href="#UEFI双系统（有-Win10-系统，安装-Ubuntu-系统）" class="headerlink" title="UEFI双系统（有 Win10 系统，安装 Ubuntu 系统）"></a>UEFI双系统（有 Win10 系统，安装 Ubuntu 系统）</h3><blockquote>
+<p>关键点在于，两个系统的引导文件最好都存放在同一个 uefi 分区；所以先在 Win10 下面用分区工具查看下 Win10 启动引导文件存放在哪个分区，记住该分区的大小；如果大小不够200，那就得从 Win10 所在的磁盘再分出来一块 256-512 的空闲分区,至少得同在一个硬盘。不然有可能装完 Ubuntu 后，Ubuntu 的引导页面没有 Windowns Manager 选项。</p>
+</blockquote>
+<blockquote>
+<p>其也是主要设置一下 4 个分区即可</p>
+</blockquote>
+<ul>
+<li><p><strong>/.</strong> 30G~70  主分区-空间起始位置-EXT4日志文件-/（系统安装存放区）</p>
+</li>
+<li><p><strong>/efi系统引导</strong> 256~512M 逻辑分区-空间起始位置-/efi （如果Wiin10存放的引导文件区剩下的大小足够，可不用划分，也就是跳过这一步，直接往下设置 swap；否则这里划分请从的选择 Win10 里面分出来那一块空闲分区的)</p>
+</li>
+<li><p><strong>swap</strong> 16G  逻辑分区-空间起始位置-交换空间 （’相当’内存，硬件内存是8G以下大小通常设置为硬件内存的2倍，我硬件内存是16G，直接设置为16G，反正看着给尽量不低于实际内存就行，也不用太高）</p>
+</li>
+<li><p><strong>/home</strong>  逻辑分区-空间起始位置-EXT4日志文件-/home  (工作区大小，存放视频图片等、像要编译 Android 源码，Home 分区的大小尽量给大点，以免存放不下)</p>
+</li>
+<li><p>安装启动引导器的设备：选择刚刚分好的 /efi系统引导分区或者Win10引导所在的分区</p>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/20/30-Pixel-刷机/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Pixel刷机步骤
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/14/28-Kotlin-变量初始化/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin 变量初始化的三种方式</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

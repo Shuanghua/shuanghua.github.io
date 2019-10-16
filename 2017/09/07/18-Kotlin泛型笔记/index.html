@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 泛型-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="对 Kotlin 泛型的加深理解">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 泛型-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/09/07/18-Kotlin泛型笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="对 Kotlin 泛型的加深理解">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:51:50.642Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 泛型-笔记">
+<meta name="twitter:description" content="对 Kotlin 泛型的加深理解">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-18-Kotlin泛型笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/09/07/18-Kotlin泛型笔记/" class="article-date">
+  	<time datetime="2017-09-06T16:00:00.000Z" itemprop="datePublished">2017-09-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 泛型-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="Kotlin-泛型"><a href="#Kotlin-泛型" class="headerlink" title="Kotlin 泛型"></a>Kotlin 泛型</h1><blockquote>
+<p>Kotlin 和 Java 的泛型都是伪泛型。</p>
+</blockquote>
+<blockquote>
+<p>Kotlin 泛型有两个概念：<strong>型变</strong>（declaration-site variance）和<strong>类型投影</strong>（type projections）。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="关于-Kotlin-泛型语法定义"><a href="#关于-Kotlin-泛型语法定义" class="headerlink" title="关于 Kotlin 泛型语法定义"></a>关于 Kotlin 泛型语法定义</h2><ul>
+<li><p>类 的泛型定义在类名的 后面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class Box&lt;T&gt;(t: T)&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数 的泛型定义在函数的 前面</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">test</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用 的定义了泛型参数的函数，把需要传入的泛型写在函数名 后面</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test&lt;<span class="built_in">Int</span>&gt;()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果参数的值已经确定了类型，那么可以省略类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> box: Box&lt;<span class="built_in">Int</span>&gt; = Box&lt;<span class="built_in">Int</span>&gt;(<span class="number">1</span>)</span><br><span class="line"><span class="keyword">val</span> box = Box(<span class="number">1</span>) <span class="comment">//1是 Int 型，因此编译器会推断出我们调用的是 Box&lt;Int&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>下面进入正题：</p>
+<h1 id="型变"><a href="#型变" class="headerlink" title="型变"></a>型变</h1><p>例：</p>
+<blockquote>
+<p>型变：Man 是 Person 的子类，如果 List&lt; Man &gt; 也是List&lt; Person &gt; 的子类。那么就可以称之为类型型变。在 java 中这种特点也称为泛型不可变。<br>Kotlin 型变包括了 <strong>协变</strong> 和 <strong>逆变</strong> 以及 <strong>不变</strong> 三种.</p>
+</blockquote>
+<h2 id="Java-型变"><a href="#Java-型变" class="headerlink" title="Java 型变"></a>Java 型变</h2><p>在了解 Kotlin 型变之前，我们先来看看 Java 的泛型型变，在 Java 中我们要用 &lt;? extends T&gt; 指定类型参数的上限，用 &lt;? super T&gt; 指定类型参数的下限。</p>
+<p>例：<br>当 Man 是 Person 的子类，但 List&lt; Man &gt; 和 List&lt; Person &gt; 在 Java 中是一点关系都没有的，不能相互转型！ 如果要让 List&lt; Man &gt; 能赋值给 List&lt; Person &gt; ，我们就得使用 &lt;? extends Person&gt;，看 java Collection 源码的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt; </span>&#123;<span class="comment">// Java</span></span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>add() 和 addAll()，他们的作用分别单个操作和批量操作的区别。再看他们的参数，一个是 E 类型，一个是 &lt;? extends E&gt;, ? extends E 表示只能接收泛型参数类型为 E 子类的任意类型,这样来限定 List<man> 赋值给 List<person> 的必备前提条件。</person></man></p>
+<p>用代码解释：<br>    list1.add(10)// 这样 E 的类型就变成了 Int 类型。<br>    list2.addAll(list1)//list1里面的数据类型就得必须是 Int 或 Int 的子类。</p>
+<h2 id="Kotlin-型变"><a href="#Kotlin-型变" class="headerlink" title="Kotlin 型变"></a>Kotlin 型变</h2><p>在 Kotlin 就抛弃了这个形式，引入了生产者和消费者的概念</p>
+<ul>
+<li><p>生产者是那些只能 读取 数据的对象 ( <strong>out</strong> )(<strong>协变</strong>)</p>
+</li>
+<li><p>消费者是那些只能 写入 数据的对象 ( <strong>in</strong> )(<strong>逆变</strong>)</p>
+</li>
+<li><p>生产啥就消费啥就是<strong>不变</strong></p>
+</li>
+</ul>
+<p>下面具体看这三个使用方式：</p>
+<h3 id="协变-out"><a href="#协变-out" class="headerlink" title="协变 out"></a>协变 out</h3><blockquote>
+<p>子类类型变成父类类型，比如把 List&lt; Man&gt; 赋值给 List&lt; Person&gt;</p>
+</blockquote>
+<p>Kotlin 中 out 关键字经常遇见，我们来看看 Kotlin 是怎么定义的 Collection</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="type">out E</span>&gt; : <span class="type">Iterable</span>&lt;<span class="type">E</span>&gt; </span>&#123;<span class="comment">// Kotlin</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>out E 表明 E 是协变的，如果两次传给 E 的类型是有关系的，假设 E1 继承 E2，那么 Collection &lt; E1 &gt; 和 Collection&lt; E2 &gt; 也是有关系的。</p>
+</blockquote>
+<p>这就是 Kotlin 实现 Java 泛型的相同之处。但这是 Kotlin ,怎么会是换一个定义这么简单，还记得上面我们有提到过生产者和消费者吗，这才是 kotlin 的不同之处。</p>
+<p>在 Kotlin 中，out 被赋予了生产者的概念：被 out 修饰的类型只能用于返回值类型。</p>
+<ul>
+<li>对比两段我自写的代码例子就很清晰了：<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyList</span>&lt;<span class="type">out T</span>&gt; </span>&#123;<span class="comment">// Kotlin</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(t: <span class="type">T</span>)</span></span> <span class="comment">// 编译器报错</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">addAll</span><span class="params">(t: <span class="type">T</span>)</span></span> <span class="comment">// 编译器报错</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyList</span>&lt;<span class="type">out T</span>&gt; </span>&#123;<span class="comment">// Kotlin</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(t: <span class="type">T</span>)</span></span> <span class="comment">// 编译器报错</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">addAll</span><span class="params">()</span></span>: T <span class="comment">// 正确</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>被 out 修饰的 T ,只能做为返回值类型，不能作为函数参数类型，因为函数的参数是用来消费。</p>
+<h4 id="UnsafeVariance"><a href="#UnsafeVariance" class="headerlink" title="@UnsafeVariance"></a>@UnsafeVariance</h4><p>上面说 out T, 说明这个 T 只能用于生产(只能用于返回值类型)，但有些特殊情况下，我们既需要这个 T 用于返回值类型，又需要用于函数参数类型, 那么就需要用到 @UnsafeVariance 注解，告诉编译器确定此处安全，不用编译器进行安全检测，从而达到两处使用的目的。</p>
+<p>在 Kotlin Collection 接口里的一个函数例子：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="type">out E</span>&gt; : <span class="type">Iterable</span>&lt;<span class="type">E</span>&gt; </span>&#123; </span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">contains</span><span class="params">(element: @<span class="type">UnsafeVariance</span> <span class="type">E</span>)</span></span>: <span class="built_in">Boolean</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>本来这个 E 已经被修饰为: out 协变, 本不可在 contains（） 函数的参数中使用，但借助了 @UnsafeVariance 注解，就可以被用做函数的参数类型。使用 @UnsafeVariance 的前提是确保类型安全即可。</p>
+<h4 id="什么是类型安全？"><a href="#什么是类型安全？" class="headerlink" title="什么是类型安全？"></a>什么是类型安全？</h4><blockquote>
+<p>Kotlin 是一门静态编程语言，在编译期就自动做类型安全检查。比如把一个 Double 类型赋值给 Int 类型，会造成精度丢失，说明这是不安全的类型赋值操作。</p>
+</blockquote>
+<p>下面的代码很好的解释了这个情况：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCollection</span>&lt;<span class="type">out T</span>&gt;</span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(t: <span class="type">T</span>)</span></span>&#123;<span class="comment">//报错</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>调用<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> list: MyCollection&lt;Number&gt; = MyCollection&lt;<span class="built_in">Int</span>&gt;() <span class="comment">//在声明的时候确定了 T = Int 类型</span></span><br><span class="line">list.add(<span class="number">3.0</span>)<span class="comment">// E 的类型设置为 Double</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>Double 赋值给 Int 的操作，丢失精度，不是安全赋值。</li>
+<li>调用处的代码可以编译通过的，而 MyCollection 中的报错是必然的，因为 out 的限定。</li>
+<li>当使用 @UnsafeVariance 注解后，编译器就不提示冲突了，这样我们后面调用 add 的时候可以传入 Int Double 就没问题了。<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyCollection</span>&lt;<span class="type">out T</span>&gt;</span>&#123; </span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">add</span><span class="params">(t: @<span class="type">UnsafeVariance</span> <span class="type">T</span>)</span></span>&#123;<span class="comment">//不报错</span></span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>但这样新的问题就来了：add 是一个集合操作，里面有 Int，又有 Double, 我要遍历怎么遍历？这就造成了读取的问题。这就尴尬了，所以在使用 @UnsafeVariance 注解的时候，尽量确保第二次给 T 确定类型的时候也是同样的类型。这也是静态语言的特点，为了解决类型的不确定性，就有了下面的 <strong>逆变</strong> 概念。</p>
+</blockquote>
+<h2 id="逆变-in"><a href="#逆变-in" class="headerlink" title="逆变 in"></a>逆变 in</h2><blockquote>
+<p>父类类型变成子类类型,比如把 Comparable&lt; Number&gt; 赋值给 Comparable&lt; Int&gt;</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="type">in T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">operator</span> <span class="function"><span class="keyword">fun</span> <span class="title">compareTo</span><span class="params">(other: <span class="type">T</span>)</span></span>: <span class="built_in">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">demo</span><span class="params">(f: <span class="type">Comparable</span>&lt;<span class="type">Number</span>&gt;)</span></span> &#123;</span><br><span class="line">    f.compareTo(<span class="number">1.0</span>)</span><br><span class="line">    <span class="keyword">val</span> a: Comparable&lt;<span class="built_in">Double</span>&gt; = f <span class="comment">// OK!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的  @UnsafeVariance 注解使用的前提是你得确保你的类型安全。如果不能确定，那怎么办？So 就有了这个<strong>逆变</strong>的概念</p>
+<blockquote>
+<p>in T, 就是这个 T 只能用于参数类型</p>
+</blockquote>
+<ul>
+<li>理解了 out ,in 的使用就很简单了，所以这里就不详细介绍了。<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">MyList</span>&lt;<span class="type">in E, out T</span>&gt; </span>&#123;<span class="comment">// Kotlin</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">fun</span> <span class="title">addAll</span><span class="params">(e: <span class="type">E</span>)</span></span>: T <span class="comment">// 正确</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="不变"><a href="#不变" class="headerlink" title="不变"></a>不变</h2><p>没有关系的就是不变的</p>
+<h1 id="声明处型变"><a href="#声明处型变" class="headerlink" title="声明处型变"></a>声明处型变</h1><p>声明处型变也可以称为使用处型变</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Source</span>&lt;<span class="type">out T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">nextT</span><span class="params">()</span></span>: T</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">(str: <span class="type">Source</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> obj: Source&lt;Any&gt; = str<span class="comment">//在此处声明了一个 Any 类型，这就和 Java 一样能在使用处发生型变</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="类型投影（-）"><a href="#类型投影（-）" class="headerlink" title="类型投影（*）"></a>类型投影（*）</h1><p>当你对参数类型一无所知的时候，又想安全的使用这个泛型，保险的方法就是定一个该泛型的投影，每个该泛型的正确实例都将是该投影的子类。</p>
+<p>Kotlin 可以根据 * 所指代的泛型参数进行相应的映射，看官方例子：</p>
+<ul>
+<li>对于 Foo &lt; out T&gt;，其中 T 是一个具有上界的<strong>协变</strong>类型参数，Foo &lt;*<em>&gt; 等价于 Foo &lt; out TUpper&gt;。 这意味着当 T 未知时，你可以安全地从 Foo &lt;</em>&gt; 读取 TUpper 的值。</li>
+</ul>
+<blockquote>
+<p>Foo&lt;*&gt; = Foo&lt; out T &gt;</p>
+</blockquote>
+<ul>
+<li>对于 Foo <in t="">，其中 T 是一个<strong>逆变</strong>类型参数，Foo&lt;*<em>&gt; 等价于 Foo&lt; in Nothing&gt;。 这意味着当 T 未知时，不能以任何方式安全的方式写入 Foo &lt; </em>&gt;。</in></li>
+</ul>
+<blockquote>
+<p>Foo&lt;*&gt; = Foo&lt; in T &gt;</p>
+</blockquote>
+<ul>
+<li>对于 Foo <t>，其中 T 是一个具有上界 TUpper 的<strong>不型变</strong>类型参数，Foo&lt;*&gt; 对于读取值时等价于 Foo<out tupper=""> 而对于写值时等价于 Foo&lt; in Nothing&gt;。</out></t></li>
+</ul>
+<blockquote>
+<p>Foo&lt;*&gt; = Foo&lt; T &gt;</p>
+</blockquote>
+<h1 id="Kotlin-泛型约束"><a href="#Kotlin-泛型约束" class="headerlink" title="Kotlin 泛型约束"></a>Kotlin 泛型约束</h1><p>在 Kotlin 用冒号 : 指定上界：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T : Comparable&lt;T&gt;</span>&gt; <span class="title">sort</span><span class="params">(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;)</span></span> &#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就只有 Comparable<t> 的子类才能传给泛型 T, 也就是 List 里的类型只能是 Comparable<t> 的子类型。</t></t></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sort(listOf(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)) <span class="comment">// Success</span></span><br><span class="line">sort(listOf(HashMap&lt;<span class="built_in">Int</span>, String&gt;()))<span class="comment">//Error HashMap 不是 Comparable&lt;T&gt; 的子类型</span></span><br></pre></td></tr></table></figure>
+<p>在尖括号内只能定义一个上界，如果要指定多种上界，需要用 where 语句指定：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">cloneWhenGreater</span><span class="params">(list: <span class="type">List</span>&lt;<span class="type">T</span>&gt;, threshold: <span class="type">T</span>)</span></span>: List&lt;T&gt;</span><br><span class="line">    where T : Comparable,</span><br><span class="line">          T : Cloneable &#123;</span><br><span class="line">  <span class="keyword">return</span> list.filter &#123; it &gt; threshold &#125;.map &#123; it.clone() &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="笔记"><a href="#笔记" class="headerlink" title="笔记"></a>笔记</h1><blockquote>
+<p>out T 等价于 ? extends T<br>in T 等价于 ? super T<br>* 等价于 ?</p>
+</blockquote>
+<blockquote>
+<p>out T, 说明这个 T 只能用于生产(通常只能用于返回值类型)<br>in T, 就是这个 T 只能用于参数类型<br>对应一些默认不支持型变的类，可以通过复制来型变它。像 Array<t></t></p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/16/19-Android Fragment/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Fragment 创建和传值
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/04/17-笔记本升级的那些事/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">笔记本电脑升级的注意点</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

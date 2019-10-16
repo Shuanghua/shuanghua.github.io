@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 协程-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="协程是一个轻量级的线程，可以挂起并稍后恢复。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 协程-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/08/27/14-Kotlin-协程-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="协程是一个轻量级的线程，可以挂起并稍后恢复。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-04T02:50:30.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 协程-笔记">
+<meta name="twitter:description" content="协程是一个轻量级的线程，可以挂起并稍后恢复。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-14-Kotlin-协程-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/27/14-Kotlin-协程-笔记/" class="article-date">
+  	<time datetime="2017-08-26T16:00:00.000Z" itemprop="datePublished">2017-08-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 协程-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <ul>
+<li>协程不是线程，</li>
+<li>协程是为了更好的处理代码逻辑，线程是为了更好的利用 CPU 资源。</li>
+<li>在协程中可以使用线程</li>
+<li>协程可以暂停、停止和恢复。</li>
+<li>协程通过‘挂起函数’来支持，通常使用匿名的挂起函数。（如：suspend 修饰的 Lambda 表达式）</li>
+<li>协程挂起和调度非常的轻量，但协程的创建需要一定的开销, 启动协程比启动线程更慢.</li>
+</ul>
+<blockquote>
+<p>协同程序完全是通过编译技术实现（不需要 VM 或 OS 端的支持），并且通过代码转换进行暂停。基本上，每个挂起函数转换为状态机，其中状态对应于挂起调用。在暂停之前，下一个状态存储在编译器生成类的相关的局部变量字段中。在恢复该协程后，恢复局部变量并且状态机在暂停后立即从状态继续</p>
+</blockquote>
+<hr>
+<a id="more"></a>
+<h1 id="挂起函数-suspend"><a href="#挂起函数-suspend" class="headerlink" title="挂起函数 suspend"></a>挂起函数 suspend</h1><blockquote>
+<p>用 suspend 修饰的函数为挂起函数</p>
+</blockquote>
+<ul>
+<li>当调用挂起函数时可能挂起协程</li>
+<li>挂起函数只能在协程和其他的挂起函数中调用</li>
+<li>启动协程，必须至少有一个挂起函数</li>
+<li>通常我们可以把耗时操作或异步操作的函数挂起</li>
+</ul>
+<h2 id="挂起函数例子"><a href="#挂起函数例子" class="headerlink" title="挂起函数例子"></a>挂起函数例子</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">async</span><span class="params">(block: <span class="type">suspend</span> ()</span></span> -&gt; T)</span><br></pre></td></tr></table></figure>
+<p>或者<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面 async() 只是一个普通函数，它的作用事负责协程的启动工作，其参数 block 的类型是一个supend 修饰的 Lambda 表达式</p>
+<ul>
+<li>如果挂起函数是抽象的，那么在实现的时候也必须是挂起的</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>: <span class="type">Base &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123; …… &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果抽象函数不是挂起函数，那么在实现的时候也不能是挂起函数。</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Base</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>: <span class="type">Base &#123;</span></span></span><br><span class="line">    <span class="keyword">override</span> suspend <span class="function"><span class="keyword">fun</span> <span class="title">foo</span><span class="params">()</span></span> &#123; …… &#125; <span class="comment">// 错误</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面简单了解协程的大概启动流程：</p>
+<h1 id="协程标准-API-的三个主要方法"><a href="#协程标准-API-的三个主要方法" class="headerlink" title="协程标准 API 的三个主要方法"></a>协程标准 API 的三个主要方法</h1><blockquote>
+<p>【注意】下面例子基于协程标准 API 来实现，只需要大概了解协程的封装原理，官方不推荐直接使用标准 API 来直接开发项目，但是我们应该了解其内部的封装原理，必要时候可以自己针对项目进行特色封装使用。</p>
+</blockquote>
+<blockquote>
+<p> createCoroutine()<br> startCoroutine()<br> suspendCoroutine()</p>
+</blockquote>
+<ul>
+<li><p>1.调用 startCoroutine() 传入一个 Continuation 来启动一个协程。</p>
+</li>
+<li><p>2.然后调用 suspendCoroutine<t> 函数来获取我们传入的 Continuation</t></p>
+</li>
+<li><p>3.需要将最终的结果传给 Continuation 的 resume() 函数来完成协程（通过 Continuation 实例调用 resume() 函数）</p>
+</li>
+</ul>
+<p>下面开始动手写一个协同程序，简称协程。</p>
+<h1 id="写一个协程"><a href="#写一个协程" class="headerlink" title="写一个协程"></a>写一个协程</h1><p>基于协程标准 API 来实现简单的网路下载协程</p>
+<h2 id="定义协程入口-startCoroutine"><a href="#定义协程入口-startCoroutine" class="headerlink" title="定义协程入口 startCoroutine"></a>定义协程入口 startCoroutine</h2><blockquote>
+<p>用 suspend 函数调用标准 API 中的 startCoroutine（）来开启一个协程。<br>同时这里我们使用的 suspend 修饰 Lambda 表达式来定义一个挂起函数。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">start</span><span class="params">( block: <span class="type">suspend</span> ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    block.startCoroutine(MyContinuation()) <span class="comment">//传入 Continuation 启动协程</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，协程的启动，其实就是通过用 supend 函数调用 startCoroutine() 来启动的。在调用时，它需要一个 Continuation 实例。下面就去创建这个 Continuation。</p>
+<h2 id="定义协程出口-Continuation"><a href="#定义协程出口-Continuation" class="headerlink" title="定义协程出口 Continuation"></a>定义协程出口 Continuation</h2><blockquote>
+<p>创建 Continuation，需要一个 CoroutineContext，也就是通常说的 <strong>协程上下文</strong>。</p>
+</blockquote>
+<ul>
+<li>定义一个 <strong>MyContinuation</strong> 类，并实现 Continuation<t> 这个接口，重写相应变量和函数。<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyContinuation</span></span>() : Continuation&lt;T&gt; &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext</span><br><span class="line">      <span class="keyword">get</span>() = EmptyCoroutineContext <span class="comment">// 使用协程API自带的一个空 Context</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//协程出口</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 等待一个最终结果传给这个函数返回</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//异常捕获</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</t></li>
+</ul>
+<p>第一个变量是协程的上下文，我们给默认为空的上下文（EmptyCoroutineContext）凑合着用会儿。剩下的两个函数，就是协程工作完成后需要把结果传送出来的地方。</p>
+<p>我们可以把 Continuation 当作协程的出口，当数据从出口出来之后就意味这这段协程结束（注意，一个协程可以有很多个 Continuation ，但多个 Continuation 一般都是串行拼接的，在启动协程时只能有一个入口和一个最终出口。</p>
+<h2 id="定义耗时任务-download"><a href="#定义耗时任务-download" class="headerlink" title="定义耗时任务 download()"></a>定义耗时任务 download()</h2><p>下载图片的逻辑，比如利用 Okhttp 等下载。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">download</span><span class="params">(url: <span class="type">String</span>)</span></span>: T &#123;</span><br><span class="line">    <span class="comment">//耗时代码，网络下载...</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"假设这是小电影"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里只是模拟下载，下载完成后返回相应的数据</p>
+<h2 id="将结果传出"><a href="#将结果传出" class="headerlink" title="将结果传出"></a>将结果传出</h2><blockquote>
+<p>通过 suspendCoroutine&lt; T &gt; 函数来获取我们的上面定义的 MyContinuation 实例，然后利用该实例调用 MyContinuation 里面的两个函数，最后将数据传出。</p>
+</blockquote>
+<ul>
+<li>通过 continuation 传输数据<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">work</span><span class="params">(block: ()</span></span> -&gt; T) = suspendCoroutine&lt;T&gt; &#123;</span><br><span class="line">  continuation -&gt; continuation.resume(block()) <span class="comment">//将最终结果传给上面的 resume()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>我们得通过调用 API 的 suspendCoroutine() 函数（必须是在 suspend 环境下才能调用），拿到我们上面自己定义的 MyContinuation 实例， 然后利用该实例调用 MyContinuation 的 resume() 函数, 并将耗时工作得到的结果传给 resume( )，这样就完成了一个简单的协程封装。</p>
+<blockquote>
+<p>只有被 suspend 修饰的函数才能调用到 suspendCoroutine() 函数，suspendCoroutine 函数的返回值就是我们 startCoroutine() 传入的 MyContinuation。</p>
+</blockquote>
+<h2 id="使用协程"><a href="#使用协程" class="headerlink" title="使用协程"></a>使用协程</h2><p>使用我们上面写的协程<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    start &#123;</span><br><span class="line">        work &#123;</span><br><span class="line">            download(<span class="string">"www.baidu.com"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 写完，一脸懵逼，这么麻烦写这协程，而且还没有任何的优化实现，还不如老实用 Java 线程。因为这是基于标准 API 的实现，所以官方也不推荐直接使用。</p>
+<blockquote>
+<p>上面的代码简单的封装了一个网络下载功能，这个网络下载非常的简洁，都没有线程相关，当运行之后会发现，它下载非常慢，会阻塞主线程。所以这里就要注意：<strong>协程不是线程，协程不能取代线程，协程只是用来更方便处理异步任务</strong>。假如使用线程来处理异步，线程的调度是 CPU 物理级别的，非常的难以控制，即使 Java 中有一些调度的 API,但用起来还是很不方便，况且这种操作 CPU 的调度，性能的消耗很严重，特别是电量的消耗。<br>所以协程最理想使用是配合线程一起使用，线程只管执行工作，协程来分配管理工作。</p>
+</blockquote>
+<h1 id="协程上下文-CoroutineContext"><a href="#协程上下文-CoroutineContext" class="headerlink" title="协程上下文 CoroutineContext"></a>协程上下文 CoroutineContext</h1><blockquote>
+<p>在协程中有一个非常重要的变量，就是协程的 Context, 协程上下文可以用来携带数据, 像携带 url、携带 Handler 各种数据，也可以用来切线程。</p>
+</blockquote>
+<p>上面的代码我们直接将 URL地址直接传到了挂起函数中，如果 URL 是一个 var ，当协程里面有线程的话，这将是一个不安全的写法。所以下面我们修改代码，选择在协程的启动入口处传入我们的 url，同时为我们的协程添加线程支持，这样就不会阻塞主线程啦。</p>
+<h2 id="开始自定义协程的上下文"><a href="#开始自定义协程的上下文" class="headerlink" title="开始自定义协程的上下文"></a>开始自定义协程的上下文</h2><blockquote>
+<p>协程的上下文可以是多个的组合，多个协程上下文的传入是通过 + 好来拼接。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">start</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">        urlContext: <span class="type">CoroutineContext</span> = EmptyCoroutineContext,</span></span></span><br><span class="line"><span class="function"><span class="params">        threadContext: <span class="type">AsyncContext</span> = AsyncContext()</span></span>,</span><br><span class="line">        block: suspend () -&gt; <span class="built_in">Unit</span></span><br><span class="line">) &#123;</span><br><span class="line">    block.startCoroutine(MyContinuation(urlContext + threadContext))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>urlContext 用来携带 url 地址用的，threadContext 就是我们的后台线程</p>
+<ul>
+<li>协程的出口 MyContinuation<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyContinuation</span></span>(<span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext = EmptyCoroutineContext) : Continuation&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">Unit</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>urlContext 是一个默认为空的协程上下文，AsyncContext() 是利用线程池来开启异步任务的上下文，最后将其通过 + 号组合起来传给 startCoroutine() 就完成了多个 Context 的协程工作。下面就来定义这两个 Context</p>
+<p>下面就来看具体的代码实现：</p>
+<h2 id="定义-UrlContext"><a href="#定义-UrlContext" class="headerlink" title="定义 UrlContext"></a>定义 UrlContext</h2><ul>
+<li>继承 AbstractCoroutineContextElement(Key)<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UrlContext</span></span>(<span class="keyword">val</span> url: String) : AbstractCoroutineContextElement(Key) &#123;</span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> Key : CoroutineContext.Key&lt;UrlContext&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>协程上下文必须有相应的一个 Key, 因为假如有多个上下文，程序才能区分。这里我们给 UrlContext 的 Key 是一个伴生对象定义的一个 Key。</p>
+<h2 id="定义-AsyncContext"><a href="#定义-AsyncContext" class="headerlink" title="定义 AsyncContext"></a>定义 AsyncContext</h2><ul>
+<li>同样继承 AbstractCoroutineContextElement（Key）<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncContext</span> : <span class="type">AbstractCoroutineContextElement</span></span>(Key) &#123;</span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> Key : CoroutineContext.Key&lt;AsyncContext&gt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncTaskThreadPool</span></span>(<span class="keyword">val</span> block: () -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span> = myThreadPool.execute(block)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">val</span> myThreadPool <span class="keyword">by</span> lazy &#123;</span><br><span class="line">    Executors.newCachedThreadPool()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>这里的线程，我们直接弄个线程池来作为我们协程的线程支持。</p>
+</blockquote>
+<h2 id="封装到-work-中"><a href="#封装到-work-中" class="headerlink" title="封装到 work 中"></a>封装到 work 中</h2><blockquote>
+<p>想要在 suspendCoroutine 函数获取我们的 CoroutineContext,就需要一个 CoroutineContext 的 Receiver （扩展）<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">workForAsync</span><span class="params">(block: <span class="type">CoroutineContext</span>.()</span></span> -&gt; T) = suspendCoroutine&lt;T&gt; &#123; continuation -&gt;</span><br><span class="line">    AsyncTaskThreadPool &#123;</span><br><span class="line">        continuation.resume(block(continuation.context)) <span class="comment">// 不扩展的话，这里用不了 continuation.context</span></span><br><span class="line">    &#125;.execute()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>注意这里：block: CoroutineContext.() -&gt; T，不扩展 CoroutineContext ,我们没办法通过 continuation 获取 context。</p>
+<h2 id="主函数调用"><a href="#主函数调用" class="headerlink" title="主函数调用"></a>主函数调用</h2><ul>
+<li><p>调用</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> url = <span class="string">"www.google.com"</span></span><br><span class="line">    start(UrlContext(url)) &#123;</span><br><span class="line">        <span class="comment">//主线程</span></span><br><span class="line">        <span class="keyword">val</span> s = workForAsync &#123;</span><br><span class="line">            println(<span class="string">"workForAsync:<span class="subst">$&#123;Thread.currentThread().name&#125;</span>"</span>)</span><br><span class="line">            download(<span class="keyword">this</span>[UrlContext]!!.url)</span><br><span class="line">        &#125;</span><br><span class="line">        println(<span class="string">"start:<span class="subst">$&#123;Thread.currentThread().name&#125;</span>，s = <span class="variable">$s</span>"</span>)</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    println(<span class="string">"请求的地址：<span class="variable">$url</span>"</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">download</span><span class="params">(url: <span class="type">String</span>)</span></span>: String &#123;</span><br><span class="line">    Thread.sleep(<span class="number">10000</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"最终结果"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>log 输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">I/System.out: 请求的地址：www.google.com</span><br><span class="line">I/System.out: workForAsync:pool-1-thread-1</span><br><span class="line">I/System.out: start:pool-1-thread-1，s = 结果 // 10秒后打印</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>当把 println 函数去掉，就会发现非常的简洁，以后只需要写 download 函数往里面丢就行，当我们观察日志后发现结果是在子线程返回的，不用觉得意外，因为我们没有做线程的切换。</p>
+<h1 id="关于线程切换"><a href="#关于线程切换" class="headerlink" title="关于线程切换"></a>关于线程切换</h1><blockquote>
+<p>上面将数据丢给 resume() 没有做线程切换，如果我们要在 Android 中将最终的数据传给到 UI 线程，那么就必须在 resume() 函数中做切换。这种线程之间传递数据的事，Kotlin 协程不会帮我们做，（这协程要你来有何用？）所以我们最终还是得自己写 Handler。</p>
+</blockquote>
+<ul>
+<li>定义一个 SwitchThreadContinuation<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SwitchThreadContinuation</span>&lt;<span class="type">T</span>&gt;</span>(<span class="keyword">val</span> continuation: Continuation&lt;T&gt;) : Continuation&lt;T&gt;&#123;</span><br><span class="line">	<span class="keyword">override</span> <span class="keyword">val</span> context: CoroutineContext</span><br><span class="line">        <span class="keyword">get</span>() = continuation.context</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resume</span><span class="params">(value: <span class="type">T</span>)</span></span> &#123;</span><br><span class="line">        切换到 UI 线程 &#123;</span><br><span class="line">            continuation.resume(value)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">resumeWithException</span><span class="params">(exception: <span class="type">Throwable</span>)</span></span> &#123;</span><br><span class="line">        切换到 UI 线程&#123;</span><br><span class="line">            continuation.resumeWithException(exception)</span><br><span class="line">	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因为最终的数据传到了 Continuation 的 resume（）, 所以只要在 resume 里面在包一层 Continuation 就行了。这一层 Continuation 专门负责作线程切换工作。这里就不具体写了，拿到最后的数据 value ，利用 Handler 传数据就好了。<br>这我们的协程中就有了两个 Continuation，那么编译器可不知道什么时候用哪个 Continuation。所以我们还得做拦截分发工作：将我们的 AsyncContext 实现 ContinuationInterceptor 拦截器，并实现其 interceptContinuation() 函数，然后将 ContinuationInterceptor 作为 AsyncContext 的 Key</p>
+<ul>
+<li><p>实现 ContinuationInterceptor 拦截器</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AsyncContext</span> : <span class="type">AbstractCoroutineContextElement</span></span>(ContinuationInterceptor), ContinuationInterceptor &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * continuation : 我们原始的 Continuation</span></span><br><span class="line"><span class="comment">     * 该方法返回的 Continuation 最终传给 suspendCoroutine()</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 先确保返回的都是我们的 ContextContinuation</span></span><br><span class="line"><span class="comment">     * 然后将确定好后得 ContextContinuation 传给 SwitchThreadContinuation 做线程切换工作</span></span><br><span class="line"><span class="comment">     * 最后由 SwitchThreadContinuation 将结果传给调用者</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;T&gt;</span> <span class="title">interceptContinuation</span><span class="params">(continuation: <span class="type">Continuation</span>&lt;<span class="type">T</span>&gt;)</span></span>: Continuation&lt;T&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> SwitchThreadContinuation (continuation.context.fold(continuation) &#123; continuation, element -&gt;</span><br><span class="line">            <span class="keyword">if</span> (element != <span class="keyword">this</span> &amp;&amp; element <span class="keyword">is</span> ContinuationInterceptor) &#123;</span><br><span class="line">                element.interceptContinuation(continuation)</span><br><span class="line">            &#125; <span class="keyword">else</span> continuation</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>interceptContinuation() 函数的参数是我们原始的 Continuation，其返回值是我们需要的 Continuation ，所以我们重写该函数就拦截得到我们需要的 Continuation，既然是切换线程，那就返回经过线程切换的 Continuation 。</p>
+</li>
+<li><p>最后，在挂起函数里面就得到最终的 SwitchThreadContinuation 对象，然后调用 resume() 抛出结果，完成整个协程任务。</p>
+</li>
+</ul>
+<h4 id="官方的线程切换的封装"><a href="#官方的线程切换的封装" class="headerlink" title="官方的线程切换的封装"></a>官方的线程切换的封装</h4><p>定义一个 HandlerContext,详情见官方：<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/kotlinx-coroutines-android/src/main/kotlin/kotlinx/coroutines/experimental/android/HandlerContext.kt" title="官方 HandlerContext" target="_blank" rel="noopener">https://github.com/Kotlin/kotlinx.coroutines/blob/master/ui/kotlinx-coroutines-android/src/main/kotlin/kotlinx/coroutines/experimental/android/HandlerContext.kt</a> 这个类的实现</p>
+<ul>
+<li>在启动协程时传入官方定义的 UI 对象，在主函数拿到对应的 context 对象，利用这个 context 再拿到 handler 做线程切换。</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li><p>startCoroutine() 需要 Continuation() 对象</p>
+</li>
+<li><p>Continuation() 必须包含一个 Context，可以使用 EmptyCoroutineContext 占位</p>
+</li>
+<li><p>Context 必须直接或者间接实现了 CoroutineContext</p>
+</li>
+<li><p>Context 间接实现 CoroutineContext，就是直接实现 AbstractCoroutineContextElement</p>
+</li>
+<li><p>CoroutineContext: 协程的上下文，前面有说到这个上下文可以传很多个，通过 + 这个符号进行组合，组合的上下文可通过相应的 key 来获取。</p>
+</li>
+</ul>
+<h1 id="Kotlinx-Coroutine"><a href="#Kotlinx-Coroutine" class="headerlink" title="Kotlinx.Coroutine"></a>Kotlinx.Coroutine</h1><p>首先 Kotlin 协程分为三层：</p>
+<ol>
+<li>底层 （语言支持层面）</li>
+<li>中间层（标准 API 层，官方不推荐直接使用标准 API 来开发项目，而应该使用基于该层封装好了的相关支持库），上面的我们就是针对这层的一个封装</li>
+<li>应用层 （像 Anko 、Kotlinx.Coroutine 等）</li>
+</ol>
+<p>以上使用的是标准 API 来实现的协程，在产品项目中还得做好相应的封装工作（推荐还是直接使用官方 Kotlinx.Coroutine 这个高级层面的协程支持库），不然代码工程量还是挺大的，就为了下载张图片显示到 UI 上就这么费劲了&lt;&lt;-,没错，这就是基于标准 API 的开发，就像 Android 开发一样，都是 Java 语言，在没有 Android SDK 支持的环境下，纯利用 Java Api 去开发一个 Android 项目，可想难度之大。</p>
+<blockquote>
+<p>因此官方就出了一个协程库 <strong>Kotlinx.Coroutine</strong>，以方便使用，其原理与上面的使用差不多，用这个库来实现下载一张图片就不用这么费劲了，同时还有适用于 Android 线程切换的 HandlerContext, 在这个库中，这些家常便饭都封装 好了,也就是上面的代码都不用写，只需要像在 Main 函数里那样调用就可以了。有了这个库，协程就叫使用协程，而不用写协程了。</p>
+</blockquote>
+<blockquote>
+<p>在五花八门的项目中，没有一个库是完美的， 懂原理学会封装属于自己项目的协程还是很重要的。</p>
+</blockquote>
+<ul>
+<li>关于 kotlinx.coroutine-core 这个库在文章后面的补充笔记有部分介绍，更详细的使用还是推荐官方库的 Github 首页介绍。<a href="https://github.com/Kotlin/kotlinx.coroutines" target="_blank" rel="noopener">Kotlinx.Coroutine</a></li>
+</ul>
+<h1 id="协程补充笔记（2019-5-01）"><a href="#协程补充笔记（2019-5-01）" class="headerlink" title="协程补充笔记（2019-5-01）"></a>协程补充笔记（2019-5-01）</h1><blockquote>
+<p>线程的创建是一个大的开销，因此我们推荐在已有的线程上或者线程池上创建协程<br>协程的创建也是一个大的开销, 因此我们推荐在已有的协程中进行线程切换, 如 witchContext 等</p>
+</blockquote>
+<h4 id="runBlocking"><a href="#runBlocking" class="headerlink" title="runBlocking(){}"></a>runBlocking(){}</h4><p>当前线程创建启动一个协程, 会阻塞当前线程, 一般只在 Main 函数和测试(测试类)函数中使用.<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> = runBlocking&lt;<span class="built_in">Unit</span>&gt; &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="launch"><a href="#launch" class="headerlink" title="launch(){}"></a>launch(){}</h4><blockquote>
+<p>括号中不传任何协程 Context，默认在当前线程创建启动一个协程，同时不阻塞当前线程，返回类型是 Job (不带有结果)</p>
+</blockquote>
+<h4 id="async"><a href="#async" class="headerlink" title="async(){}"></a>async(){}</h4><blockquote>
+<p>括号中不传任何协程 Context，默认在当前线程创建启动一个协程，同时不阻塞当前线程，返回类型是 Deferred (可以带有结果)</p>
+</blockquote>
+<h4 id="GlobalScope-launch"><a href="#GlobalScope-launch" class="headerlink" title="GlobalScope.launch(){}"></a>GlobalScope.launch(){}</h4><p>在后台开启一个协程，可以理解为全局的协程，不会阻塞当前线程</p>
+<h2 id="协程结构块"><a href="#协程结构块" class="headerlink" title="协程结构块"></a>协程结构块</h2><h4 id="withContext-context"><a href="#withContext-context" class="headerlink" title="withContext(context){}"></a>withContext(context){}</h4><p>不创建新的协程，在指定一个协程环境上运行可挂起代码块, 并将该协挂起，直到代码块运行完成, 不会阻塞当前线程。大多数场景都用来在协程内进行线程切换; 阻塞当前协程，不会阻塞当前线程</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须有 suspend 关键字</span></span><br><span class="line">suspend <span class="function"><span class="keyword">fun</span> <span class="title">fib</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = withContext(CommonPool) &#123;</span><br><span class="line">        fibBlocking(x)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//递归调用（将耗时的递归函数单独抽出来，避免递归调用 withContext，造成多余的资源开销，虽然 withContext 占用的资源非常微小,比 lacunch 和 async 开销还要小的多）</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">fibBlocking</span><span class="params">(x: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> = <span class="keyword">if</span> (x &lt;= <span class="number">1</span>) x <span class="keyword">else</span> fibBlocking(x - <span class="number">1</span>) + fibBlocking(x - <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="coroutineScope"><a href="#coroutineScope" class="headerlink" title="coroutineScope{}"></a>coroutineScope{}</h4><p>作用类似 withContext ,区别在于 withContext 可以设置自定义 context, 而 coroutineScope 不行，coroutinesScope 使用的是当前父协程的 context; 阻塞当前协程，不会阻塞当前线程</p>
+<h4 id="supervisorScope"><a href="#supervisorScope" class="headerlink" title="supervisorScope{}"></a>supervisorScope{}</h4><p>coroutineScope 和 supervisorScope 的区别是 ，前者如果内部的某一个子协程出现异常或错误，则会取消前者内部的其他所有子协程；后者则只取消出现错误的那个子协程，其它并行的子协程不受影响。</p>
+<h4 id="协程作用域"><a href="#协程作用域" class="headerlink" title="协程作用域"></a>协程作用域</h4><p>协程作用域或称结构化并发, 使用协程作用域来避免可能造成的内存泄露。其实主要就是在使用完协程后，应该在合适的地方取消协程任务和避免重复创建；所以我们在使用协程的时候应该考虑内存泄露或性能问题。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h4 id="并行"><a href="#并行" class="headerlink" title="并行"></a>并行</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">suspend <span class="function"><span class="keyword">fun</span> loadAndCombine（name1Url：String，name2Url：String）：Image = </span></span><br><span class="line">    coroutineScope  &#123;</span><br><span class="line">        <span class="keyword">val</span> deferred1 = async  &#123; loadImage（name1Url）&#125; </span><br><span class="line">        <span class="keyword">val</span> deferred2 = async  &#123; loadImage（name2Url）&#125; </span><br><span class="line">        combineImages（deferred1.await（），deferred2.await（） ）</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// deferred1 和 deferred2 是并行处理的；这里和 coroutineScope 没有关系，coroutineScope 在这里只是为了假设任务1出现了异常，同时取消任务2 这个项目需要而定的.</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中 deferred2 有可能比 deferred1 现完成, 因为只有 async 的情况下不会阻塞当前协程(当调用 deferred2.await() 时就会阻塞当前协程 ), 所以这是并行的。await() 的调用位置很重要哦.</p>
+<h4 id="串行"><a href="#串行" class="headerlink" title="串行"></a>串行</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> v1 = async(start = CoroutineStart.LAZY) &#123;<span class="comment">//这里秀一下懒加载</span></span><br><span class="line">  work1()</span><br><span class="line">&#125;</span><br><span class="line">v1.await() <span class="comment">//阻塞当前协程, 只有先等待 v1 执行完成才能开始执行 v2</span></span><br><span class="line"><span class="keyword">val</span> v2 = async(start = CoroutineStart.LAZY) &#123;</span><br><span class="line">  work2()</span><br><span class="line">&#125;</span><br><span class="line">v2.await()</span><br></pre></td></tr></table></figure>
+<h4 id="delay，"><a href="#delay，" class="headerlink" title="delay，"></a>delay，</h4><p>没有指定 delay 暂停时间差的情况下，默认普通代码比协程代码优先被执行；以下代码演示通过使用 CoroutineStart.UNDISPATCHED 开启优先执行协程代码的的情况，执行协程代码会优先执行，直到遇到第一个 delay ，然后立即执行非协程代码。<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setup</span><span class="params">(hello: <span class="type">Text</span>, fab: <span class="type">Circle</span>)</span></span> &#123;</span><br><span class="line">    fab.onMouseClicked = EventHandler &#123;</span><br><span class="line">        println(<span class="string">"Before launch"</span>)</span><br><span class="line">        launch(UI, CoroutineStart.UNDISPATCHED) &#123;</span><br><span class="line">            println(<span class="string">"Inside coroutine"</span>)</span><br><span class="line">            delay(<span class="number">100</span>)</span><br><span class="line">            println(<span class="string">"After delay"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        println(<span class="string">"After launch"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">执行结果：</span><br><span class="line">Before launch</span><br><span class="line">Inside coroutine</span><br><span class="line">After launch</span><br><span class="line">After delay</span><br></pre></td></tr></table></figure></p>
+<h2 id="Coroutines-UI-在-Android-中的使用"><a href="#Coroutines-UI-在-Android-中的使用" class="headerlink" title="Coroutines UI 在 Android 中的使用"></a>Coroutines UI 在 Android 中的使用</h2><ul>
+<li><p>让 Job 和 Activity 的生命周期绑定例子</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="type">AppCompatActivity</span></span>(), JobHolder &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="keyword">val</span> job: Job</span><br><span class="line">        <span class="keyword">get</span>() = Job()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> View.contextJob: Job?</span><br><span class="line">        <span class="keyword">get</span>() = (context <span class="keyword">as</span>? JobHolder)?.job</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContentView(R.layout.activity_main)</span><br><span class="line">        button.onClick &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> View.<span class="title">onClick</span><span class="params">(action: <span class="type">suspend</span> ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">        <span class="keyword">val</span> evenActor = actor&lt;<span class="built_in">Unit</span>&gt;(UI, parent = contextJob, capacity = Channel.CONFLATED) &#123;</span><br><span class="line">            <span class="keyword">for</span> (event <span class="keyword">in</span> channel) action()</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        setOnClickListener &#123; evenActor.offer(<span class="built_in">Unit</span>) &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">        job.cancel()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">JobHolder</span> </span>&#123;</span><br><span class="line">    <span class="keyword">val</span> job: Job</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Android 中避免在 UI 线程执行耗时操作，下面的代码会导致 UI 卡顿，严重则导致 UI 冻结，然后 ANR 异常</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模拟非常耗时的任务</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span>  fib（x ： <span class="built_in">Int</span>）： <span class="built_in">Int</span>  = <span class="keyword">if</span>（x <span class="type">&lt;=  1）x else fib（x -  1）+ fib（x -  2）</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">setup</span><span class="params">(text: <span class="type">TextView</span>, button: <span class="type">Button</span>)</span></span> &#123;</span><br><span class="line">    <span class="keyword">var</span> result = <span class="string">"none"</span> <span class="comment">// the last result</span></span><br><span class="line">    <span class="comment">// counting animation </span></span><br><span class="line">    launch(UI) &#123;<span class="comment">//模拟 Android UI 线程</span></span><br><span class="line">        <span class="keyword">var</span> counter = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            text.text = <span class="string">"<span class="subst">$&#123;++counter&#125;</span>: <span class="variable">$result</span>"</span><span class="comment">//模拟系统不断刷新UI</span></span><br><span class="line">            delay(<span class="number">100</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 点击一个按钮开始耗时任务</span></span><br><span class="line">    <span class="keyword">var</span> x = <span class="number">1</span></span><br><span class="line">    button.onClick &#123;</span><br><span class="line">        result = <span class="string">"fib(<span class="variable">$x</span>) = <span class="subst">$&#123;fib(x)&#125;</span>"</span></span><br><span class="line">        x++</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解决就是，将耗时的代码放到子线程中执行。</p>
+<blockquote>
+<p>协程不是线程，协程是方便我们处理异步，比如各个任务之间的调度。协程配合线程，协程能在同一条线程上执行非常多的任务，而这一条线程不应该是 Android 的 UI 线程。</p>
+</blockquote>
+<ul>
+<li>避免重复开启协程<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">setOnClickListener &#123; </span><br><span class="line">    launch(UI) &#123;</span><br><span class="line">        action()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面代码，当用户无聊连续点击，每次都开启新协程，而此时可能上一协程任务还没执行完呢，最终造成在短时间内并发执行了很多个协程。</p>
+<p>解决：在上一个协程没有完成，开启新的协程（最多只并发一个协程工作），我们利用 actor 这个函数来处理这种情况，当上一个事件还没有处理，你给他发送新事件，它会丢弃掉这个新的事件。反之，actor 接收新事件，然后立即发送给 Channel</p>
+<ul>
+<li><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> View.<span class="title">onClick</span><span class="params">(action: <span class="type">suspend</span> (<span class="type">View</span>)</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="comment">// launch one actor</span></span><br><span class="line">    <span class="keyword">val</span> eventActor = actor&lt;View&gt;(UI) &#123;<span class="comment">//创建 actor </span></span><br><span class="line">        <span class="keyword">for</span> (event <span class="keyword">in</span> channel) action(event)<span class="comment">//遍历 Channel 中的事件</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// install a listener to activate this actor</span></span><br><span class="line">    setOnClickListener &#123; </span><br><span class="line">        eventActor.offer(it)<span class="comment">//发送新事件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将多个事件合并处理</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> View.<span class="title">onClick</span><span class="params">(action: <span class="type">suspend</span> (<span class="type">View</span>)</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="comment">// launch one actor</span></span><br><span class="line">    <span class="keyword">val</span> eventActor = actor&lt;View&gt;(UI, capacity = Channel.CONFLATED) &#123;<span class="comment">//capacity = Channel.CONFLATED 合并多个事件</span></span><br><span class="line">        <span class="keyword">for</span> (event <span class="keyword">in</span> channel) action(event)<span class="comment">//遍历 Channel 中的事件</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// install a listener to activate this actor</span></span><br><span class="line">    setOnClickListener &#123; </span><br><span class="line">        eventActor.offer(it)<span class="comment">//发送新事件</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>上面的代码，合并的是最近的收到事件，其最后在上一个事件执行完成立即执行下一个事件，当重复多次点击，其也只会执行最后点击的一两次事件。不会是点击多少次，执行多少次。</p>
+<blockquote>
+<p>处理 capacity = Channel.CONFLATED 外，还有 capacity = Channel.UNLIMITED，UNLIMITED 会缓存连续收到的事件，然后在收到最后一次事件后，执行缓存的所有事件。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/29/15-Kotlin-Android-自定义View -条形图/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android 绘制条形图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/22/13-Kotlin-内联函数-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin 内联函数-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

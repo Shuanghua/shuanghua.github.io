@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin Android 序列化和反序列化的折腾 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Kotlin Android 序列化和反序列化的折腾">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin Android 序列化和反序列化的折腾">
+<meta property="og:url" content="https://moshuanghua.com/2019/05/01/57-序列化和反序列化的折腾-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Kotlin Android 序列化和反序列化的折腾">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-10T07:38:26.370Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin Android 序列化和反序列化的折腾">
+<meta name="twitter:description" content="Kotlin Android 序列化和反序列化的折腾">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-57-序列化和反序列化的折腾-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/01/57-序列化和反序列化的折腾-笔记/" class="article-date">
+  	<time datetime="2019-04-30T16:00:00.000Z" itemprop="datePublished">2019-05-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin Android 序列化和反序列化的折腾
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>Kotlin Android 序列化和反序列化的折腾 ,主要针对  MoShi 和 Kotlin 官方的 KS<br><a id="more"></a></p>
+<h1 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonWrapper</span></span>(</span><br><span class="line">    <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">val</span> hand: Person</span><br><span class="line">) </span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Tom</span></span>(</span><br><span class="line">    <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">var</span> age: String? = <span class="literal">null</span></span><br><span class="line">) : Person()</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Jake</span></span>(</span><br><span class="line">	<span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">	<span class="keyword">var</span> phone: String? = <span class="literal">null</span></span><br><span class="line">) : Person()</span><br></pre></td></tr></table></figure>
+<p>上面是我们常见的三个数据模型，Person 被 Tom 和 Jake 继承着,所以 Person 具有多态的特性</p>
+<p>当我们对 PersonWrapper 这个类做序列化的时候，非常的简单，new 出相关实例，然后使用相关序列化库序列化即可。因为是针对 Kotlin 代码的序列化，下面是我只用 MoShi 和 KS 序列化，因为这两个对 Kotlin 支持更好。</p>
+<h4 id="MoShi"><a href="#MoShi" class="headerlink" title="MoShi"></a>MoShi</h4><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">'com.squareup.moshi:moshi:1.8.0'</span></span><br><span class="line">implementation <span class="string">'com.squareup.moshi:moshi-adapters:1.8.0'</span></span><br><span class="line">kapt <span class="string">'com.squareup.moshi:moshi-kotlin-codegen:1.8.0'</span> <span class="comment">//这里我用的是 Kapt 而不是 反射</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonWrapper</span></span>(</span><br><span class="line">    <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">val</span> hand: Person</span><br><span class="line">) </span><br><span class="line"></span><br><span class="line"><span class="keyword">open</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Tom</span></span>(</span><br><span class="line">    <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">    <span class="keyword">var</span> age: String? = <span class="literal">null</span></span><br><span class="line">) : Person()</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Jake</span></span>(</span><br><span class="line">	<span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">	<span class="keyword">var</span> phone: String? = <span class="literal">null</span></span><br><span class="line">) : Person()</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">testMoShi</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">val</span> moshiAdapter: JsonAdapter&lt;PersonWrapper&gt; = Moshi.Builder()</span><br><span class="line">		.add(</span><br><span class="line">			PolymorphicJsonAdapterFactory</span><br><span class="line">				.of(Person::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">"type")</span></span></span><br><span class="line">				.withSubtype(Person.Tom::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">"blackjack")</span></span></span><br><span class="line">				.withSubtype(Person.Jake::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">"holdem")</span></span></span><br><span class="line">		).build().adapter(PersonWrapper::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">val</span> tom = Person.Tom(<span class="string">"tom"</span>, <span class="string">"20"</span>)</span><br><span class="line">	<span class="keyword">val</span> wrapper = PersonWrapper(<span class="string">"白"</span>, tom)</span><br><span class="line">        </span><br><span class="line">	<span class="keyword">val</span> wrapperString = moshiAdapter.toJson(wrapper)<span class="comment">//保存本地专用</span></span><br><span class="line">	<span class="keyword">val</span> wrapperObj = moshiAdapter.fromJson(wrapperString)</span><br><span class="line"></span><br><span class="line">	println(<span class="string">"wrapperString=<span class="variable">$wrapperString</span>&#125;"</span>) </span><br><span class="line">   <span class="comment">// &#123;"color":"白","person":&#123;"type":"tom","age":"20","name":"tom"&#125;&#125;&#125;</span></span><br><span class="line">	println(<span class="string">"wrapperObj=<span class="variable">$wrapperObj</span>&#125;"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在多态的环境下，序列化非常容易，但是反序列化的时候就选哟考虑多态的性质，编译器可不知道你需要把 string  具体转换成哪个类，而一般该问题的解决办法通常都是在 序列化的时候添加多余的字段标记 , 再在反序列化的时候根据对应的标记进行还原转换。</p>
+<p>在碰到多态情况下，记得添加 moshi-adapter 这个库。</p>
+<h2 id="KS"><a href="#KS" class="headerlink" title="KS"></a>KS</h2><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">implementation <span class="string">"org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"</span> <span class="comment">//kotlin 反射库</span></span><br><span class="line">implementation <span class="string">"org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.11.1"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Serializable</span></span><br><span class="line"><span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonWrapper</span></span>(</span><br><span class="line">    <span class="keyword">var</span> color: String? = <span class="literal">null</span>,</span><br><span class="line">    <span class="meta">@Polymorphic</span></span><br><span class="line">    <span class="keyword">val</span> person: Person</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">sealed</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Serializable</span></span><br><span class="line">    <span class="meta">@SerialName(<span class="meta-string">"Tom"</span>)</span></span><br><span class="line">    <span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Tom</span></span>(</span><br><span class="line">        <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">        <span class="keyword">var</span> age: String? = <span class="literal">null</span></span><br><span class="line">    ) : Person()</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Serializable</span></span><br><span class="line">    <span class="meta">@SerialName(<span class="meta-string">"Jake"</span>)</span></span><br><span class="line">    <span class="keyword">data</span> <span class="class"><span class="keyword">class</span> <span class="title">Jake</span></span>(</span><br><span class="line">        <span class="keyword">var</span> name: String? = <span class="literal">null</span>,</span><br><span class="line">        <span class="keyword">var</span> age: String? = <span class="literal">null</span>,</span><br><span class="line">        <span class="keyword">var</span> phone: String? = <span class="literal">null</span></span><br><span class="line">    ) : Person()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">testKS</span><span class="params">()</span></span> = lifecycleScope.launch(Default) &#123;</span><br><span class="line">    <span class="keyword">val</span> json = Json(</span><br><span class="line">        JsonConfiguration.Stable.copy(classDiscriminator = <span class="string">"type"</span>),</span><br><span class="line">        context = SerializersModule &#123;</span><br><span class="line">            polymorphic&lt;Person&gt; &#123;</span><br><span class="line">                Person.Tom::<span class="class"><span class="keyword">class</span> <span class="title">with</span> <span class="title">Person</span>.<span class="title">Tom</span>.<span class="title">serializer</span></span>()</span><br><span class="line">                Person.Jake::<span class="class"><span class="keyword">class</span> <span class="title">with</span> <span class="title">Person</span>.<span class="title">Jake</span>.<span class="title">serializer</span></span>()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    <span class="keyword">val</span> tom = Person.Tom(<span class="string">"tom"</span>, <span class="string">"20"</span>)</span><br><span class="line">    <span class="keyword">val</span> wrapper = PersonWrapper(<span class="string">"白"</span>, tom)</span><br><span class="line">    <span class="keyword">val</span> wrapperString = json.stringify(PersonWrapper.serializer(), wrapper)<span class="comment">//序列化</span></span><br><span class="line">    <span class="keyword">val</span> wrapperObj = json.parse(PersonWrapper.serializer(), wrapperString)<span class="comment">//反序列化</span></span><br><span class="line">    println(<span class="string">"wrapperString=<span class="variable">$wrapperString</span>&#125;"</span>) </span><br><span class="line">    &#123;<span class="string">"color"</span>:<span class="string">"白"</span>,<span class="string">"person"</span>:&#123;<span class="string">"type"</span>:<span class="string">"tom"</span>,<span class="string">"age"</span>:<span class="string">"20"</span>,<span class="string">"name"</span>:<span class="string">"tom"</span>&#125;&#125;&#125;</span><br><span class="line">    println(<span class="string">"wrapperObj=<span class="variable">$wrapperObj</span>&#125;"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>KS 多态序列化的相关链接: <a href="">https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md</a></p>
+<p>不管是 MoShi 还是 KS ，序列化后的 string 都会有一个标记 type ,当然了，这个type 的名字是可改的。如果你的项目网络请求的 json 参数和这个序列化 string 是一致的，那非常的棒，直接就可以做本地缓存和还原.如果你的网络请求是 {“color”:”白”,”person”:{“age”:”20”,”name”:”tom”}}} 这样子的，那么你可能需要做进一步的转换，比如拿到 反序列化后的 对象 ,然后再 new 一个 MutableMap&lt; String, Any &gt; 嵌套往里面一个一个 put 吧，最后 Retrofit 提交这 Map.</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/02/58-Caddy折腾笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          折腾 Caddy 反代
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/18/56-局域网内出现Arp网关欺骗折腾记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">局域网网关欺骗分析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

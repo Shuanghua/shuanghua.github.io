@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Retrofit2 和 RxJava 学习 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Retrofit2 和 RxJava 学习">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Retrofit2 和 RxJava 学习">
+<meta property="og:url" content="https://moshuanghua.com/2016/03/04/2-Retrofit2-RxJava学习/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Retrofit2 和 RxJava 学习">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/rxre.jpg">
+<meta property="og:image" content="http://f1.diyitui.com/aa/6e/16/ed/d1/6a/6f/e4/80/f9/07/43/d0/5c/dd/4a.jpg">
+<meta property="og:updated_time" content="2019-04-09T11:58:33.163Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Retrofit2 和 RxJava 学习">
+<meta name="twitter:description" content="Retrofit2 和 RxJava 学习">
+<meta name="twitter:image" content="http://7xrysc.com1.z0.glb.clouddn.com/rxre.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-2-Retrofit2-RxJava学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/04/2-Retrofit2-RxJava学习/" class="article-date">
+  	<time datetime="2016-03-03T16:00:00.000Z" itemprop="datePublished">2016-03-04</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Retrofit2 和 RxJava 学习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍:</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Retrofit"><span class="toc-number">1.1.</span> <span class="toc-text">Retrofit :</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxJava-两个角色"><span class="toc-number">1.2.</span> <span class="toc-text">RxJava : 两个角色</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开干"><span class="toc-number">2.</span> <span class="toc-text">开干</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加网络权限-："><span class="toc-number">2.1.</span> <span class="toc-text">添加网络权限 ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加依赖-："><span class="toc-number">2.2.</span> <span class="toc-text">添加依赖 ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#布局文件-："><span class="toc-number">2.3.</span> <span class="toc-text">布局文件 ：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java-Bean-BaiKe-java-太长就不贴出来了"><span class="toc-number">2.4.</span> <span class="toc-text">Java Bean : BaiKe.java (太长就不贴出来了)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个服务接口-ApiService-java"><span class="toc-number">2.5.</span> <span class="toc-text">创建一个服务接口 ApiService.java</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MainActivity-java"><span class="toc-number">2.6.</span> <span class="toc-text">MainActivity.java</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#封装"><span class="toc-number">3.</span> <span class="toc-text">封装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#核心-：经观察只要-BaseUrl-不变，全程只需要一个-Service-对象就够了"><span class="toc-number">3.1.</span> <span class="toc-text">核心 ：经观察只要 BaseUrl 不变，全程只需要一个 Service 对象就够了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServiceManager-（负责生产Service-对象）"><span class="toc-number">3.2.</span> <span class="toc-text">ServiceManager （负责生产Service 对象）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ServiceFactory-java-（一个负责获取Service-对象）"><span class="toc-number">3.3.</span> <span class="toc-text">ServiceFactory.java （一个负责获取Service 对象）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MainActivity-里的调用"><span class="toc-number">3.4.</span> <span class="toc-text">MainActivity 里的调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lambda-jdk8"><span class="toc-number">4.</span> <span class="toc-text">Lambda jdk8+</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">4.1.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">4.2.</span> <span class="toc-text">使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结尾"><span class="toc-number">5.</span> <span class="toc-text">结尾</span></a></li></ol>
+			</div>
+		
+		
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍:"></a>介绍:</h1><p>Retrofit Github地址：<a href="https://github.com/square/retrofit" target="_blank" rel="noopener">https://github.com/square/retrofit</a></p>
+<p>RxJava Github地址：<a href="https://github.com/ReactiveX/RxJava" target="_blank" rel="noopener">https://github.com/ReactiveX/RxJava</a></p>
+<blockquote>
+<h2 id="Retrofit"><a href="#Retrofit" class="headerlink" title="Retrofit :"></a>Retrofit :</h2><p>squareup 公司出的一个开源网络请求框架, 好多人说是 Android 下最好用的网络请求库</p>
+<h2 id="RxJava-两个角色"><a href="#RxJava-两个角色" class="headerlink" title="RxJava : 两个角色"></a>RxJava : 两个角色</h2></blockquote>
+<a id="more"></a>
+<blockquote>
+<p>官方：“一个在 Java VM 上使用可观测的序列来组成异步的、基于事件的程序的库”（反正我没理解懂），可以理解为是一个用于异步操作的库就行了。</p>
+</blockquote>
+<blockquote>
+<p>说白了就是观察者模式， 一个观察者（Observer）， 一个被观察者(Observable)， 两者之间存在一种订阅绑定(Subscribe ) 关系</p>
+</blockquote>
+<blockquote>
+<p>Rxjava 还有一个特点是我非常喜欢的， 就是逻辑灰常的“简洁”， 特别是配合 Lambda 一起使用， 代码风格简直帅呆了(●´∀｀●)</p>
+</blockquote>
+<blockquote>
+<p>那么问题来了 Lambda 又是啥玩意儿，如果经常用 AS 的就会发现，打开一个java文件的时候，会发现有个 “ -&gt; “ 点击它的时候会把代码展开，没错这就是 Lambda 语法，只不过只是个预览化而已，真正用它，AS 还要配置一下才行（后面会讲到）。</p>
+</blockquote>
+<blockquote>
+<hr>
+</blockquote>
+<h1 id="开干"><a href="#开干" class="headerlink" title="开干"></a>开干</h1><p>打开 AndroidStudio 开干</p>
+<h2 id="添加网络权限-："><a href="#添加网络权限-：" class="headerlink" title="添加网络权限 ："></a>添加网络权限 ：</h2><pre><code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot;/&gt;
+</code></pre><h2 id="添加依赖-："><a href="#添加依赖-：" class="headerlink" title="添加依赖 ："></a>添加依赖 ：</h2><p>官方建议也添加 rxandroid , 解析用Gson, 再加上出自 jakewharton 大神之手、颜值爆表的 butterknife 注解框架<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">compile</span> <span class="string">'io.reactivex:rxjava:1.1.1'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'io.reactivex:rxandroid:1.1.0'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:retrofit:2.0.0'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:adapter-rxjava:2.0.0'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.google.code.gson:gson:2.6.2'</span></span><br><span class="line"><span class="keyword">compile</span> <span class="string">'com.jakewharton:butterknife:7.0.1'</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="布局文件-："><a href="#布局文件-：" class="headerlink" title="布局文件 ："></a>布局文件 ：</h2><p>一个文本展示下载的数据，一个按钮触发下载<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span><br><span class="line">	<span class="tag">&lt;<span class="name">RelativeLayout</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">xmlns:tools</span>=<span class="string">"http://schemas.android.com/tools"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:layout_height</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:paddingBottom</span>=<span class="string">"@dimen/activity_vertical_margin"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:paddingLeft</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:paddingRight</span>=<span class="string">"@dimen/activity_horizontal_margin"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">android:paddingTop</span>=<span class="string">"@dimen/activity_vertical_margin"</span></span></span><br><span class="line"><span class="tag">	    <span class="attr">tools:context</span>=<span class="string">"com.shuanghua.rxre.MainActivity"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">		    <span class="tag">&lt;<span class="name">TextView</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:id</span>=<span class="string">"@+id/text"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_width</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:text</span>=<span class="string">"Hello World!"</span>/&gt;</span></span><br><span class="line">		</span><br><span class="line">		    <span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:id</span>=<span class="string">"@+id/button"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_width</span>=<span class="string">"match_parent"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_height</span>=<span class="string">"wrap_content"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_alignParentBottom</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:layout_centerHorizontal</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">		        <span class="attr">android:text</span>=<span class="string">"获取数据"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">RelativeLayout</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Java-Bean-BaiKe-java-太长就不贴出来了"><a href="#Java-Bean-BaiKe-java-太长就不贴出来了" class="headerlink" title="Java Bean : BaiKe.java (太长就不贴出来了)"></a>Java Bean : BaiKe.java (太长就不贴出来了)</h2><p>下载数据的接口 ：<a href="http://m2.qiushibaike.com/article/list/suggest?page=1" title="http://m2.qiushibaike.com/article/list/suggest?page=1" target="_blank" rel="noopener">http://m2.qiushibaike.com/article/list/suggest?page=1</a></p>
+<h2 id="创建一个服务接口-ApiService-java"><a href="#创建一个服务接口-ApiService-java" class="headerlink" title="创建一个服务接口 ApiService.java"></a>创建一个服务接口 ApiService.java</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ApiService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//贴出接口链接，方便对照，用法都是 Retrofit2 的用法</span></span><br><span class="line">	<span class="comment">//http://m2.qiushibaike.com/article/list/suggest?page=1</span></span><br><span class="line">	</span><br><span class="line">	<span class="meta">@GET</span>(<span class="string">"suggest"</span>)</span><br><span class="line">	<span class="function">Observable&lt;BaiKe&gt; <span class="title">getBaKeData</span><span class="params">(@Query(<span class="string">"page"</span>)</span> <span class="keyword">int</span> page)</span>;<span class="comment">//如只用Retrofit 返回 Call, RxJava 返回 Observable</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MainActivity-java"><a href="#MainActivity-java" class="headerlink" title="MainActivity.java"></a>MainActivity.java</h2><p>请自行 Butterknife 实例化控件</p>
+<p>下面主要讲 Rxjava<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getBaiKeData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       String baiKeUrl = <span class="string">"http://m2.qiushibaike.com/article/list/"</span>;</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第一 retrofit 对象</span></span><br><span class="line">       Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">               .baseUrl(baiKeUrl)</span><br><span class="line">               .addCallAdapterFactory(RxJavaCallAdapterFactory.create())<span class="comment">//增加对 rxjava 的支持</span></span><br><span class="line">               .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">               .build();</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第二 Service 对象</span></span><br><span class="line">       ApiService baiKeService = retrofit.create(ApiService.class);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第三 调用Service里获取数据的方法</span></span><br><span class="line">       Observable&lt;BaiKe&gt; baKeData = baiKeService.getBaKeData(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">       <span class="comment">//第四 请求并处理数据</span></span><br><span class="line">       baiKeService.getBaKeData(<span class="number">1</span>)</span><br><span class="line">               .subscribeOn(Schedulers.io())</span><br><span class="line">               .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">               .subscribe(<span class="keyword">new</span> Subscriber&lt;BaiKe&gt;() &#123;</span><br><span class="line">                   <span class="meta">@Override</span></span><br><span class="line">                   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                   &#125;</span><br><span class="line"></span><br><span class="line">                   <span class="meta">@Override</span></span><br><span class="line">                   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                   &#125;</span><br><span class="line"></span><br><span class="line">                   <span class="meta">@Override</span></span><br><span class="line">                   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(BaiKe baiKe)</span> </span>&#123;</span><br><span class="line">                       mText.setText(baiKe.getItems().get(<span class="number">7</span>).getContent());</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>从上往下都是构建模式，是不是帅呆了 (•‾̑⌣‾̑•)✧˖°</p>
+<p>是不是发现逻辑简洁了, 但我觉得还是不够帅。。</p>
+<p>下面我们来封装它，不然我在别的页面要展示一样的数据，难道都要写这么多的代码， 面向对象是啥？？ 消除重复代码嘛， 要我写这么多的代码，这是绝对不能忍的。!</p>
+<p>封装我们的代码，把 MainActivity 里下次再请求，要重复写一遍的代码抽到单例类里面（封装大多数是看需求而定的）。</p>
+<h1 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h1><h2 id="核心-：经观察只要-BaseUrl-不变，全程只需要一个-Service-对象就够了"><a href="#核心-：经观察只要-BaseUrl-不变，全程只需要一个-Service-对象就够了" class="headerlink" title="核心 ：经观察只要 BaseUrl 不变，全程只需要一个 Service 对象就够了"></a>核心 ：经观察只要 BaseUrl 不变，全程只需要一个 Service 对象就够了</h2><p>所以， 单例少不了，还有不是很标准的工厂</p>
+<p>两个类，一个负责生产Service 对象， 一个负责获取Service 对象</p>
+<h2 id="ServiceManager-（负责生产Service-对象）"><a href="#ServiceManager-（负责生产Service-对象）" class="headerlink" title="ServiceManager （负责生产Service 对象）"></a>ServiceManager （负责生产Service 对象）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * ApiService管理器，方便有新的基地址加入</span></span><br><span class="line"><span class="comment"> * Created by ShuangHua</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceManager</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//只要 BaseUrl 不变，全程只需要一个 Service 对象就够了</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String BASE_URL_BAIKE = <span class="string">"http://m2.qiushibaike.com/article/list/"</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_TIMEOUT = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> ApiService mService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Service 对象生成机器</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ServiceManager</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        OkHttpClient.Builder builder = <span class="keyword">new</span> OkHttpClient.Builder();</span><br><span class="line">        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);</span><br><span class="line">        Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">                .baseUrl(BASE_URL_BAIKE)</span><br><span class="line">                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">                .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">                .build();</span><br><span class="line">        mService = retrofit.create(ApiService.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 生成后让工厂送出</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ApiService <span class="title">getApiService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> mService;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="ServiceFactory-java-（一个负责获取Service-对象）"><a href="#ServiceFactory-java-（一个负责获取Service-对象）" class="headerlink" title="ServiceFactory.java （一个负责获取Service 对象）"></a>ServiceFactory.java （一个负责获取Service 对象）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">**</span><br><span class="line"> * 负责获取 mService 对象</span><br><span class="line"> * 具体的生成交给机器（管理器）</span><br><span class="line"> * Created by ShuangHua</span><br><span class="line"> */</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceFactory</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object monitor = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> page = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">static</span> ApiService mService = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> ApiService <span class="title">getService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (monitor) &#123;</span><br><span class="line">            <span class="keyword">if</span> (mService == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">//叫机器生产，坐等产品</span></span><br><span class="line">                mService = <span class="keyword">new</span> ServiceManager().getApiService();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> mService;<span class="comment">//出厂销售。。。</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="MainActivity-里的调用"><a href="#MainActivity-里的调用" class="headerlink" title="MainActivity 里的调用"></a>MainActivity 里的调用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        mService.getBaKeData(<span class="number">1</span>)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(<span class="keyword">new</span> Subscriber&lt;BaiKe&gt;() &#123;</span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCompleted</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable e)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(BaiKe baiKe)</span> </span>&#123;</span><br><span class="line">                        mText.setText(baiKe.getItems().get(<span class="number">7</span>).getContent());</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<p>&nbsp;</p>
+<h1 id="Lambda-jdk8"><a href="#Lambda-jdk8" class="headerlink" title="Lambda jdk8+"></a>Lambda jdk8+</h1><p>为了让上面 MainActivity 处的代码变得更帅，我加入 Lambda jdk8+</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>第一步 ：在项目级的 build.gradle 中加入:</p>
+<pre>classpath 'me.tatarka:gradle-retrolambda:3.3.0-beta4'</pre>
+
+
+<p>这样：(添加完第一步记得 Sync Gradle)<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'com.android.tools.build:gradle:2.1.0-alpha1'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// 在这里</span></span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">'me.tatarka:gradle-retrolambda:3.3.0-beta4'</span><span class="comment">//======&gt;&gt;第1步</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		<span class="comment">// <span class="doctag">NOTE:</span> Do not place your application dependencies here; they belong</span></span><br><span class="line">        <span class="comment">// in the individual module build.gradle files</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二步 ：在Module级的 build.gradle 中加入<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'com.android.application'</span></span><br><span class="line">apply plugin: <span class="string">'me.tatarka.retrolambda'</span><span class="comment">//====================&gt;&gt;第2步</span></span><br><span class="line">android &#123;</span><br><span class="line">    compileSdkVersion <span class="number">23</span></span><br><span class="line">    buildToolsVersion <span class="string">"23.0.2"</span></span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        applicationId <span class="string">"com.shuanghua.rxre"</span></span><br><span class="line">        minSdkVersion <span class="number">15</span></span><br><span class="line">        targetSdkVersion <span class="number">23</span></span><br><span class="line">        versionCode <span class="number">1</span></span><br><span class="line">        versionName <span class="string">"1.0"</span></span><br><span class="line">   &#125;</span><br><span class="line">   buildTypes &#123;</span><br><span class="line">       release &#123;</span><br><span class="line">           minifyEnabled <span class="keyword">false</span></span><br><span class="line">           proguardFiles getDefaultProguardFile(<span class="string">'proguard-android.txt'</span>), <span class="string">'proguard-rules.pro'</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   compileOptions &#123;<span class="comment">//==========================================&gt;&gt;第3步</span></span><br><span class="line">        <span class="keyword">sourceCompatibility</span> JavaVersion.VERSION_1_8</span><br><span class="line">        <span class="keyword">targetCompatibility</span> JavaVersion.VERSION_1_8</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">dependencies</span> &#123;</span><br><span class="line">    <span class="keyword">compile</span> <span class="keyword">fileTree</span>(<span class="keyword">include</span>: [<span class="string">'*.jar'</span>], dir: <span class="string">'libs'</span>)</span><br><span class="line">    testCompile <span class="string">'junit:junit:4.12'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.android.support:appcompat-v7:23.1.1'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'io.reactivex:rxandroid:1.1.0'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:retrofit:2.0.0-beta4'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:converter-gson:2.0.0-beta4'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.squareup.okhttp:okhttp:2.7.4'</span></span><br><span class="line">    <span class="keyword">compile</span> <span class="string">'com.squareup.picasso:picasso:2.5.2'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Sync Gradle 完成之后。</p>
+<p>我们来用下 Lambda </p>
+<p>选中 subscribe() 括号里的代码 Ctrl + Alt + Space 回车</p>
+<p><img src="http://7xrysc.com1.z0.glb.clouddn.com/rxre.jpg" alt=""></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>最后代码变这样 ：</p>
+<p><img src="http://f1.diyitui.com/aa/6e/16/ed/d1/6a/6f/e4/80/f9/07/43/d0/5c/dd/4a.jpg" alt=""></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       mService.getBaKeData(<span class="number">1</span>)</span><br><span class="line">               .subscribeOn(Schedulers.io())</span><br><span class="line">               .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">               .subscribe(baiKe -&gt; 请在这里处理你的数据);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mService.getBaKeData(<span class="number">1</span>)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(baiKe -&gt; mText.setText(baiKe.getItems().get(<span class="number">7</span>).getContent()));</span><br></pre></td></tr></table></figure>
+<p>再变<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mService.getBaKeData(<span class="number">1</span>)</span><br><span class="line">                .subscribeOn(Schedulers.io())</span><br><span class="line">                .observeOn(AndroidSchedulers.mainThread())</span><br><span class="line">                .subscribe(baiKe -&gt; mText.setText(baiKe</span><br><span class="line">                        .getItems()</span><br><span class="line">                        .get(<span class="number">7</span>)</span><br><span class="line">                        .getContent()));</span><br></pre></td></tr></table></figure></p>
+<p>因为设置了 observeOn(AndroidSchedulers.mainThread()) 所以最后处理数据是在 UI 线程里的</p>
+<h1 id="结尾"><a href="#结尾" class="headerlink" title="结尾"></a>结尾</h1><p>以上就是 Retrofit2 + Rxjava的简单用法</p>
+<blockquote>
+<p>Rxjava 还有很多的操作符， 比如 from()、 just()、flatMap()、filter()、map()、 我也是正在学。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/04/25/3-感概/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          转眼即将毕业，烦啊，一堆事。
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/12/1-View-事件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android笔记：View 点击事件的传递</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

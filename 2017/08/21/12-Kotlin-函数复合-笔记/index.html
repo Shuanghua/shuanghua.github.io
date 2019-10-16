@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 函数复合-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="函数复合">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 函数复合-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/08/21/12-Kotlin-函数复合-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="函数复合">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:55:43.396Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 函数复合-笔记">
+<meta name="twitter:description" content="函数复合">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-12-Kotlin-函数复合-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/21/12-Kotlin-函数复合-笔记/" class="article-date">
+  	<time datetime="2017-08-20T16:00:00.000Z" itemprop="datePublished">2017-08-21</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 函数复合-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#函数复合"><span class="toc-number">1.</span> <span class="toc-text">函数复合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实现"><span class="toc-number">2.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义函数复合格式"><span class="toc-number">2.1.</span> <span class="toc-text">定义函数复合格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用"><span class="toc-number">2.2.</span> <span class="toc-text">调用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附加"><span class="toc-number">3.</span> <span class="toc-text">附加</span></a></li></ol>
+			</div>
+		
+		
+        <h1 id="函数复合"><a href="#函数复合" class="headerlink" title="函数复合"></a>函数复合</h1><p>假设 有两个函数：</p>
+<ul>
+<li>传入一个 Int 参数，对这个参数 + 5 ,最终返回结果 fun1 = { i : Int -&gt; i + 5 }</li>
+<li>传入一个 Int 参数，对这个参数 <em> 2 ,最终返回结果 fun2 = { i : Int -&gt; i </em> 2 }</li>
+</ul>
+<p>需求： 随便传一个值给 fun1 ，然后将 fun1 的结果 传给 fun2 ，计算最终的结果</p>
+<hr>
+<a id="more"></a>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><h2 id="定义函数复合格式"><a href="#定义函数复合格式" class="headerlink" title="定义函数复合格式"></a>定义函数复合格式</h2><ul>
+<li>利用中缀表达式</li>
+<li>扩展 Function 系列函数，自定义新的扩展函数名（ 这里命名为：fuHe ）</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A : 用户传入的参数泛型</span></span><br><span class="line"><span class="comment"> * P : 两个函数复合的中间变量(桥梁)</span></span><br><span class="line"><span class="comment"> * R : 返回值参数泛型</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;A, P, R&gt;</span> Function1<span class="type">&lt;A, P&gt;</span>.<span class="title">fuHe</span><span class="params">(function: <span class="type">Function1</span>&lt;<span class="type">P</span>, R&gt;)</span></span>: Function1&lt;A, R&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="title">fun</span><span class="params">(a: <span class="type">A</span>)</span></span>: R &#123;</span><br><span class="line">      <span class="keyword">return</span> function.invoke(<span class="keyword">this</span>.invoke(a))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里 this 相当于 fun1, function 相当于 fun2</p>
+<p>谁调用了 fuHe , this 就指代谁，在 Kotlin 中 this 通常指的是他的调用者。</p>
+<h2 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> fun1 = &#123; i : <span class="built_in">Int</span> -&gt; i + <span class="number">5</span> &#125;</span><br><span class="line">    <span class="keyword">val</span> fun2 = &#123; i : <span class="built_in">Int</span> -&gt; i * <span class="number">2</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> result_12 = fun1 fuHe fun2 <span class="comment">//复合后的函数：result_12</span></span><br><span class="line">    println(result_12( <span class="number">2</span> ))  <span class="comment">//调用复合后的函数，结果是 14</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//置换复合顺序</span></span><br><span class="line">    <span class="comment">//val result_21 = fun2 fuHe fun1 //复合后的函数：result_21 //和文章最后的 附加的等价</span></span><br><span class="line">    <span class="comment">//println(result_21( 2 ))  //调用复合后的函数，结果是 9</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们来分析一下上面的代码，先从需求开始</p>
+<ul>
+<li><p>需求是 结果 = fun2( fun1( A ) ) 这个应该能看懂吧。A 指用户传入的参数，假设 A = 2，那么 结果 = fun2( fun1( 2 ) ) = 14</p>
+</li>
+<li><p>分析 val result_12 = fun1 fuHe fun2</p>
+<p>1 . 从我们定义的复合函数上面的注释可得知：this = fun1(), function  = fun2()</p>
+<p>2 . 那么用 this 和 function 来表达我们的需求就是：</p>
+<p>3 . function.invoke(this.invoke( A ))  等价于 fun2(fun1( A ))</p>
+</li>
+<li><p>根据 function.invoke(this.invoke( A ))  来定义复合格式</p>
+<p>1 .  infix fun&lt; A, P, R &gt;固定泛型参数可以随意取名</p>
+<p>2 .  第一个 Function1 指的就是我们的 this ，其格式是 this（A）,所以 Function1&lt; , &gt; 的第一个泛型参数就是 A，第二是返回的泛型参数（准确点是最后一个参数是返回的参数）Function1&lt; A , P &gt;</p>
+<p>3 . 第二个 Function1 指的就是我们的 function ，其格式是 function(this( A )),所以其 Function1&lt; , &gt; 第一个泛型参数是第一个 Funtion1&lt; , &gt; 的第二个泛型参数（返回的泛型参数） Function1&lt; P , R &gt;, 最终的 R ，因为是运算玩第二函数就已经得到结果了，所以直接返回所得的结果。</p>
+<p>4 . 第三个 Function1 就是整个该函数的接收参数和返回值的泛型参数，接收一个用过自定义的数，然后将计算的结果返回(匿名函数)</p>
+</li>
+</ul>
+<hr>
+<h1 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h1><ul>
+<li>在不改变  val result_12 = fun1 fuHe fun2 复合顺序的情况下，写一个 fun1(fun2( A ))</li>
+<li>分析得：this.invoke(function.invoke(A))</li>
+<li>拆分：<br>1 . this.invoke() &lt; ? , R &gt;  // 最后运算 this,所以 R 一定在 this 中<br>2 . function.invoke(A) &lt; A , ? &gt; // function 需要参数 A, 所以  A 在 function 中<br>3 . 因为两个函数要复合，所以两个 ? 两个泛型参数一定是相同的，所以 ? = P</li>
+</ul>
+<ul>
+<li>代码<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">infix</span> <span class="function"><span class="keyword">fun</span> <span class="type">&lt;A, P, R&gt;</span> Function1<span class="type">&lt;P, R&gt;</span>.<span class="title">compose</span><span class="params">(function: <span class="type">Function1</span>&lt;<span class="type">A</span>, P&gt;)</span></span>: Function1&lt;A, R&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="title">fun</span><span class="params">(a: <span class="type">A</span>)</span></span>: R &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.invoke(function.invoke(a))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/22/13-Kotlin-内联函数-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Kotlin 内联函数-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/17/11-Kotlin-关键字-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin 关键字-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

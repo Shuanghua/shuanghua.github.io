@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java 并发问题根源笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="可见性，原子性，有序性">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 并发问题根源笔记">
+<meta property="og:url" content="https://moshuanghua.com/2019/02/09/52-Java可见性-原子性-有序性/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="可见性，原子性，有序性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:22:35.139Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 并发问题根源笔记">
+<meta name="twitter:description" content="可见性，原子性，有序性">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-52-Java可见性-原子性-有序性" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/02/09/52-Java可见性-原子性-有序性/" class="article-date">
+  	<time datetime="2019-02-08T16:00:00.000Z" itemprop="datePublished">2019-02-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 并发问题根源笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Java/">Java</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h4 id="cpu-内存-磁盘"><a href="#cpu-内存-磁盘" class="headerlink" title="cpu 内存 磁盘"></a>cpu 内存 磁盘</h4><p>读写速度：cpu &gt; 内存 &gt; 磁盘<br>为了不浪费 CPU 的运算资源，CPU 中有一块专门用作数据缓存的小内存。<br>代码先加载到内存，然后加载到 CPU 的缓存区，CPU 再从缓存区读写数据，然后运算数据。最后把缓存区的数据写到内存。</p>
+<a id="more"></a>
+<h2 id="知识点笔记"><a href="#知识点笔记" class="headerlink" title="知识点笔记"></a>知识点笔记</h2><h4 id="可见性"><a href="#可见性" class="headerlink" title="可见性"></a>可见性</h4><ul>
+<li>cpu 每个核心都有一个缓存区，而且该缓存区只对当前核心的线程可见<blockquote>
+<p>当 A线程修改了缓存区的某个变量，那么线程B是获取不到该变量修改后的值的</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>线程的切换时由 CPU 调度的，每个线程都有固定的执行时间，如果线程A运行超过了这个时间，CPU 就会切换到线程 B。<blockquote>
+<p>所以我们在电脑上可以一边敲代码，一边听歌。这个切换完全是由 CPU 控制的。每个线程都有固定的执行时间，这个时间称为“时间片”<br>例子：当需要读取磁盘内容时，流程大概是这样的，CPU 收到指令进行磁盘读取，先读取到内存（这个时间通常会很长），这个时候 CPU 不能干等啊，你写进内存，关我 CPU 什么事，对吧？CPU 会对当前进程标记为休眠，等待文件全部写进内存后，再唤醒该进程，被唤醒的进程才能拥有 CPU 的使用权.</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><ul>
+<li><p>线程的切换需要考虑原子性问题</p>
+<blockquote>
+<p>线程切换再加上每个CPU核心缓存区的不可见性，最终可能出现原子性问题</p>
+</blockquote>
+</li>
+<li><p>原子性</p>
+<blockquote>
+<p>我们把一个或者多个造作再 cpu 执行的过程中不被中断的特性称为原子性。cpu 只能保证每条CPU指令的原子性。假设我们的某一行代码是 Person p = new Person(),这一行代码其实是需要多条CPU指令操作才能完成的。所以说这行代码对于CPU而言，并不是原子性的。</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;	</span><br><span class="line">	<span class="comment">// p 在栈内存，new Person 在堆内存</span></span><br><span class="line">	Person p = <span class="keyword">new</span> Person()</span><br><span class="line">	<span class="comment">//CPU指令1：在栈内存分配一块内存</span></span><br><span class="line">	<span class="comment">//CPU指令2：在堆内存中分配一块内存</span></span><br><span class="line">	<span class="comment">//CPU指令3: 在该堆内存上初始化 Person 对象</span></span><br><span class="line">	<span class="comment">//CPU指令4: 把这块内存(堆)的地址赋值该栈内存的 p</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="有序性"><a href="#有序性" class="headerlink" title="有序性"></a>有序性</h4><ul>
+<li>有时候编译器会优化我们的代码，最终出现CPU指令发出的顺序不一样。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public void init()&#123;	</span><br><span class="line">	// p 在栈内存，new Person 在堆内存</span><br><span class="line">	Person p = new Person();</span><br><span class="line">	//CPU指令1：在栈内存分配一块内存</span><br><span class="line">	//CPU指令2：在堆内存中分配一块内存</span><br><span class="line">	//CPU指令3: 在该堆内存上初始化 Person 对象</span><br><span class="line">	//CPU指令4: 把这块内存(堆)的地址赋值该栈内存的 p</span><br><span class="line"></span><br><span class="line">	p.name = &quot;张三&quot;;</span><br><span class="line">	p.age = 20;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>经过优化，最终可能是这样的，CPU 指令的顺序变为： 1-2-4-3,或者先编译 p.age = 20,然后编译 p.name = “张三”<br>在多线程情况下，这种是特别需要注意，当 CPU new 一个对象，刚刚执行完指令3，然后其他线程就访问这个p，依然会出现空指针异常的。</p>
+</blockquote>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><blockquote>
+<p>volatile 只能保证可见性，不能保证变量的原子性</p>
+</blockquote>
+<h4 id="syncchroized"><a href="#syncchroized" class="headerlink" title="syncchroized"></a>syncchroized</h4><blockquote>
+<p>会影响性能，在访问非 volatile 的变量，依然不能保证并发安全<br>在多线程并发环境下，现在双重检查锁的写法的单例记得加上 volatile 或者 final, 但更推使用荐静态内部类的单例形式。</p>
+</blockquote>
+<h4 id="优化指令的执行顺序，让缓存区利用的更加合理"><a href="#优化指令的执行顺序，让缓存区利用的更加合理" class="headerlink" title="优化指令的执行顺序，让缓存区利用的更加合理"></a>优化指令的执行顺序，让缓存区利用的更加合理</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = 10  //第一行</span><br><span class="line">b =1</span><br><span class="line">c = 200</span><br><span class="line">d - b + c</span><br><span class="line">...//此处=省略一千行没有用到 a 的代码</span><br><span class="line">a += 100 //1000 行+</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这么写是会影响性能的，在第一行就声明的变量 a,TM的你到1000行以后才用到这个 a；在 CPU 执行步骤看来是这样的，先把 a 从内存写到缓存，然后发现第二行没有用到a ,那就从缓存中清除掉；等到需要用到a的时候，只能总内存直接读取到寄存器进行运算了。所以能一般情况下，编译器会对这样的代码进行编译优化，可能会把 a+=100 提取到 a=10 后面进行编译。<br>所以写代码的时候尽可能的按照就近原则。虽然编译器会帮我们优化，但这也能加快编译速度对吧。在说有时编译器也不一定靠谱。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/12/53-Plaid-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Plaid 笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/02/06/51-Kotlin常见高阶函数-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin StandardKt 非标准函数使用总结</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

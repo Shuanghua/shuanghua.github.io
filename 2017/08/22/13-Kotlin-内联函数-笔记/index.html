@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 内联函数-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="程序都是一步一步往下执行，遇到函数时（非内联函数）就查找跳到到函数所在的地址位置进行编译，完成后再回到调用的地方，如果这个函数在别的类、包中或者各个函数来回调用，那这段编译执行将是非常耗时的。">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 内联函数-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/08/22/13-Kotlin-内联函数-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="程序都是一步一步往下执行，遇到函数时（非内联函数）就查找跳到到函数所在的地址位置进行编译，完成后再回到调用的地方，如果这个函数在别的类、包中或者各个函数来回调用，那这段编译执行将是非常耗时的。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E9%9D%9E%E5%86%85%E8%81%94.png">
+<meta property="og:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E5%86%85%E8%81%94.png">
+<meta property="og:updated_time" content="2019-04-09T11:55:35.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 内联函数-笔记">
+<meta name="twitter:description" content="程序都是一步一步往下执行，遇到函数时（非内联函数）就查找跳到到函数所在的地址位置进行编译，完成后再回到调用的地方，如果这个函数在别的类、包中或者各个函数来回调用，那这段编译执行将是非常耗时的。">
+<meta name="twitter:image" content="http://7xrysc.com1.z0.glb.clouddn.com/%E9%9D%9E%E5%86%85%E8%81%94.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-13-Kotlin-内联函数-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/22/13-Kotlin-内联函数-笔记/" class="article-date">
+  	<time datetime="2017-08-21T16:00:00.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 内联函数-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#内联函数-inline"><span class="toc-number">1.</span> <span class="toc-text">内联函数 inline</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文字例子"><span class="toc-number">2.</span> <span class="toc-text">文字例子</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码例子"><span class="toc-number">3.</span> <span class="toc-text">代码例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#普通函数"><span class="toc-number">3.1.</span> <span class="toc-text">普通函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#普通函数字节码反编译成Java后的代码"><span class="toc-number">3.1.1.</span> <span class="toc-text">普通函数字节码反编译成Java后的代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内联函数"><span class="toc-number">3.2.</span> <span class="toc-text">内联函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#内联函数-字节码反编译成-Java-后的代码"><span class="toc-number">3.2.1.</span> <span class="toc-text">内联函数 字节码反编译成 Java 后的代码</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附加"><span class="toc-number">4.</span> <span class="toc-text">附加</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#非局部返回"><span class="toc-number">5.</span> <span class="toc-text">非局部返回</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#crossinline"><span class="toc-number">6.</span> <span class="toc-text">crossinline</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#例如"><span class="toc-number">6.1.</span> <span class="toc-text">例如</span></a></li></ol></li></ol>
+			</div>
+		
+		
+        <h1 id="内联函数-inline"><a href="#内联函数-inline" class="headerlink" title="内联函数 inline"></a>内联函数 inline</h1><ul>
+<li>在高阶函数中，每一个函数都是一个对象</li>
+<li>内存分配和虚拟调用会降低程序的运行效率</li>
+<li>印象中好像 C++ 有内联函数的概念，ㄟ( ▔, ▔ )ㄏ</li>
+</ul>
+<blockquote>
+<p>内联函数的 Lambda 表达式可以解决这样的问题。</p>
+</blockquote>
+<blockquote>
+<p>定义为内联的函数，在编译时放到调用处进行编译运行, 而不是函数所在的地方编译运行</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="文字例子"><a href="#文字例子" class="headerlink" title="文字例子"></a>文字例子</h1><ul>
+<li>程序都是一步一步往下执行，遇到函数时（非内联函数）就查找跳到到函数所在的地址位置进行编译，完成后再回到调用的地方，如果这个函数在别的类、包中或者各个函数来回调用，那这段编译执行将是非常耗时的。</li>
+</ul>
+<h1 id="代码例子"><a href="#代码例子" class="headerlink" title="代码例子"></a>代码例子</h1><h2 id="普通函数"><a href="#普通函数" class="headerlink" title="普通函数"></a>普通函数</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"出门上班"</span>)</span><br><span class="line">    work()</span><br><span class="line">    println(<span class="string">"下班回家"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">work</span><span class="params">()</span></span>&#123;<span class="comment">// 公司很远呢</span></span><br><span class="line">    println(<span class="string">"开始工作啦"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="普通函数字节码反编译成Java后的代码"><a href="#普通函数字节码反编译成Java后的代码" class="headerlink" title="普通函数字节码反编译成Java后的代码"></a>普通函数字节码反编译成Java后的代码</h3><p><img src="http://7xrysc.com1.z0.glb.clouddn.com/%E9%9D%9E%E5%86%85%E8%81%94.png" alt=""></p>
+<h2 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">  println(<span class="string">"出门上班"</span>)</span><br><span class="line">  work()</span><br><span class="line">  println(<span class="string">"下班回家"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">work</span><span class="params">()</span></span>&#123;<span class="comment">// 公司很近呢</span></span><br><span class="line">    println(<span class="string">"开始工作啦"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="内联函数-字节码反编译成-Java-后的代码"><a href="#内联函数-字节码反编译成-Java-后的代码" class="headerlink" title="内联函数 字节码反编译成 Java 后的代码"></a>内联函数 字节码反编译成 Java 后的代码</h3><p><img src="http://7xrysc.com1.z0.glb.clouddn.com/%E5%86%85%E8%81%94.png" alt=""></p>
+<hr>
+<ul>
+<li>可以看到内联函数，把代码复制一份放到 main 函数里编译，这样的执行效率是不是会快很多。</li>
+<li>但缺点也很明显，在 work 函数中也有同样的代码，这样就会导致生成的代码过多。</li>
+<li>所以当函数的代码很多的情况下，尽量不要使用内联函数。</li>
+</ul>
+<h1 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h1><ul>
+<li>默认情况下，inline 修饰的函数（内联函数）的 Lambda 表达式参数也是内联的，就是说参数也是放到调用的地方去</li>
+<li>非默认情况下，内联函数的 Lambda 表达式参数前加 noinline 关键字修饰 （禁用内联）</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    println(<span class="string">"Start"</span>)</span><br><span class="line">    println(<span class="string">"End"</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">work</span><span class="params">(s: <span class="type">String</span>, <span class="keyword">noinline</span> e: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    println(<span class="string">"开始工作啦"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>noinline 只能放在 e 前面，不能放在 s 前面， 因为 s 的类型不是 Lambda 表达式</li>
+</ul>
+<h1 id="非局部返回"><a href="#非局部返回" class="headerlink" title="非局部返回"></a>非局部返回</h1><ul>
+<li>所谓非局部返回就是： 内联函数 + Lambda 表达式 + return 的语法使用</li>
+<li>默认情况下 Lambda 里不能使用 return，但 Lambda 是内联的就可以使用 return<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">hasZeros</span><span class="params">(ints: <span class="type">List</span>&lt;<span class="type">Int</span>&gt;)</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">  ints.forEach &#123;</span><br><span class="line">  <span class="keyword">if</span> (it == <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// 从 hasZeros 返回, forEach 是内联的，所以可以使用 return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="crossinline"><a href="#crossinline" class="headerlink" title="crossinline"></a>crossinline</h1><ul>
+<li>crossinline 就是在你的 lambda 没有直接在上下文中调用 ,而是被传到了其他地方作为嵌套在内部的代码，这样内联会失效，为了防止这种情况下的内联失效，所以就需要到 crossinline 关键字。</li>
+</ul>
+<h2 id="例如"><a href="#例如" class="headerlink" title="例如"></a>例如</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">( body: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> f = <span class="keyword">object</span>: Runnable &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> = body() <span class="comment">// 这里的 body() 会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>内联函数的参数是 Lambda 表达式，则这个参数也是内联的</li>
+<li>body 没有在当前函数中被使用，而是传到了 Runnable 里面去使用，这样有可能会导致 body 内联失效<br>需要在参数 body 前用 crossinline 修饰才能内联</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> <span class="title">f</span><span class="params">(<span class="keyword">crossinline</span> body: ()</span></span> -&gt; <span class="built_in">Unit</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> f = <span class="keyword">object</span>: Runnable &#123;</span><br><span class="line">        <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> = body() <span class="comment">//正确</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/27/14-Kotlin-协程-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Kotlin 协程-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/08/21/12-Kotlin-函数复合-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin 函数复合-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>折腾 Caddy 反代 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="折腾 Caddy 反代的过程笔记">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="折腾 Caddy 反代">
+<meta property="og:url" content="https://moshuanghua.com/2019/05/02/58-Caddy折腾笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="折腾 Caddy 反代的过程笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-16T06:55:31.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="折腾 Caddy 反代">
+<meta name="twitter:description" content="折腾 Caddy 反代的过程笔记">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-58-Caddy折腾笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/05/02/58-Caddy折腾笔记/" class="article-date">
+  	<time datetime="2019-05-01T16:00:00.000Z" itemprop="datePublished">2019-05-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      折腾 Caddy 反代
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Linux/">Linux</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="Caddy"><a href="#Caddy" class="headerlink" title="Caddy"></a>Caddy</h1><p>现在 <a href="https://caddyserver.com/download.html" target="_blank" rel="noopener">Caddy 下载官网</a> 上配置你需要的插件,如果你原来就使用 acme 申请的 cloudflare 的证书,那么需要再添加 cloudflare dns 的插件,目的是为了让 Caddy 能够申请 cloudflare 的证书,然后复制相应的下载地址或安装脚本.</p>
+<a id="more"></a>
+<blockquote>
+<p>Caddy 2.0 正在开发中, 主要支持 HTTP 3.0 也就是 http2 over quic ,正式对标准 quic 的支持 .</p>
+</blockquote>
+<p>以下内容参考自: <a href="https://github.com/caddyserver/caddy/blob/master/dist/init/linux-systemd/README.md#systemd-service-unit-for-caddy" target="_blank" rel="noopener">caddy 官方教程 </a></p>
+<p>其实也可以跟着官方教程,复制粘贴也行.</p>
+<h2 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h2><ul>
+<li>开放 80 或 443 端口(略)</li>
+<li>域名解析, 指向服务器(要先解析才能申请证书)</li>
+<li>移除 SS 的 tls<blockquote>
+<p>由于 tls 已经交由 caddy 完成; 因此 ss 配置文件中的 v2ray-plugin 选项要去掉 tls 和相关证书选项</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装-caddy"><a href="#安装-caddy" class="headerlink" title="安装 caddy"></a>安装 caddy</h2><ul>
+<li><p>cloudflare 版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://getcaddy.com | bash -s personal tls.dns.cloudflare</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cloudflare + dnspod</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://getcaddy.com | bash -s personal http.cache,tls.dns.cloudflare,tls.dns.dnspod</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>普通版</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://getcaddy.com | bash -s personal</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>cloudflare 版和普通版只一个就行, 这里我安装的是普通版.</p>
+</blockquote>
+<h2 id="配置-caddy"><a href="#配置-caddy" class="headerlink" title="配置 caddy"></a>配置 caddy</h2><ul>
+<li><p>配置 cddy 权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root:root /usr/<span class="built_in">local</span>/bin/caddy</span><br><span class="line">sudo chmod 755 /usr/<span class="built_in">local</span>/bin/caddy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>让 caddy 以非 root 身份来使用 80 和 443 端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo setcap &apos;cap_net_bind_service=+ep&apos; /usr/local/bin/caddy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 caddy 配置文件目录和证书目录(后面再往里面写内容)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sudo groupadd -g 33 www-data</span><br><span class="line">sudo useradd \</span><br><span class="line">  -g www-data --no-user-group \</span><br><span class="line">  --home-dir /var/www --no-create-home \</span><br><span class="line">  --shell /usr/sbin/nologin \</span><br><span class="line">  --system --uid 33 www-data</span><br><span class="line">sudo mkdir /etc/caddy</span><br><span class="line">sudo chown -R root:root /etc/caddy</span><br><span class="line">sudo mkdir /etc/ssl/caddy</span><br><span class="line">sudo chown -R root:www-data /etc/ssl/caddy</span><br><span class="line">sudo chmod 0770 /etc/ssl/caddy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建存放网站根目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /var/www/xxxxxxx.com</span><br><span class="line">sudo chown www-data:www-data /var/www/xxxxxxx.com</span><br><span class="line">sudo chmod 555 /var/www/xxxxxxx.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建网站目录并新建一个简单网站页面</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir /var/www/xxxxxxx.com</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'&lt;h1&gt; Hello World! &lt;/h1&gt;'</span> | sudo tee /var/www/xxxxxxx.com/index.html</span><br><span class="line">chown -R www-data:www-data /var/www/xxxxxxx.com</span><br><span class="line">chmod -R 555 /var/www/xxxxxxx.com</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建 Caddyfile (caddy 配置文件)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo chown root:root /etc/caddy/Caddyfile</span><br><span class="line">sudo chmod 644 /etc/caddy/Caddyfile</span><br><span class="line">sudo vim /etc/caddy/Caddyfile</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>内容如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">http://xxxxxxxxx.com, http://www.xxxxxxxxx.com&#123;</span><br><span class="line">	redir https://xxxxxxxxx.com</span><br><span class="line">&#125;</span><br><span class="line">https://xxxxxxxxx.com &#123;</span><br><span class="line">	root /var/www/xxxxxxxxx.com</span><br><span class="line">	gzip</span><br><span class="line">	index index.html</span><br><span class="line">	tls 你的邮箱</span><br><span class="line">	proxy /ss http://localhost:ss端口 &#123;</span><br><span class="line">		without /ss</span><br><span class="line">		websocket</span><br><span class="line">		header_upstream -Origin</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="caddy-开机自启"><a href="#caddy-开机自启" class="headerlink" title="caddy 开机自启"></a>caddy 开机自启</h2><ul>
+<li>开机自启文件,这里直接使用官方帮我们写好的,下载并放到 <figure class="highlight plain"><figcaption><span>下</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">```bash</span><br><span class="line">wget https://raw.githubusercontent.com/caddyserver/caddy/master/dist/init/linux-systemd/caddy.service</span><br><span class="line">sudo cp caddy.service /etc/systemd/system/</span><br><span class="line">sudo chown root:root /etc/systemd/system/caddy.service</span><br><span class="line">sudo chmod 644 /etc/systemd/system/caddy.service</span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line">sudo systemctl start caddy.service</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="运行-caddy"><a href="#运行-caddy" class="headerlink" title="运行 caddy"></a>运行 caddy</h2><ul>
+<li><p>运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> caddy</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl restart caddy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看状态(或使用浏览器访问上面的站点)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status caddy</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看日志(当上面状态出现错误时,再用下面命令查看)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">journalctl --boot -u caddy.service</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/06/07/59-中国电信出口线路-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          电信的三种承载网络
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/05/01/57-序列化和反序列化的折腾-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin Android 序列化和反序列化的折腾</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

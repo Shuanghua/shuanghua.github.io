@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>局域网网关欺骗分析 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="局域网网关欺骗分析">
+<meta name="keywords" content="折腾">
+<meta property="og:type" content="article">
+<meta property="og:title" content="局域网网关欺骗分析">
+<meta property="og:url" content="https://moshuanghua.com/2019/04/18/56-局域网内出现Arp网关欺骗折腾记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="局域网网关欺骗分析">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-10T07:55:34.360Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="局域网网关欺骗分析">
+<meta name="twitter:description" content="局域网网关欺骗分析">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-56-局域网内出现Arp网关欺骗折腾记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/04/18/56-局域网内出现Arp网关欺骗折腾记/" class="article-date">
+  	<time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished">2019-04-18</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      局域网网关欺骗分析
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/折腾/">折腾</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/折腾/">折腾</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>使用的网络是房东的中国电信有线网络，使用过程中，突然出现网络断开连接，一下好一下断开；打开360上网管理模块，拦截到 Arp 网关欺骗，显示的网关是 192.168.1.1 ，同时也定位到一个对应的 Mac 的物理地址 48-A0-xx-xx-xx-xx；</p>
+<a id="more"></a>
+<p>第一时间想到可能局域网内有人使用类似于 P2p 终结者的限速软件:</p>
+<p>解决：我自己也去下载了一个 P2p 终结者破解版（有最高权限版），安装运行，上网正常了，但偶尔还是有断开现象,下载东西和看视频没啥问题，玩游戏肯定就不行了。</p>
+<p>其中有个问题是，在我的 p2p 终结者里面并没有发现 48-A0- 这个 mac 地址，也就是说局域网内并没有这个被 360 拦截追踪得到 mac 地址。我的疑问，难道 mac 是伪装的？</p>
+<p>根据这个疑问，我又安装了 Wireshark 这个抓包分析软件，安装运行捕获过滤，发现 48-A0 （牌子显示 Fiberhome 烽火）这个地址频繁的在发送 arp 广播，告诉局域网内的其它路由说自己是 192.168.1.1；在这里面还有一个 TP 路由器，mac 为  BC-46 的也在发送 arp 广播，告诉局域网内的其它路由说自己才是 192.168.1.1。那么谁才是真正的 192.168.1.1？</p>
+<p>又根据新的疑问去网上查阅各种资料，最后总结得出：</p>
+<p>出现网关欺骗的情况可能是以下原因造成：</p>
+<ol>
+<li>使用类似 p2p 终结者的限速软件</li>
+<li>中病毒了</li>
+<li>两个路由器的网关地址冲突了</li>
+</ol>
+<p>最后通过我两天的观察分析，发现一天到晚24小时 ，网关欺骗在本局域网内一直存在，也就是24小时开机不断。所以排除了第一项，因为大多数人的电脑都不会长时间一直开机待机；同时发现一直是那两台  48-A0 和 BC-46 的设备冲突，如果是病毒，应该会感染到更多的设备，所以排除了第二项(现在路由设备的防护能力已经不错了，当然或许技术很牛的人也可以找到漏洞攻击，这种情况应该非常的少)</p>
+<p>排除了前两项，基本就是第三项了，再从网络上查询资料，我又分析出两种情况，其中第一种有待验证</p>
+<ol>
+<li>老旧的路由器当交换机使用，开启 DHCP , LAN 地址设为 192.168.1.1 (这种情况我无法模拟，因为我手上没两套不同的 路由器，只有一台 TP-WR886N)</li>
+<li>房东的路由器（也就是那台 BC-46 开头的 TP 路由器 ）和其上游的光猫的网关地址一样，导致网关冲突</li>
+</ol>
+<p>我的现象问题肯定是第二种了，因为我每次浏览器访问 192.168.1.1 这个地址的时候，有时候出现了 TP 路由器的登录界面 和 中国电信天翼网关的登录界面 ，那么 天翼网关的登录界面 应该就是那台 Fiberhome  48-A0 了，最终解决直接告诉房东修改他的 TP 路由器网关就行了。</p>
+<p>或者你不告诉房东，你也可以自己下载一个 名叫 Ant ARP Sniffer 的软件，在内核层捕获 arp 广播，丢弃虚假的arp 包，只使用正确 网关 mac 的地址包。然后整个局域网就你一个人享受冲浪。</p>
+<blockquote>
+<p>最后补充下第一种情况的模拟情况，我把我的路由器当成交换机， 先断开与上游的连接 ，LAN 地址设为 192.168.1.1，打开 DHCP  ，我貌似并不能模拟出和上面一样的网关欺骗，因为我的这台  TP-WR886N 好像会自动识别这个地址段，如果 LAN 段和 WAN 段处于同一网段，就不能正常使用；当然还有别的情况条件有待验证，比如，关闭 DHCP 、先插网线然后配置我的路由器；如果你要把路由器当交换机使用，有两点是确定的，1 ，从上游LAN 口拉出来的网线一定是接到你路由器的 LAN 口；2 ，在接入网线之前，请先把路由器的网关地址修改一下，别和上游设备网关一样。 在目前常用的路由器牌子而言，打不打开 DHCP  已经无关紧要了，它会自己识别处理。</p>
+</blockquote>
+<h4 id="第三种：对于出租房的网络管理可以通过使用带有拨号服务器的路由器来管理或者软路由"><a href="#第三种：对于出租房的网络管理可以通过使用带有拨号服务器的路由器来管理或者软路由" class="headerlink" title="第三种：对于出租房的网络管理可以通过使用带有拨号服务器的路由器来管理或者软路由"></a>第三种：对于出租房的网络管理可以通过使用带有拨号服务器的路由器来管理或者软路由</h4>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/05/01/57-序列化和反序列化的折腾-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Kotlin Android 序列化和反序列化的折腾
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/13/54-Android-Toolbar下阴影-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Toolbar 下边界阴影笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

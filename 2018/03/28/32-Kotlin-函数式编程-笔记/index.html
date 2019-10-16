@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 函数式编程练习 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="为了能更了解和使用函数思想去编写代码,所以写了如下一些关于 Kotlin 函数式编程的笔记">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 函数式编程练习">
+<meta property="og:url" content="https://moshuanghua.com/2018/03/28/32-Kotlin-函数式编程-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="为了能更了解和使用函数思想去编写代码,所以写了如下一些关于 Kotlin 函数式编程的笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-06T11:42:28.003Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 函数式编程练习">
+<meta name="twitter:description" content="为了能更了解和使用函数思想去编写代码,所以写了如下一些关于 Kotlin 函数式编程的笔记">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-32-Kotlin-函数式编程-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/03/28/32-Kotlin-函数式编程-笔记/" class="article-date">
+  	<time datetime="2018-03-27T16:00:00.000Z" itemprop="datePublished">2018-03-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 函数式编程练习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <p>最近都在使用 Kotlin 写 Android, 由于受到以前 Java 的编写思想影响,写出来的代码都是 Java 式的 Kotlin 代码 , 缺少 Kotlin 函数式编程的特色,为了能更了解和使用函数思想去编写代码,所以写了如下一些关于 Kotlin 函数式编程的笔记.</p>
+<h4 id="题1：过滤掉一个集合中长度为-偶数-的内容"><a href="#题1：过滤掉一个集合中长度为-偶数-的内容" class="headerlink" title="题1：过滤掉一个集合中长度为 偶数 的内容"></a>题1：过滤掉一个集合中长度为 偶数 的内容</h4><p>首先定义一个集合；因为是过滤，所以 filter 函数少不了，filter 接收参数一个  Lambda ，意思是如何让我们自己去实现过滤的条件。所以下面主要针对这个 Lambda 去展开工作。</p>
+<ul>
+<li>定义集合</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">main</span><span class="params">(args: <span class="type">Array</span>&lt;<span class="type">String</span>&gt;)</span></span> &#123;</span><br><span class="line">    <span class="keyword">val</span> strings = listOf(<span class="string">"a"</span>, <span class="string">"ab"</span>, <span class="string">"abc"</span>)</span><br><span class="line">	string.filter&#123;  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面代码中看到，我们可以直接在大括号中写具体的过滤代码，但是这样不够优雅；我们知道在 Kotlin 中函数是一等公民，可以把函数当作参数使用。因此我们选择第二种方式 string.filter()，把大括号换成括号。</p>
+<ul>
+<li>分析过滤的条件</li>
+</ul>
+<p>1.内容的长度<br>2.将这个长度对 2 求余，判断是否等于 0</p>
+<p>将两个条件写成代码：isOdd(length(str))<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun length(s: String) = s.length</span><br><span class="line">fun isOdd(x: Int) = x % 2 != 0</span><br></pre></td></tr></table></figure></p>
+<p>然后我们又发现 filter() 只能接受一个参数，所以我们得需要使用到 复合函数，将这两个函数复合成一个函数，这样就能传给 filter() 了。</p>
+<ul>
+<li>函数复合<br>关于复合函数的使用，请看：<a href="https://moshuanghua.com/2017/08/21/12-Kotlin%20%E5%87%BD%E6%95%B0%E5%A4%8D%E5%90%88-%E7%AC%94%E8%AE%B0/">复合函数</a></li>
+</ul>
+<p>filter() 里面的 Lambda 函数的返回值是一个 Boolean 类型，所以我们定义的复合函数的返回值类型相应的也是 Boolean, 下面我们直接把 compose 函数的返回值定义为  (String) -&gt; Boolean 类型，这样最终返回的是 Boolean ,同时也能使用 String 类型.</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">compose</span><span class="params">(f: (<span class="type">String</span>)</span></span> -&gt; <span class="built_in">Int</span>, g: (<span class="built_in">Int</span>) -&gt; <span class="built_in">Boolean</span>): (String) -&gt; <span class="built_in">Boolean</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; x -&gt; g(f(x)) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了通用,利用泛型将上面的代码封装如下:<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fun</span> <span class="type">&lt;A, B, C&gt;</span> <span class="title">compose</span><span class="params">(f: (<span class="type">A</span>)</span></span> -&gt; B, g: (B) -&gt; C): (A) -&gt; C &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; x -&gt; f(g(x)) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>最后的调用</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> oddLength = compose3(::length, ::isOdd)<span class="comment">//length为包级函数,所以所以可以用 ::</span></span><br><span class="line"><span class="keyword">val</span> strings = listOf(<span class="string">"a"</span>, <span class="string">"ab"</span>, <span class="string">"abc"</span>)</span><br><span class="line">println(strings.filter(oddLength)) <span class="comment">// [a, abc]</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/29/33-Activity-启动模式-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Activity 启动模式-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/22/31-Kotlin-DataClass-Room构造函数警告问题解决/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin DataClass 和 Room 构造函数警告问题解决</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

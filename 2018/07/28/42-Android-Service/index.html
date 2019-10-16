@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Android 8.0 + 的 Service 使用笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在 Android 8.0 及以后，Google 对 Service 进行了诸多的改进，以限制开发者滥用 Service.现在的 Service 和 应用本身的联系更加的紧密。所以先来了解一下前台应用和后台应用">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 8.0 + 的 Service 使用笔记">
+<meta property="og:url" content="https://moshuanghua.com/2018/07/28/42-Android-Service/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="在 Android 8.0 及以后，Google 对 Service 进行了诸多的改进，以限制开发者滥用 Service.现在的 Service 和 应用本身的联系更加的紧密。所以先来了解一下前台应用和后台应用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:33:17.117Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 8.0 + 的 Service 使用笔记">
+<meta name="twitter:description" content="在 Android 8.0 及以后，Google 对 Service 进行了诸多的改进，以限制开发者滥用 Service.现在的 Service 和 应用本身的联系更加的紧密。所以先来了解一下前台应用和后台应用">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-42-Android-Service" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/07/28/42-Android-Service/" class="article-date">
+  	<time datetime="2018-07-27T16:00:00.000Z" itemprop="datePublished">2018-07-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Android 8.0 + 的 Service 使用笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="三种-Service-类型："><a href="#三种-Service-类型：" class="headerlink" title="三种 Service 类型："></a>三种 Service 类型：</h1><ul>
+<li>startService</li>
+<li>bindService</li>
+<li>Scheduled Service 计划服务,例如：JobScheduler.</li>
+</ul>
+<a id="more"></a>
+<h1 id="Android-8-0-Android-O-API-26"><a href="#Android-8-0-Android-O-API-26" class="headerlink" title="Android 8.0- / Android O- / API 26-"></a>Android 8.0- / Android O- / API 26-</h1><p>在 Android 8.0 之前，我们要创建一个 “前台” Service ，通常是先 startService() 启动一个后台 Service，然后调用 startForeground() 将该服务提升为前台 Service。</p>
+<h1 id="Android-8-0-Android-O-API-26-1"><a href="#Android-8-0-Android-O-API-26-1" class="headerlink" title="Android 8.0+ / Android O+ / API 26+"></a>Android 8.0+ / Android O+ / API 26+</h1><p>在 Android 8.0 及以后，Google 对 Service 进行了诸多的改进，以限制开发者滥用后台 Service.现在的 Service 和 应用本身的联系更加的紧密。所以先来了解一下前台应用和后台应用：</p>
+<p>应用处于前台的条件：</p>
+<ul>
+<li>有一个可见的 Activity</li>
+<li>有一个前台 Service 正在运行</li>
+<li>bandService 正在和一个别的前台应用连接</li>
+<li>ContentProvider 正在和一个别的前台应用连接</li>
+<li>存在通知</li>
+<li>接收存在 FCM 消息</li>
+<li>手动或系统开机后自动向桌面添加微件时，此时会识别为一段时间的前台应用，添加完成后，前台应用可能会因为系统强杀导致变为后台应用（国内 rom 表现的比较多，原生不会）</li>
+</ul>
+<p>如果上述条件满足，则系统会自动识别我们的应用为前台应用（系统可能缓存该应用进程），否则识别为后台应用（系统不会为后台应用缓存任何进程和服务）。</p>
+<blockquote>
+<p>当我们的应用被系统识别为后台应用时，此时不能调用 startService 来启动任何有一个服务，但 bindService 例外。同样的,当应用被系统杀死处于后台应用时，AlarmManager 也启动不了 Service ;所以在8.0+ 又是国内的rom,还是不要尝试这种方式保活服务。</p>
+</blockquote>
+<h2 id="举个例子："><a href="#举个例子：" class="headerlink" title="举个例子："></a>举个例子：</h2><p>假如：当我们有一个繁重的任务，我们必须在应用处于后台状态下开启一个前台 Service 开处理我们的任务，往往这类型的任务处理过程中会占用大量内存，而当用户在玩游戏，此时可能就会导致内存紧张或者 CPU 忙不过来，最终用户感受到卡顿，这是非常糟糕的现象。像这样的场景残害了 Android 用户许多年；直到 Android 8.0 开始， Google 开始整治这种后台摧残手机系统性能的现象，并推荐使用 JobScheduler（JobScheduler 会自动在系统空闲的时候去处理该任务），所以别在 TMD 瞎搞。当然 Google 也不是一刀切死，如果不用 JobScheduler ,而是继续使用 Service ，则 必须在通知栏上显示一个通知来让用户知道：你的应用正在后台干坏事 &lt;0.0&gt;<br>当然对于非常繁重的任务，且需要通过 Service 来辅助完成，还是优先推荐在前台 Service 中处理，然后再考虑 JobScheduler。</p>
+<ul>
+<li><p>那么如何在 Android 8.0+ 创建一个前台 Service 呢？<br>答：必须使用 service.startForeground(int id, Notification notification)，我们必须先创建通知面板，这么创建 Service ,系统会在通知栏上显示类似得：”xxxxx应用正在后台运行” , 以让用户明确的知道我们应用关闭后依然有服务在运行。这种方式有一点要注意：当你调用 startService（）或者 startForegroundService 来启动 Service 后，必须在5 秒时间内调用 service.startForeground(int id, Notification notification) 来将这个服务提升为前台服务 ，如果超过了这个时间，那么抱歉，一个 IllegalArgumentException：Not allowed to start service Intent 依然送给你。这样启动一个服务的前提还是首先应用本身出于前台应用。</p>
+</li>
+<li><p>附上使用代码：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyForeBroundService</span> : <span class="type">Service</span></span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onBind</span><span class="params">(intent: <span class="type">Intent</span>?)</span></span>: IBinder? &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onStartCommand</span><span class="params">(intent: <span class="type">Intent</span>?, flags: <span class="type">Int</span>, startId: <span class="type">Int</span>)</span></span>: <span class="built_in">Int</span> &#123;</span><br><span class="line">	<span class="comment">// 必须用通知来将 Service 提升为前台 Service</span></span><br><span class="line">        customNotification(<span class="string">""</span>, <span class="number">55</span>)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//doWork() 执行程序关闭退出后的任务</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">super</span>.onStartCommand(intent, flags, startId)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">customNotification</span><span class="params">(title: <span class="type">String</span>, notificationID: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">        <span class="keyword">val</span> intent = Intent(<span class="keyword">this</span>, MainActivity::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">        <span class="keyword">val</span> pendingIntent = PendingIntent.getActivity(<span class="keyword">this</span>, <span class="number">0</span> <span class="comment">/* request code */</span>,</span><br><span class="line">                intent, PendingIntent.FLAG_UPDATE_CURRENT)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> builder = NotificationCompat.Builder(<span class="keyword">this</span>, title)</span><br><span class="line">                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))</span><br><span class="line">                .setSmallIcon(R.mipmap.ic_launcher)</span><br><span class="line">                .setContentIntent(pendingIntent)</span><br><span class="line">                .setOnlyAlertOnce(<span class="literal">true</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) <span class="keyword">as</span> NotificationManager</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.O) &#123;</span><br><span class="line">            <span class="keyword">val</span> channel = NotificationChannel(title,</span><br><span class="line">                    <span class="string">"Channel human readable title"</span>,</span><br><span class="line">                    NotificationManager.IMPORTANCE_DEFAULT)</span><br><span class="line">            mNotificationManager.createNotificationChannel(channel)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> notification = builder.build()</span><br><span class="line">        startForeground(notificationID, notification)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> const <span class="keyword">val</span> TAG = <span class="string">"MyForeBroundService"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="JobIntentService"><a href="#JobIntentService" class="headerlink" title="JobIntentService"></a>JobIntentService</h1><p>在上述的例子中说到，除了用前台 Service 来处理任务，我们还可使用 JobScheduler ，JobIntentService 是 Service 的子类，和 JobScheduler 的工作方式类似，都是当系统处于空闲时才去执行相应的任务。与原来的 Service 不同的是：JobIntentService 可以在任何时间启动，而什么时候结束就得看手机系统 “安排！”。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DesktopWidgetService</span> : <span class="type">JobIntentService</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onHandleWork</span><span class="params">(intent: <span class="type">Intent</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">//此处是子线程</span></span><br><span class="line">	<span class="keyword">val</span> weather = getNetWorkData()</span><br><span class="line">	updataWidget(weather)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onDestroy</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onDestroy()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">getNetWorkData</span><span class="params">()</span></span>:Weather &#123;</span><br><span class="line">	<span class="comment">//任务代码</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">updataWidget</span><span class="params">(weather:<span class="type">Weather</span>)</span></span>&#123;</span><br><span class="line">	MyAppWidgetProvider.updataAppWidget(weather)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="comment">//一个 Service 对应一个 id</span></span><br><span class="line">        <span class="keyword">private</span> const <span class="keyword">val</span> JOB_SERVICE_WIDGET_ID = <span class="number">10111</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">enqueueWork</span><span class="params">(context: <span class="type">Context</span>, work: <span class="type">Intent</span>)</span></span> &#123;</span><br><span class="line">            enqueueWork(context, DesktopWidgetService::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>, <span class="type">JOB_SERVICE_WIDGET_ID</span>, <span class="type">work)</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码：我们希望在应用推出后在后台下载天气数据，然后设置给我们的桌面小部件。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DesktopAppWidgetProvider</span> : <span class="type">AppWidgetProvider</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onReceive</span><span class="params">(context: <span class="type">Context</span>?, intent: <span class="type">Intent</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onReceive(context, intent)</span><br><span class="line">	<span class="comment">//记得在 AndroidMainifest 添加该 Action</span></span><br><span class="line">        <span class="keyword">if</span> (intent?.action == ACTION_REFRESH) &#123;</span><br><span class="line">            DesktopWidgetService.enqueueWork(context!!, Intent())</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 每添加一个本应用的桌面 Widget 都回调一次</span></span><br><span class="line"><span class="comment">     * xml 中的 updatePeriodMillis 时间到了，回调一次</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onUpdate</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">            context: <span class="type">Context</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            appWidgetManager: <span class="type">AppWidgetManager</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">            appWidgetIds: <span class="type">IntArray</span></span></span></span><br><span class="line"><span class="function"><span class="params">    )</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onUpdate(context, appWidgetManager, appWidgetIds)</span><br><span class="line">        DesktopWidgetService.enqueueWork(context, Intent())</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">fun</span> <span class="title">updateAppWidget</span><span class="params">(context: <span class="type">Context</span>, <span class="keyword">data</span>: <span class="type">Weather</span>)</span></span> &#123;</span><br><span class="line">            Timber.d(<span class="keyword">data</span>.currentT)</span><br><span class="line">            <span class="keyword">val</span> appWidgetManager = AppWidgetManager.getInstance(context)</span><br><span class="line">            <span class="keyword">val</span> componentName = ComponentName(context, DesktopAppWidgetProvider::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">            <span class="keyword">val</span> appWidgetIds = appWidgetManager.getAppWidgetIds(componentName)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (appWidgetId <span class="keyword">in</span> appWidgetIds) &#123;</span><br><span class="line">                <span class="keyword">val</span> remoteViews = RemoteViews(context.packageName, R.layout.appwidget_desktop)</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">val</span> refreshIntent = Intent(context, DesktopAppWidgetProvider::<span class="class"><span class="keyword">class</span>.<span class="title">java</span>)</span></span><br><span class="line">                refreshIntent.action = ACTION_REFRESH</span><br><span class="line">                <span class="keyword">val</span> refreshPendingIntent = PendingIntent.getBroadcast(context, <span class="number">11</span>, refreshIntent, <span class="number">11</span>)</span><br><span class="line">                remoteViews.setOnClickPendingIntent(R.id.appwidget_refresh, refreshPendingIntent)</span><br><span class="line"></span><br><span class="line">                remoteViews.setTextViewText(R.id.appwidget_t, <span class="keyword">data</span>.currentT)</span><br><span class="line">                remoteViews.setTextViewText(R.id.appwidget_station, <span class="keyword">data</span>.cityName)</span><br><span class="line">                appWidgetManager.updateAppWidget(appWidgetId, remoteViews)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">private</span> const <span class="keyword">val</span> ACTION_REFRESH = <span class="string">"APPWIDGET_REFRESH"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解决微件刷新思路"><a href="#解决微件刷新思路" class="headerlink" title="解决微件刷新思路"></a>解决微件刷新思路</h2><p>在桌面的小部件上，定义了一个刷新按钮，点击该按钮，发送一个广播(或者利用 AlarmManager 定时来发送广播)，然后在 onReceiver（）中接收该广播，最后调用 DesktopWidgetService.enqueueWork(context, Intent()) 来启动 JobIntentService，这里一定不能是普通的 Service ，同时把 xml/widget_config.xml 文件中的 android:updatePeriodMillis=”0” 设置为 0，最后在 DesktopWidgetService（DesktopWidgetService 继承 JobIntentService） 中请求网络，刷新微件。缺点是可能不一定实时刷新，详细请自行查阅 JobIntentService。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>Service + 通知 也只能在应用出于前台的前提下去创建启动。<br>Service + 通知的形式，在原生系统上是能长时间保持前台服务的运行，但在国内有些 rom 的环境下并不能很好的工作，比如一个天气应用，桌面微件晚上睡觉前好好的，第二天一早，你的前台服务就被干死了，你的微件显示 的天气数据是半夜的，然后你还不能通过点击微件去重新启动，因为此时系统后台不存在与你应用任何相关的内存，也就是说你的应用已经是一个后台应用，你无法在后台启动创建服务。国内道高一尺魔高一丈，最受伤的还是老实人，所以实时刷新在国内略显尴尬！</p>
+<p>JobIntentService 不具备实时性质，例如你要每分每秒更新UI，这不适合。</p>
+<h4 id="综上所述"><a href="#综上所述" class="headerlink" title="综上所述"></a>综上所述</h4><ul>
+<li>解决办法让用户把应用本身常驻后台，但这会增加内存的使用，而且应用带有自动网络刷新，还会增加耗电。</li>
+<li>或者接入FCM (国内时灵时不灵的，看当地网络脸色行事)</li>
+<li>接入国内流氓推送唤醒（其实在国内rom的强杀下，已经没什么用了，但用户不去主动强杀主流氓应用（不杀微信，淘宝，支付,qq 等应用）还是可以一试的）</li>
+<li>等国内统一推送（时间未知？？？？）</li>
+<li>JobIntentService</li>
+</ul>
+<blockquote>
+<p>JobIntentService 还有一个痛点，JobIntentService 里面真的不好配合 Kotlin 协程。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/09/30/44-Android-ViewModel-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ViewModel LiveData 笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/28/43-我的常用命令笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的常用命令笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

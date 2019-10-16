@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Kotlin 关键字-笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Kotlin 关键字-笔记">
+<meta name="keywords" content="Kotlin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin 关键字-笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/08/17/11-Kotlin-关键字-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="Kotlin 关键字-笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:56:00.260Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin 关键字-笔记">
+<meta name="twitter:description" content="Kotlin 关键字-笔记">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-11-Kotlin-关键字-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/08/17/11-Kotlin-关键字-笔记/" class="article-date">
+  	<time datetime="2017-08-16T16:00:00.000Z" itemprop="datePublished">2017-08-17</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Kotlin 关键字-笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Kotlin/">Kotlin</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Kotlin/">Kotlin</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+			<div id="toc" class="toc-article">
+			  <strong class="toc-title">文章目录</strong>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#val-只读属性"><span class="toc-number">1.</span> <span class="toc-text">val 只读属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#var-可变属性"><span class="toc-number">2.</span> <span class="toc-text">var 可变属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#const-编译时常量"><span class="toc-number">3.</span> <span class="toc-text">const 编译时常量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#constructor-构造函数"><span class="toc-number">4.</span> <span class="toc-text">constructor 构造函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#crossinline-保持内联有效"><span class="toc-number">5.</span> <span class="toc-text">crossinline 保持内联有效</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#companion-object-静态方法块"><span class="toc-number">6.</span> <span class="toc-text">companion object 静态方法块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#companion-伴生对象"><span class="toc-number">7.</span> <span class="toc-text">companion 伴生对象</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#data-数据类"><span class="toc-number">8.</span> <span class="toc-text">data 数据类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#enum-枚举"><span class="toc-number">9.</span> <span class="toc-text">enum 枚举</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#field-幕后字段"><span class="toc-number">10.</span> <span class="toc-text">field 幕后字段</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#internal-模块内可见"><span class="toc-number">11.</span> <span class="toc-text">internal 模块内可见</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#inner-非静态内部类"><span class="toc-number">12.</span> <span class="toc-text">inner 非静态内部类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#infix-中缀表达式"><span class="toc-number">13.</span> <span class="toc-text">infix 中缀表达式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#inline-内联函数"><span class="toc-number">14.</span> <span class="toc-text">inline 内联函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#noinline-禁用内联"><span class="toc-number">15.</span> <span class="toc-text">noinline 禁用内联</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lateinit-延迟初始化属性"><span class="toc-number">16.</span> <span class="toc-text">lateinit 延迟初始化属性</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#operator-运算符重载​"><span class="toc-number">17.</span> <span class="toc-text">operator 运算符重载​</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#open-开放权限"><span class="toc-number">18.</span> <span class="toc-text">open 开放权限</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#override-复写"><span class="toc-number">19.</span> <span class="toc-text">override 复写</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#object"><span class="toc-number">20.</span> <span class="toc-text">object</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sealed-密封类"><span class="toc-number">21.</span> <span class="toc-text">sealed 密封类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#suspend-协程"><span class="toc-number">22.</span> <span class="toc-text">suspend 协程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#suspend-与-supspend-使用"><span class="toc-number">23.</span> <span class="toc-text">suspend 与 supspend 使用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tailrec-尾递归优化"><span class="toc-number">24.</span> <span class="toc-text">tailrec 尾递归优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#interface-接口"><span class="toc-number">25.</span> <span class="toc-text">interface 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#引用"><span class="toc-number">26.</span> <span class="toc-text">@ 引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#as-类型转换"><span class="toc-number">27.</span> <span class="toc-text">as 类型转换</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#is-即-instance，类型检查"><span class="toc-number">28.</span> <span class="toc-text">is 即 instance，类型检查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#out-协变"><span class="toc-number">29.</span> <span class="toc-text">out 协变</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#in-逆变"><span class="toc-number">30.</span> <span class="toc-text">in 逆变</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安全调用"><span class="toc-number">31.</span> <span class="toc-text">?. 安全调用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-number">32.</span> <span class="toc-text">!.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#-1"><span class="toc-number">33.</span> <span class="toc-text">!!.</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#："><span class="toc-number">34.</span> <span class="toc-text">?：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#by-代理"><span class="toc-number">35.</span> <span class="toc-text">by 代理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#字符串模板"><span class="toc-number">36.</span> <span class="toc-text">$ 字符串模板</span></a></li></ol>
+			</div>
+		
+		
+        <h1 id="val-只读属性"><a href="#val-只读属性" class="headerlink" title="val 只读属性"></a>val 只读属性</h1><h1 id="var-可变属性"><a href="#var-可变属性" class="headerlink" title="var 可变属性"></a>var 可变属性</h1><h1 id="const-编译时常量"><a href="#const-编译时常量" class="headerlink" title="const 编译时常量"></a>const 编译时常量</h1><ul>
+<li>编译时常量，需要满足以 String 或基本类型进行初始化</li>
+<li>没有自定义 getter 对象成员或顶级（Top#level）</li>
+</ul>
+<h1 id="constructor-构造函数"><a href="#constructor-构造函数" class="headerlink" title="constructor 构造函数"></a>constructor 构造函数</h1><ul>
+<li>一个类可以有一个主构造函数以及多个二级构造函数</li>
+<li>如果主构造函数没有 注解 或者 可见性 说明，constructor 关键字是可以省略</li>
+</ul>
+<a id="more"></a>
+<h1 id="crossinline-保持内联有效"><a href="#crossinline-保持内联有效" class="headerlink" title="crossinline 保持内联有效"></a>crossinline 保持内联有效</h1><ul>
+<li>crossinline 就是在你的 lambda 没有直接在上下文中调用 ,而是被传到了其他地方作为嵌套在内部的代码，这样内联会失效，所以需要 crossinline</li>
+</ul>
+<h1 id="companion-object-静态方法块"><a href="#companion-object-静态方法块" class="headerlink" title="companion object 静态方法块"></a>companion object 静态方法块</h1><ul>
+<li>companion object {  } 大括号中的方法和变量为静态</li>
+</ul>
+<h1 id="companion-伴生对象"><a href="#companion-伴生对象" class="headerlink" title="companion 伴生对象"></a>companion 伴生对象</h1><ul>
+<li><p>伴生对象，可以使用类名作为修饰符调用伴生对象的成员。伴生对象的名字可以被省略，因为在调用伴生对象成员时不涉及伴生对象的名字，这种情况下在使用伴生对象时用 Companion 替代伴生对象名</p>
+</li>
+<li><p>伴生对象看起来像 Java 的静态成员，但是在运行时他们仍然是对象的实例成员，并且可以实现接口</p>
+</li>
+</ul>
+<h1 id="data-数据类"><a href="#data-数据类" class="headerlink" title="data 数据类"></a>data 数据类</h1><ul>
+<li>编译器会自动添加 equals / hashCode / toString() / copy() 方法</li>
+<li>主构造函数应该至少有一个参数</li>
+<li>主构造函数的所有参数必须标注为 val 或者 var</li>
+<li>数据类不能是 abstract / open / sealed / inner</li>
+<li>不能继承其他类（可以实现接口）</li>
+<li>JVM中如果构造函数是无参的，则所有属性必须有默认的值</li>
+</ul>
+<h1 id="enum-枚举"><a href="#enum-枚举" class="headerlink" title="enum 枚举"></a>enum 枚举</h1><ul>
+<li>枚举类，同 Java​</li>
+</ul>
+<h1 id="field-幕后字段"><a href="#field-幕后字段" class="headerlink" title="field 幕后字段"></a>field 幕后字段</h1><h1 id="internal-模块内可见"><a href="#internal-模块内可见" class="headerlink" title="internal 模块内可见"></a>internal 模块内可见</h1><ul>
+<li>在 本模块 的所有可以访问到声明区域的均可以访问该类的所有 internal 成员<br>​</li>
+</ul>
+<h1 id="inner-非静态内部类"><a href="#inner-非静态内部类" class="headerlink" title="inner 非静态内部类"></a>inner 非静态内部类</h1><ul>
+<li>非静态内部类默认持有外部类的状态</li>
+<li>类可以标记为 inner 这样就可以访问外部类的成员，拥有外部类的一个对象引用</li>
+</ul>
+<h1 id="infix-中缀表达式"><a href="#infix-中缀表达式" class="headerlink" title="infix 中缀表达式"></a>infix 中缀表达式</h1><ul>
+<li>可以让在调用该函数时，不用写点号和括号</li>
+</ul>
+<h1 id="inline-内联函数"><a href="#inline-内联函数" class="headerlink" title="inline 内联函数"></a>inline 内联函数</h1><h1 id="noinline-禁用内联"><a href="#noinline-禁用内联" class="headerlink" title="noinline 禁用内联"></a>noinline 禁用内联</h1><h1 id="lateinit-延迟初始化属性"><a href="#lateinit-延迟初始化属性" class="headerlink" title="lateinit 延迟初始化属性"></a>lateinit 延迟初始化属性</h1><ul>
+<li>只能被用在类的 var 可变属性定义中，</li>
+<li>不能用在构造方法中，属性不能有自定义 setter / getter，</li>
+<li>属性类型不能为空，也不能为基本类型<br>​</li>
+</ul>
+<h1 id="operator-运算符重载​"><a href="#operator-运算符重载​" class="headerlink" title="operator 运算符重载​"></a>operator 运算符重载​</h1><h1 id="open-开放权限"><a href="#open-开放权限" class="headerlink" title="open 开放权限"></a>open 开放权限</h1><ul>
+<li>允许别的类继承这个类</li>
+<li>默认情况下，kotlin 中所有的类都是 final 的<br>​</li>
+</ul>
+<h1 id="override-复写"><a href="#override-复写" class="headerlink" title="override 复写"></a>override 复写</h1><ul>
+<li>复写父类的函数，如果不加则非法</li>
+</ul>
+<h1 id="object"><a href="#object" class="headerlink" title="object"></a>object</h1><ul>
+<li>Kotlin 用对象表达式和对象声明实现 Java 匿名内部类这种情况，即匿名类的实现对象为 object</li>
+</ul>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span>:OnClickListener&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过这种方式，我们可以很轻松地实现单例 <a href="https://moshuanghua.com/2017/09/22/Kotlin%20%E5%8D%95%E4%BE%8B/">Kotlin 单例</a></li>
+<li>如果 object 关键字后面有名字，它不再是一个表达式。不能将它赋值给变量，但是我们可以通过他的名字引用它。这样的对象可以拥有超类</li>
+</ul>
+<h1 id="sealed-密封类"><a href="#sealed-密封类" class="headerlink" title="sealed 密封类"></a>sealed 密封类</h1><ul>
+<li>类名关键字，密封类，值只能是有限集合中的某种类型，相当于是一个枚举类的扩展。</li>
+<li>密封类可以有子类但必须全部嵌套在“ 同一个KT文件中 ”声明</li>
+</ul>
+<h1 id="suspend-协程"><a href="#suspend-协程" class="headerlink" title="suspend 协程"></a>suspend 协程</h1><p>详见：<a href="https://moshuanghua.com/2017/08/27/Kotlin%20%E5%8D%8F%E7%A8%8B-%E7%AC%94%E8%AE%B0/">Kotlin 协程</a></p>
+<h1 id="suspend-与-supspend-使用"><a href="#suspend-与-supspend-使用" class="headerlink" title="suspend 与 supspend 使用"></a>suspend 与 supspend 使用</h1><p>详见：<a href="https://moshuanghua.com/2017/08/27/Kotlin%20%E5%8D%8F%E7%A8%8B-%E7%AC%94%E8%AE%B0/">Kotlin 协程</a></p>
+<h1 id="tailrec-尾递归优化"><a href="#tailrec-尾递归优化" class="headerlink" title="tailrec 尾递归优化"></a>tailrec 尾递归优化</h1><ul>
+<li>尾递归：返回时调用自己且不做其他的操作</li>
+</ul>
+<h1 id="interface-接口"><a href="#interface-接口" class="headerlink" title="interface 接口"></a>interface 接口</h1><p>接口的方法可以有自己的实现，可以有属性但必须是抽象的、或提供访问器的实现</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="@ 引用"></a>@ 引用</h1><ul>
+<li>var a = this@A</li>
+<li>表示 a 为 A 的引用（内部类中明确引用）</li>
+<li>Android 中 this@MainActivity 相当与 MainActivity.this</li>
+</ul>
+<h1 id="as-类型转换"><a href="#as-类型转换" class="headerlink" title="as 类型转换"></a>as 类型转换</h1><ul>
+<li>y as String (将 y 转换为 String 类型)</li>
+</ul>
+<h1 id="is-即-instance，类型检查"><a href="#is-即-instance，类型检查" class="headerlink" title="is 即 instance，类型检查"></a>is 即 instance，类型检查</h1><ul>
+<li>if(a is Int)</li>
+</ul>
+<h1 id="out-协变"><a href="#out-协变" class="headerlink" title="out 协变"></a>out 协变</h1><ul>
+<li>使用 out 符号进行修饰，如 <out t="">，表示类型为 T 或 T 的子类<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">val listInt: Array&lt;Int&gt; = arrayOf(1, 2, 3)</span><br><span class="line">var from: Array&lt;Any&gt; = listInt //报错</span><br><span class="line">var from: Array&lt;out Any&gt; = listInt //正确</span><br></pre></td></tr></table></figure>
+</out></li>
+</ul>
+<p>详见：<a href="https://moshuanghua.com/2017/09/07/Kotlin-%E6%B3%9B%E5%9E%8B%E7%AC%94%E8%AE%B0/">Kotlin 泛型</a></p>
+<h1 id="in-逆变"><a href="#in-逆变" class="headerlink" title="in 逆变"></a>in 逆变</h1><ul>
+<li>for(i in List)</li>
+</ul>
+<p>详见：<a href="https://moshuanghua.com/2017/09/07/Kotlin-%E6%B3%9B%E5%9E%8B%E7%AC%94%E8%AE%B0/">Kotlin 泛型</a></p>
+<h1 id="安全调用"><a href="#安全调用" class="headerlink" title="?. 安全调用"></a>?. 安全调用</h1><ul>
+<li>b?.length，b 为空时返回 null，否则返回 length</li>
+</ul>
+<h1 id=""><a href="#" class="headerlink" title="!."></a>!.</h1><ul>
+<li>b!.length，要求 b 不能为空，否则编译错误</li>
+</ul>
+<h1 id="-1"><a href="#-1" class="headerlink" title="!!."></a>!!.</h1><ul>
+<li>b!!.length，返回一个非空对象 (Int?) 或者抛出一个 NPE</li>
+</ul>
+<h1 id="："><a href="#：" class="headerlink" title="?："></a>?：</h1><ul>
+<li>var l = b.length() ?: 0</li>
+<li>左边表达式不为空时返回表达式的结果，否则返回右边的值</li>
+</ul>
+<h1 id="by-代理"><a href="#by-代理" class="headerlink" title="by 代理"></a>by 代理</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">by</span> lazy &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>属性代理，自定义一个自己的 lazy 取名 X，则需要定义一个 X 类，</li>
+<li>然后写一个 operator fun getValue 或 setValue 方法(取决于变量的可读写)</li>
+</ul>
+<h1 id="字符串模板"><a href="#字符串模板" class="headerlink" title="$ 字符串模板"></a>$ 字符串模板</h1><ul>
+<li>取代 Java 中的 + 拼接（Java 中用 + 号来拼接字符串需要写一大堆双引号）</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/08/21/12-Kotlin-函数复合-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Kotlin 函数复合-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/29/10-Kotlin-构造函数-笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Kotlin 构造函数-笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

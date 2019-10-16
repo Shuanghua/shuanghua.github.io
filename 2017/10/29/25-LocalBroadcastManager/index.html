@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>LocalBroadcastManager 源码笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="LocalBroadcastManager 是一个单例类，是应用内的广播，Handler 实现，不能跨进程。">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LocalBroadcastManager 源码笔记">
+<meta property="og:url" content="https://moshuanghua.com/2017/10/29/25-LocalBroadcastManager/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="LocalBroadcastManager 是一个单例类，是应用内的广播，Handler 实现，不能跨进程。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:47:15.395Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LocalBroadcastManager 源码笔记">
+<meta name="twitter:description" content="LocalBroadcastManager 是一个单例类，是应用内的广播，Handler 实现，不能跨进程。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-25-LocalBroadcastManager" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/29/25-LocalBroadcastManager/" class="article-date">
+  	<time datetime="2017-10-28T16:00:00.000Z" itemprop="datePublished">2017-10-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LocalBroadcastManager 源码笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h1 id="LocalBroadcastManager"><a href="#LocalBroadcastManager" class="headerlink" title="LocalBroadcastManager"></a>LocalBroadcastManager</h1><p>LocalBroadcastManager 是一个单例类，是应用内的广播，Handler 实现，不能跨进程。</p>
+<a id="more"></a>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">private LocalBroadcastManager(Context context) &#123;</span><br><span class="line">    mAppContext = context;</span><br><span class="line">    mHandler = new Handler(context.getMainLooper()) &#123;</span><br><span class="line"></span><br><span class="line">        @Override</span><br><span class="line">        public void handleMessage(Message msg) &#123;</span><br><span class="line">            switch (msg.what) &#123;</span><br><span class="line">                case MSG_EXEC_PENDING_BROADCASTS:</span><br><span class="line">                    executePendingBroadcasts();</span><br><span class="line">                    break;</span><br><span class="line">                default:</span><br><span class="line">                    super.handleMessage(msg);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>拿到 Context</li>
+<li>拿到 主线程的 Looper</li>
+<li>创建 负责向主线程发送消息的 Hanlder</li>
+</ol>
+<h2 id="注册广播-registerReceiver"><a href="#注册广播-registerReceiver" class="headerlink" title="注册广播 - registerReceiver"></a>注册广播 - registerReceiver</h2><h4 id="各个对象解释："><a href="#各个对象解释：" class="headerlink" title="各个对象解释："></a>各个对象解释：</h4><blockquote>
+<p>首先一个接收者（receiver）对应一个 filter，一个 filter 对应多个 action。<br>一个 LocalBroadcastManager 中可以有很多个 ReceiverRecord。</p>
+</blockquote>
+<ul>
+<li><p><strong>ReceiverRecord</strong> 类： LocalBroadcastManager 的静态内部类，负责存储具体的 receiver 和对应的 intentFilter。</p>
+</li>
+<li><p><strong>filters</strong>：以具体 receiver 做为 key 的 HasMap 集合, 负责存储一个 ReceiverRecord。</p>
+</li>
+<li><p><strong>entries</strong>：具体 action 做为 key 的 HasMap 集合, 负责存储一个 ReceiverRecord。</p>
+</li>
+</ul>
+<ul>
+<li><p><strong>mReceives</strong>:  以 receiver 做为 key ,来保存 filters，方便 LocalBroadcastManager 通过具体的 receiver 去管理 IntentFilter，这里用于解除绑定相关。</p>
+</li>
+<li><p><strong>mActions</strong>: 以 action 做为 key ,来保存 entries，方便 LocalBroadcastManager 通过具体的 action 去管理 IntentFilter，这里用于发送消息相关</p>
+</li>
+<li><p><strong>mReceiver 和 mAction 的查找结果是一样的，这点我们通过源码就知道，它们最后寻找到的都是存储 ReceiverRecord 的 HasMap 集合，存储的内容都是同 ReceiverRecord 对象，LocalBroadcastManager 把传过来的 receiver 和 intentFilter 交给了 ReceiverRecord 去存储，从而 LocalBroadcastManager 就能很方便的管理，这非常符合现实中管理者的管理方式， 最后 LocalBroadcastManager 只需要通过这个 ReceiverRecord 对象就能获取到我们的 Receiver 和 IntentFilter</strong>。</p>
+</li>
+</ul>
+<h4 id="注册详情："><a href="#注册详情：" class="headerlink" title="注册详情："></a>注册详情：</h4><h4 id="先保存到-mReceives："><a href="#先保存到-mReceives：" class="headerlink" title="先保存到 mReceives："></a>先保存到 mReceives：</h4><p>如果某一个 receiver 对应的 filters 为空（没有注册过），那么就对其进行注册，所谓的注册就是创建一个负责存储 ReceiverRecord 的空 filters 集合，最后把这个集合添加到 mReceives 中。然后将具体（已包含的 receiver 和 filter）的 ReceiverRecord 对象保存到这个已经注册了的空集合中。<br>以上就完成了对 mReceives 的保存工作。</p>
+<h4 id="再保存到-mActions"><a href="#再保存到-mActions" class="headerlink" title="再保存到 mActions"></a>再保存到 mActions</h4><p>以具体的 action 为 key  将 ReceiverRecord 保存到 mActions。<br>如果某一个 receiver 对应的 filters 为空，那么就先创建一个负责存储 ReceiverRecord 初始大小为 1 的空集合 entries，最后把这个集合添加到 mReceives 中。然后将具体（已包含的 receiver 和 filter）的 ReceiverRecord 对象保存到这个已经注册了的空集合中。<br>以上就完成了对 mActions 的保存工作。</p>
+<p><strong>当 mReceives 和 mActions 的添加数据工作做完其实就完成了整个本地广播的注册。</strong></p>
+<h2 id="发送广播-sendBroadcast"><a href="#发送广播-sendBroadcast" class="headerlink" title="发送广播 - sendBroadcast"></a>发送广播 - sendBroadcast</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">public boolean sendBroadcast(@NonNull Intent intent) &#123;</span><br><span class="line">        synchronized (mReceivers) &#123;</span><br><span class="line"></span><br><span class="line">			// 这里的 intent 是发送者的，不是接收者的</span><br><span class="line">            final String action = intent.getAction();</span><br><span class="line">            final String type = intent.resolveTypeIfNeeded(</span><br><span class="line">                    mAppContext.getContentResolver());</span><br><span class="line">            final Uri data = intent.getData();</span><br><span class="line">            final String scheme = intent.getScheme();</span><br><span class="line">            final Set&lt;String&gt; categories = intent.getCategories();</span><br><span class="line"></span><br><span class="line">            final boolean debug = DEBUG ||</span><br><span class="line">                    ((intent.getFlags() &amp; Intent.FLAG_DEBUG_LOG_RESOLUTION) != 0);</span><br><span class="line">            if (debug) Log.v(</span><br><span class="line">                    TAG, &quot;Resolving type &quot; + type + &quot; scheme &quot; + scheme</span><br><span class="line">                    + &quot; of intent &quot; + intent);</span><br><span class="line"></span><br><span class="line">            ArrayList&lt;ReceiverRecord&gt; entries = mActions.get(intent.getAction());</span><br><span class="line">            if (entries != null) &#123;</span><br><span class="line">                if (debug) Log.v(TAG, &quot;Action list: &quot; + entries);</span><br><span class="line"></span><br><span class="line">				//负责存储匹配成功的 ReceiverRecord ,ReceiverRecord 可以看做是一个 Receiver。</span><br><span class="line">                ArrayList&lt;ReceiverRecord&gt; receivers = null;</span><br><span class="line">                for (int i=0; i&lt;entries.size(); i++) &#123;</span><br><span class="line">                    ReceiverRecord receiver = entries.get(i);</span><br><span class="line">                    if (debug) Log.v(TAG, &quot;Matching against filter &quot; + receiver.filter);</span><br><span class="line"></span><br><span class="line">                    if (receiver.broadcasting) &#123;</span><br><span class="line">                        if (debug) &#123;</span><br><span class="line">                            Log.v(TAG, &quot;  Filter&apos;s target already added&quot;);</span><br><span class="line">                        &#125;</span><br><span class="line">                        continue;</span><br><span class="line">                    &#125;</span><br><span class="line">				</span><br><span class="line">					//将两者进行匹配</span><br><span class="line">                    int match = receiver.filter.match(action, type, scheme, data,</span><br><span class="line">                            categories, &quot;LocalBroadcastManager&quot;);</span><br><span class="line">                    if (match &gt;= 0) &#123;//匹配成功</span><br><span class="line">                        if (debug) Log.v(TAG, &quot;  Filter matched!  match=0x&quot; +</span><br><span class="line">                                Integer.toHexString(match));</span><br><span class="line">                        if (receivers == null) &#123;</span><br><span class="line">                            receivers = new ArrayList&lt;ReceiverRecord&gt;();</span><br><span class="line">                        &#125;</span><br><span class="line">                        receivers.add(receiver);//保存匹配成功的 ReceiverRecord</span><br><span class="line">                        receiver.broadcasting = true;//设置匹配成功标记</span><br><span class="line">                    &#125; else &#123;//匹配失败</span><br><span class="line">                        if (debug) &#123;</span><br><span class="line">                            String reason;</span><br><span class="line">                            switch (match) &#123;</span><br><span class="line">                                case IntentFilter.NO_MATCH_ACTION: reason = &quot;action&quot;; break;</span><br><span class="line">                                case IntentFilter.NO_MATCH_CATEGORY: reason = &quot;category&quot;; break;</span><br><span class="line">                                case IntentFilter.NO_MATCH_DATA: reason = &quot;data&quot;; break;</span><br><span class="line">                                case IntentFilter.NO_MATCH_TYPE: reason = &quot;type&quot;; break;</span><br><span class="line">                                default: reason = &quot;unknown reason&quot;; break;</span><br><span class="line">                            &#125;</span><br><span class="line">                            Log.v(TAG, &quot;Fitler 匹配不成功！具体匹配失败的标签是: &quot; + reason);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                if (receivers != null) &#123;//搜集完成所有匹配成功的 ReceiverRecord</span><br><span class="line">                    for (int i=0; i&lt;receivers.size(); i++) &#123;</span><br><span class="line">                        receivers.get(i).broadcasting = false;//将标记设置为默认</span><br><span class="line">                    &#125;</span><br><span class="line">					//最终将这一个 Intent 匹配收集到的 ReceiverRecord 保存到 mPendingBroadcasts 中。</span><br><span class="line">                    mPendingBroadcasts.add(new BroadcastRecord(intent, receivers));</span><br><span class="line">					</span><br><span class="line">                    if (!mHandler.hasMessages(MSG_EXEC_PENDING_BROADCASTS)) &#123;</span><br><span class="line">						/*</span><br><span class="line">						 *如果该标记的 handler 没有被占用，那么就发送一条空的消息去</span><br><span class="line">						 *调用发送实际的广播方法。</span><br><span class="line">						 */</span><br><span class="line">                        mHandler.sendEmptyMessage(MSG_EXEC_PENDING_BROADCASTS);</span><br><span class="line">                    &#125;</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="处理发送广播-executePendingBroadcasts"><a href="#处理发送广播-executePendingBroadcasts" class="headerlink" title="处理发送广播 - executePendingBroadcasts"></a>处理发送广播 - executePendingBroadcasts</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">private void executePendingBroadcasts() &#123;</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        final BroadcastRecord[] brs;</span><br><span class="line">        synchronized (mReceivers) &#123;</span><br><span class="line">            final int N = mPendingBroadcasts.size();</span><br><span class="line">            if (N &lt;= 0) &#123;</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line">            brs = new BroadcastRecord[N];</span><br><span class="line">            mPendingBroadcasts.toArray(brs);</span><br><span class="line">            mPendingBroadcasts.clear();</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i=0; i&lt;brs.length; i++) &#123;</span><br><span class="line">            final BroadcastRecord br = brs[i];</span><br><span class="line">            final int nbr = br.receivers.size();</span><br><span class="line">            for (int j=0; j&lt;nbr; j++) &#123;</span><br><span class="line">                final ReceiverRecord rec = br.receivers.get(j);</span><br><span class="line">                if (!rec.dead) &#123;</span><br><span class="line">                    rec.receiver.onReceive(mAppContext, br.intent);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过层层遍历后，通过 receiver.onReceiv（） 把包含信息的 intent 发出去，最终完成这个广播发送。<br>这整个就一个 Handler 贯穿全场。</p>
+<h2 id="同步发送-sendBroadcastSync（）"><a href="#同步发送-sendBroadcastSync（）" class="headerlink" title="同步发送 - sendBroadcastSync（）"></a>同步发送 - sendBroadcastSync（）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public void sendBroadcastSync(@NonNull Intent intent) &#123;</span><br><span class="line">    if (sendBroadcast(intent)) &#123;</span><br><span class="line">        executePendingBroadcasts();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="解绑广播（略）"><a href="#解绑广播（略）" class="headerlink" title="解绑广播（略）"></a>解绑广播（略）</h2><p>遍历移除</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><blockquote>
+<p>LocalBroadcastManager 用于广播级少，不需要用到系统级别的广播，不需要与别的应用交互的情况。<br>当需要更多广播做异步通知时，推荐用 Rx EventBus Otto等事件库。<br>在有 Activity 和 Fragment 注册和解注册时尽量在对应的生命周期里进行。</p>
+</blockquote>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/11/10/26-Android-Room/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Android Room 使用详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/22/23-subscribeOn和observeOn/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">subscribeOn和observeOn 简单笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+<div class="livere">
+    <!-- 来必力City版安装代码 -->
+    <div id="lv-container" data-id="city" data-uid="MTAyMC8yODM1OC80OTMw">
+        <script type="text/javascript">
+       (function(d, s) {
+           var j, e = d.getElementsByTagName(s)[0];
+
+           if (typeof LivereTower === 'function') { return; }
+
+           j = d.createElement(s);
+           j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+           j.async = true;
+
+           e.parentNode.insertBefore(j, e);
+       })(document, 'script');
+        </script>
+    <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+    <!-- City版安装代码已完成 -->
+</div>
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>

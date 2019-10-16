@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>ViewModel LiveData 笔记 | ShuangHua</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ViewModel LiveData 笔记">
+<meta name="keywords" content="Android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ViewModel LiveData 笔记">
+<meta property="og:url" content="https://moshuanghua.com/2018/09/30/44-Android-ViewModel-笔记/index.html">
+<meta property="og:site_name" content="ShuangHua">
+<meta property="og:description" content="ViewModel LiveData 笔记">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-09T11:32:26.161Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ViewModel LiveData 笔记">
+<meta name="twitter:description" content="ViewModel LiveData 笔记">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+  
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Shuang Hua</a></h1>
+		</hgroup>
+
+		
+		<p class="header-subtitle">技术与生活并肩作战。</p>
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">归档</a></li>
+				        
+							<li><a href="/about">关于</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+					        
+								<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/Android/" style="font-size: 20px;">Android</a> <a href="/tags/Java/" style="font-size: 12.5px;">Java</a> <a href="/tags/Kotlin/" style="font-size: 17.5px;">Kotlin</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/手机/" style="font-size: 10px;">手机</a> <a href="/tags/折腾/" style="font-size: 10px;">折腾</a> <a href="/tags/杂文/" style="font-size: 10px;">杂文</a> <a href="/tags/硬件/" style="font-size: 10px;">硬件</a> <a href="/tags/通知/" style="font-size: 10px;">通知</a> <a href="/tags/闲话/" style="font-size: 12.5px;">闲话</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="https://moshuanghua.com">友链</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Shuang Hua</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="https://avatars3.githubusercontent.com/u/8361358?s=460&amp;v=4" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Shuang Hua</h1>
+			</hgroup>
+			
+			<p class="header-subtitle">技术与生活并肩作战。</p>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">归档</a></li>
+		        
+					<li><a href="/about">关于</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Shuanghua" title="github">github</a>
+			        
+						<a class="mail" target="_blank" href="/shhua17@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-44-Android-ViewModel-笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2018/09/30/44-Android-ViewModel-笔记/" class="article-date">
+  	<time datetime="2018-09-29T16:00:00.000Z" itemprop="datePublished">2018-09-30</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ViewModel LiveData 笔记
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/Android/">Android</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">	
+      
+	  
+		
+		
+        <h2 id="ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。"><a href="#ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。" class="headerlink" title="ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。"></a>ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。</h2><p>看官方的 ViewModel 生命周期图，我们都知道 ViewModel 的生命周期和 Activity 或者 Fragment 差不多，这种理解不够严谨，因为有一个例外： 屏幕旋转的时候， Activity 会结束生命然后再重建生命，而此时 ViewModel 的生命依然存活；ViewModel 的生命存活时间大于了 Activity 的生命，该情况下，如果 ViewModel 持有了 Activity 的实例，就很容易造成内存泄漏。 </p>
+<a id="more"></a>
+<h2 id="ViewModel-LiveData-需要注意的问题"><a href="#ViewModel-LiveData-需要注意的问题" class="headerlink" title="ViewModel LiveData 需要注意的问题"></a>ViewModel LiveData 需要注意的问题</h2><blockquote>
+<p>使用 ViewModel + LiveData + Navgation 官方导航组建进行 Framgent 跳转</p>
+</blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>我遇到的一个问题：从 FramgnetA navgate 跳转到 FragmentB, 然后再从 FramgentB popBackStack 或者 popBackStack 返回到 FragmentA,然后 observer 的回调执行了很多次,假设在 observer 中 set 数据到UI，这对性能，以及绘制的影响非常巨大。</p>
+<h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>LiveData observe 源码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@MainThread</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">observe</span><span class="params">(@NonNull LifecycleOwner owner, @NonNull Observer&lt;? <span class="keyword">super</span> T&gt; observer)</span> </span>&#123;</span><br><span class="line">      assertMainThread(<span class="string">"observe"</span>);</span><br><span class="line">      <span class="keyword">if</span> (owner.getLifecycle().getCurrentState() == DESTROYED) &#123;</span><br><span class="line">          <span class="comment">// ignore</span></span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      LifecycleBoundObserver wrapper = <span class="keyword">new</span> LifecycleBoundObserver(owner, observer);</span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------------------</span></span><br><span class="line">      ObserverWrapper existing = mObservers.putIfAbsent(observer, wrapper);</span><br><span class="line">      <span class="comment">//---------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (existing != <span class="keyword">null</span> &amp;&amp; !existing.isAttachedTo(owner)) &#123;</span><br><span class="line">          <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Cannot add the same observer"</span></span><br><span class="line">                  + <span class="string">" with different lifecycles"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">if</span> (existing != <span class="keyword">null</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      owner.getLifecycle().addObserver(wrapper);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过看源码，new LifecycleBoundObserver(owner, observer) 和 mObservers.putIfAbsent(observer, wrapper) FragmentA 可用时都会执行，第一次 put 的时候，做了一次保存，后续第二次进来只要 owner（ FragmentA ）和我们第一次存的时一致的，那么就 addObserver 通知观察者。要想自动的移除观察者，那么 owner(FramgentA) 必须先销毁。</p>
+<p>而<strong>我在 FragmentB 返回时修改 LiveData 里面的值</strong>，我希望回到 FagmentA 显示的我返回的值，然而确实是显示了新值，还显示了很多次。再加上 FragmentA 使用 navigate 跳转到 FragmentB ，<strong>FragmentA 不会执行出栈操作</strong>，FragmentA 没有销毁，其对应的 <strong>ViewModel 也不会销毁</strong>，ViewModel 中的 <strong>LiveData 也依然存在</strong>，从而LiveData.observe 会一直存在 mObservers 这个集合中：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//LiveData.java</span></span><br><span class="line"><span class="keyword">private</span> SafeIterableMap&lt;Observer&lt;? <span class="keyword">super</span> T&gt;, ObserverWrapper&gt; mObservers =</span><br><span class="line">            <span class="keyword">new</span> SafeIterableMap&lt;&gt;();</span><br></pre></td></tr></table></figure></p>
+<p>最终因为 Fragment 都是一个 Fragment（LifecycleOwner），LiveData 的 observe 观察方法会不断被通知到，因为源码只针对 owenr 的异同做判断，没有对 observe 做判断，每次加载 FragmentA 都 new Observer ，然后这个 mOservers 集合就会不断 add fragmetn 对应的 observer；内部就造成了一个 owenr 对应了多个 observe 观察者。</p>
+<p>当返回到 FragmentA 的时候，LiveData 根据这一个 owenr key 迭代取出其对应的 observer 数据，而此时 LiveData value 数据已经被修改为最新的数据，所以会造成重复取出同一个数据。</p>
+<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p> 在跳转到 FragmentB 之前先移除 FragmentA 下的所有 LiveData 观察,这样就不会重复 add 观察事件<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LiveData.removeObservers(<span class="keyword">this</span>)</span><br><span class="line">Navigation.findNavController(activity!!, R.id.my_nav_fragment).navigate(R.id.b_fragment)</span><br></pre></td></tr></table></figure></p>
+<h4 id="问题总结："><a href="#问题总结：" class="headerlink" title="问题总结："></a>问题总结：</h4><blockquote>
+<p>Fragment 不出栈，对应的 ViewModel 不会销毁，ViewModel 不销毁，ViewModel 中 LiveData 全局变量 也然存在，下次返回到该 Fragment 时，观察的依然是这同一个 LiveData,</p>
+</blockquote>
+<blockquote>
+<p>SafeIterableMap 集合判断了 LifecycleOwner 的异同，没有判断 Observer 的异同，又因为每次返回到 FragmentA 都是 LiveData.observe(this, Observer {}  也就是每次都 new Observer，造成每次 add 的 Observer 都不一样，最终频繁通知观察者。</p>
+</blockquote>
+<h4 id="解决该问题两种方式："><a href="#解决该问题两种方式：" class="headerlink" title="解决该问题两种方式："></a>解决该问题两种方式：</h4><ul>
+<li>1 像上面一样先 removeObservers(Fragment)。</li>
+<li>2 想办法重新 new 一个 LiveData() ,只要不是同一个 LiveData 就不会出现上面的情况。</li>
+<li>3 使用同一个 Observer</li>
+<li>4 跳转钱让原 fragment 出栈</li>
+</ul>
+<h2 id="略-两-Fragment-传递大型数据-基于-Activity-生命的共享-ViewModel"><a href="#略-两-Fragment-传递大型数据-基于-Activity-生命的共享-ViewModel" class="headerlink" title="(略)两 Fragment 传递大型数据 - 基于 Activity 生命的共享 ViewModel"></a>(略)两 Fragment 传递大型数据 - 基于 Activity 生命的共享 ViewModel</h2>
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/30/45-Java 类的生命周期-笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Java 类的生命周期-笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/07/28/42-Android-Service/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Android 8.0 + 的 Service 使用笔记</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<div class="social-share"></div>
+
+	<!--  css & js -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+</div>
+
+
+
+
+
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2019 Shuang Hua
+    	</div>
+      	<div class="footer-right">
+      		<p>
+            <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten    
+            </p>
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/mobile.js"></script>
+<script src="/js/main.js"></script>
+
+
+<!--百度统计的代码-->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?b7e1df5af826817394109f5f7425af1a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+
+  </div>
+</body>
+</html>
