@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://moshuanghua.com/2019/10/11/23-4-debian10-snap-%E6%8A%98%E8%85%BE/</loc>
+    <lastmod>2019-10-19T04:18:43.769Z</lastmod>
+    <data>
+        <display>
+        <title>Debian 从 snap 上安装 ss-libev</title>
+        <pubTime>2019-10-10T16:00:00.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="Linux" url="https://moshuanghua.com/categories/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://moshuanghua.com/2019/05/02/58-Caddy%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-10-16T10:15:52.372Z</lastmod>
     <data>
@@ -30,26 +50,6 @@
         <display>
         <title>CentOS7 编译安装 ss-libev</title>
         <pubTime>2017-10-06T16:00:00.000Z</pubTime>
-        
-        <tag>Linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="https://moshuanghua.com/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://moshuanghua.com/2019/10/11/23-4-debian10-snap-%E6%8A%98%E8%85%BE/</loc>
-    <lastmod>2019-10-16T09:49:46.773Z</lastmod>
-    <data>
-        <display>
-        <title>Debian 从 snap 上安装 ss-libev</title>
-        <pubTime>2019-10-10T16:00:00.000Z</pubTime>
         
         <tag>Linux</tag>
          
