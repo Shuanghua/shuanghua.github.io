@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
   <title>Debian 从 snap 上安装 ss-libev | 𝑺𝒂𝒎.𝑴𝒐</title>
@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="𝑺𝒂𝒎.𝑴𝒐">
 <meta property="og:description" content="debian10 从 snap 上安装 ss-libev">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-19T04:18:43.769Z">
+<meta property="og:updated_time" content="2020-06-21T23:11:26.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Debian 从 snap 上安装 ss-libev">
 <meta name="twitter:description" content="debian10 从 snap 上安装 ss-libev">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
   
-</head>
+</head></html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -214,13 +214,13 @@
 		
 			<div id="toc" class="toc-article">
 			  <strong class="toc-title">文章目录</strong>
-			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-snap"><span class="toc-number">1.</span> <span class="toc-text">安装 snap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-ss-libev-开发版-非稳定版"><span class="toc-number">2.</span> <span class="toc-text">安装 ss-libev 开发版(非稳定版)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-ss"><span class="toc-number">3.</span> <span class="toc-text">配置 ss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-Golang"><span class="toc-number">4.</span> <span class="toc-text">安装 Golang</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-v2ray-plugin"><span class="toc-number">5.</span> <span class="toc-text">安装 v2ray-plugin</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-Caddy"><span class="toc-number">6.</span> <span class="toc-text">安装 Caddy</span></a></li></ol>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-snap"><span class="toc-number">1.</span> <span class="toc-text">安装 snap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-ss-libev-开发版-非稳定版"><span class="toc-number">2.</span> <span class="toc-text">安装 ss-libev 开发版(非稳定版)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-ss"><span class="toc-number">3.</span> <span class="toc-text">配置 ss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#snap-更新-ss"><span class="toc-number">4.</span> <span class="toc-text">snap 更新 ss</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#snap-安装-Golang"><span class="toc-number">5.</span> <span class="toc-text">snap 安装 Golang</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附-（非snap）"><span class="toc-number">6.</span> <span class="toc-text">附 （非snap）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-v2ray-plugin"><span class="toc-number">6.0.0.1.</span> <span class="toc-text">安装 v2ray-plugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装-Caddy"><span class="toc-number">6.0.0.2.</span> <span class="toc-text">安装 Caddy</span></a></li></ol></li></ol></li></ol></li></ol>
 			</div>
 		
 		
-        <h1 id="安装-snap"><a href="#安装-snap" class="headerlink" title="安装 snap"></a>安装 snap</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install snapd</span><br><span class="line">sudo snap install core</span><br></pre></td></tr></table></figure>
+        <h1 id="安装-snap"><a href="#安装-snap" class="headerlink" title="安装 snap"></a>安装 snap</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install snapd -y</span><br><span class="line">sudo snap install core</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
-<h1 id="安装-ss-libev-开发版-非稳定版"><a href="#安装-ss-libev-开发版-非稳定版" class="headerlink" title="安装 ss-libev 开发版(非稳定版)"></a>安装 ss-libev 开发版(非稳定版)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install shadowsocks-libev --edge</span><br></pre></td></tr></table></figure>
+<h1 id="安装-ss-libev-开发版-非稳定版"><a href="#安装-ss-libev-开发版-非稳定版" class="headerlink" title="安装 ss-libev 开发版(非稳定版)"></a>安装 ss-libev 开发版(非稳定版)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo snap install shadowsocks-libev --classic --edge</span><br></pre></td></tr></table></figure>
 <h1 id="配置-ss"><a href="#配置-ss" class="headerlink" title="配置 ss"></a>配置 ss</h1><p>配置文件 config.json 一定要放在 <strong>/snap/bin/</strong> 中, 也可以放在 <strong>/root</strong> 根目录下</p>
 <ul>
 <li><p>配置文件</p>
@@ -234,14 +234,12 @@
 </li>
 </ul>
 <p>就是 ss-server 变成了 shadowsocks-libev.ss-server ； 然后就是配置文件存放的目录变了。</p>
-<h1 id="安装-Golang"><a href="#安装-Golang" class="headerlink" title="安装 Golang"></a>安装 Golang</h1><ul>
-<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snap install go --channel=1.13/stable --classic</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h1 id="安装-v2ray-plugin"><a href="#安装-v2ray-plugin" class="headerlink" title="安装 v2ray-plugin"></a>安装 v2ray-plugin</h1><ul>
+<h1 id="snap-更新-ss"><a href="#snap-更新-ss" class="headerlink" title="snap 更新 ss"></a>snap 更新 ss</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snap refresh shadowsocks-libev --edge</span><br></pre></td></tr></table></figure>
+<h1 id="snap-安装-Golang"><a href="#snap-安装-Golang" class="headerlink" title="snap 安装 Golang"></a>snap 安装 Golang</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">snap install go --channel=latest/stable --classic</span><br></pre></td></tr></table></figure>
+<h1 id="附-（非snap）"><a href="#附-（非snap）" class="headerlink" title="附 （非snap）"></a>附 （非snap）</h1><h4 id="安装-v2ray-plugin"><a href="#安装-v2ray-plugin" class="headerlink" title="安装 v2ray-plugin"></a>安装 v2ray-plugin</h4><ul>
 <li><a href="https://gist.github.com/shuanghua/c9c448f9bd12ebbfd720b34f4e1dd5c6" target="_blank" rel="noopener">安装 v2ray-plugin</a></li>
 </ul>
-<h1 id="安装-Caddy"><a href="#安装-Caddy" class="headerlink" title="安装 Caddy"></a>安装 Caddy</h1><ul>
+<h4 id="安装-Caddy"><a href="#安装-Caddy" class="headerlink" title="安装 Caddy"></a>安装 Caddy</h4><ul>
 <li><a href="https://moshuanghua.com/2019/05/02/58-Caddy%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/">安装 Caddy</a></li>
 </ul>
 
@@ -307,7 +305,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 𝑺𝒂𝒎.𝑴𝒐
+    		&copy; 2020 𝑺𝒂𝒎.𝑴𝒐
     	</div>
       	<div class="footer-right">
       		<p>

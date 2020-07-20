@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>CentOS7 编译安装 ss-libev | 𝑺𝒂𝒎.𝑴𝒐</title>
+  <title>CentOS 7 编译安装 ss-libev | 𝑺𝒂𝒎.𝑴𝒐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="CentOS7 编译源码安装 ss-libev">
+  <meta name="description" content="CentOS 7 编译源码安装 ss-libev">
 <meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CentOS7 编译安装 ss-libev">
+<meta property="og:title" content="CentOS 7 编译安装 ss-libev">
 <meta property="og:url" content="https://moshuanghua.com/2017/10/07/21-ss-libev/index.html">
 <meta property="og:site_name" content="𝑺𝒂𝒎.𝑴𝒐">
-<meta property="og:description" content="CentOS7 编译源码安装 ss-libev">
+<meta property="og:description" content="CentOS 7 编译源码安装 ss-libev">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-16T09:58:15.356Z">
+<meta property="og:updated_time" content="2020-07-20T09:54:51.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CentOS7 编译安装 ss-libev">
-<meta name="twitter:description" content="CentOS7 编译源码安装 ss-libev">
+<meta name="twitter:title" content="CentOS 7 编译安装 ss-libev">
+<meta name="twitter:description" content="CentOS 7 编译源码安装 ss-libev">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
   
-</head>
+</head></html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -186,7 +186,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      CentOS7 编译安装 ss-libev
+      CentOS 7 编译安装 ss-libev
     </h1>
   
 
@@ -214,16 +214,17 @@
 		
 			<div id="toc" class="toc-article">
 			  <strong class="toc-title">文章目录</strong>
-			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装编译工具"><span class="toc-number">1.</span> <span class="toc-text">安装编译工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-SS"><span class="toc-number">2.</span> <span class="toc-text">安装 SS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-SS"><span class="toc-number">2.1.</span> <span class="toc-text">配置 SS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置防火墙端口"><span class="toc-number">2.2.</span> <span class="toc-text">配置防火墙端口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行"><span class="toc-number">3.</span> <span class="toc-text">运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置开机自启"><span class="toc-number">4.</span> <span class="toc-text">配置开机自启</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新"><span class="toc-number">5.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#BBR-优化"><span class="toc-number">6.</span> <span class="toc-text">BBR 优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#插件"><span class="toc-number">7.</span> <span class="toc-text">插件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#附加"><span class="toc-number">8.</span> <span class="toc-text">附加</span></a></li></ol>
+			  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装编译工具"><span class="toc-number">1.</span> <span class="toc-text">安装编译工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装-SS"><span class="toc-number">2.</span> <span class="toc-text">安装 SS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-SS"><span class="toc-number">3.</span> <span class="toc-text">配置 SS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置防火墙端口"><span class="toc-number">4.</span> <span class="toc-text">配置防火墙端口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#运行"><span class="toc-number">5.</span> <span class="toc-text">运行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置开机自启"><span class="toc-number">6.</span> <span class="toc-text">配置开机自启</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#问题排查"><span class="toc-number">7.</span> <span class="toc-text">问题排查</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#更新"><span class="toc-number">8.</span> <span class="toc-text">更新</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#另附"><span class="toc-number">9.</span> <span class="toc-text">另附</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#BBR-优化"><span class="toc-number">9.1.</span> <span class="toc-text">BBR 优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-number">9.2.</span> <span class="toc-text">插件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其它"><span class="toc-number">9.3.</span> <span class="toc-text">其它</span></a></li></ol></li></ol>
 			</div>
 		
 		
-        <p>CentOS7 编译源码安装 ss-libev, 文章最近更新于 <strong>2019年10月11日</strong><br><a id="more"></a></p>
+        <p>CentOS7 编译源码安装 ss-libev, 文章最近更新于 <strong>2020年7月20日</strong><br><a id="more"></a></p>
+<p>以下主要内容参考来源于 ss-libev github 官方教程: <a href="https://github.com/shadowsocks/shadowsocks-libev" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-libev</a></p>
 <h1 id="安装编译工具"><a href="#安装编译工具" class="headerlink" title="安装编译工具"></a>安装编译工具</h1><ul>
 <li><p>CentOS</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release gcc gettext autoconf libtool automake make asciidoc xmlto c-ares-devel libev-devel pcre-devel -y</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>也放一下 Ubuntu 系列的</p>
+<li><p>也放一下 Ubuntu/Debian 系列的</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install --no-install-recommends gettext build-essential autoconf libtool libpcre3-dev asciidoc xmlto libev-dev libc-ares-dev automake -y</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>常用工具</p>
@@ -250,7 +251,7 @@
 </li>
 </ul>
 <p>ss 已经安装完成, 下面开始配置密码之类的</p>
-<h2 id="配置-SS"><a href="#配置-SS" class="headerlink" title="配置 SS"></a>配置 SS</h2><ul>
+<h1 id="配置-SS"><a href="#配置-SS" class="headerlink" title="配置 SS"></a>配置 SS</h1><ul>
 <li><p>创建配置文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /etc/shadowsocks-libev</span><br><span class="line">vim /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
 </li>
@@ -258,8 +259,10 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server"</span>: <span class="string">"0.0.0.0"</span>,</span><br><span class="line">  <span class="attr">"nameserver"</span>: <span class="string">"8.8.8.8"</span>,</span><br><span class="line">  <span class="attr">"server_port"</span>: <span class="number">443</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"你的密码"</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"chacha20-ietf-poly1305"</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">600</span>,</span><br><span class="line">  <span class="attr">"no_delay"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"mode"</span>: <span class="string">"tcp_and_udp"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>local_address 这行要么设置为 0.0.0.0，要么删掉。其它的参数自行斟酌改动。</p>
-<h2 id="配置防火墙端口"><a href="#配置防火墙端口" class="headerlink" title="配置防火墙端口"></a>配置防火墙端口</h2><p>上面设置了一个 443 端口（你也可以改成其它的），现在需要在防火墙上开放这个 443 端口（ 如果不开放，那么所有通过这个 443 端口的外部流量都会被防火墙拦截掉 ）</p>
+<h1 id="配置防火墙端口"><a href="#配置防火墙端口" class="headerlink" title="配置防火墙端口"></a>配置防火墙端口</h1><p>上面设置了一个 443 端口（你也可以改成其它的），现在需要在防火墙上开放这个 443 端口（ 如果不开放，那么所有通过这个 443 端口的外部流量都会被防火墙拦截掉 ）</p>
+<blockquote>
+<p>如果是 debian 推荐使用 ufw 防火墙 <a href="https://gist.github.com/shuanghua/b09430e6191520638a1cdc83924a5797" target="_blank" rel="noopener">debian 安装 ufw</a></p>
+</blockquote>
 <ul>
 <li><p>启动 Firewalld 防火墙 (有的 vps 默认安装使用 iptables 这个防火墙 ,关于在 iptables 怎么开放端口请自行搜索折腾)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> firewalld</span><br><span class="line">systemctl start firewalld</span><br></pre></td></tr></table></figure>
@@ -271,86 +274,81 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=你的端口号/tcp</span><br><span class="line">firewall-cmd --permanent --zone=public --add-port=你的端口号/udp</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p><strong>注意：如果你的 ssh 登录的端口不是默认的 22 ,一定要再把你的 ssh 端口也添加上去, 否则可能导致你登录不了 VPS, 然后刷新下ssh 服务，如果还有 ftp 端口也是一样。</strong></p>
-<blockquote>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure>
+<p><strong>注意：如果你的 ssh 登录的端口不是默认的 22 ,一定要再把你的 ssh 端口也添加上去, 不然你登将录不了 VPS。添加后请刷新下ssh 服务；如果还有 ftp 端口也一样要添加。</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd.service</span><br></pre></td></tr></table></figure></p>
 <ul>
-<li><p>使端口生效 （<strong>再看一遍上面的注意提示，如果没有把 登录 vps 的端口加上去，执行完下面命令后，你可能登不了 vps, 最后只能从 vps 服务商的管理后台登录</strong>）</p>
+<li><p>使端口生效 （<strong>再看一遍上面的注意提示，如果没有把自定义的‘ vps 的登录的端口’ 加上去，在执行完下面命令后，你可能不能通过 Xshell 等工具登录你的 vps, 最后只能从 vps 服务商的管理后台登录，如果已经登录不了，请在服务商后台登录，然后重新修改端口</strong>）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看已开放的端口（可跳过）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --list-all</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>到此已经完成所有安装，启动 ss 有两种方式，任选一种方式</p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>到此已经完成所有安装，启动 ss 有两种方式，第一种是通过配置文件 ss-server -c ,另 一种是命令 api 的方式 ss-server -s ；这里推荐使用配置文件的的方式启动。</p>
 <ul>
-<li><p>第一种：通过使用上面我们创建好的配置文件来启动 ( 推荐 )</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-server -c /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>第二种：通过命令行参数启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-server -s 服务器IP -p 端口 -k 密码 -m chacha20-ietf-poly1305 -u -l 1080 -t 600 --fast-open <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<li>通过使用上面我们创建好的配置文件来启动<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ss-server -c /etc/shadowsocks-libev/config.json</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p>如果上面你的端口已经在防火墙开放了，密码也设置好了；不出意外应该可以遨游世界了。。</p>
 <blockquote>
-<p>如果你想设置开机自启（<strong>推荐</strong>），为了避免后续设置开机自启可能出现问题，请暂时先<strong>不要</strong>通过 ss-server -s 命令启动(方式2启动)<br>Note: 注意 ss-server -c 和 ss-server -s 的区别 </p>
+<p>为了避免后续设置开机自启 service 文件可能出现问题，请暂时先<strong>不要</strong>通过 ss-server -s 命令启动</p>
 </blockquote>
 <h1 id="配置开机自启"><a href="#配置开机自启" class="headerlink" title="配置开机自启"></a>配置开机自启</h1><ul>
 <li><p>创建一个 Service 服务文件（service 是一种默默在后台认真工作的一种脚本文件）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/systemd/system/ss.service</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>往该文件粘贴以下一种方式内容：</p>
+<li><p>往该文件粘贴以下内容：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Shadowsocks Server</span><br><span class="line">After=network.target</span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/usr/bin/ss-server -c /etc/shadowsocks-libev/config.json</span><br><span class="line">Restart=on-abort</span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>注意 ss-server 所在的路径，避免出现找不到 ss-server 文件的情况 ，如果前面已经能遨游世界了，这里基本就没什么问题了</p>
+<p>注意 ss-server 所在的路径（有的安装完成后是在 /usr/local/bin/ 下），避免出现找不到 ss-server 文件的情况。</p>
 <ul>
-<li>运行该自启服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl <span class="built_in">enable</span> ss.service</span><br><span class="line">systemctl start ss.service</span><br></pre></td></tr></table></figure>
+<li>运行该自启服务<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl <span class="built_in">enable</span> ss</span><br><span class="line">systemctl start ss</span><br><span class="line">systemctl status ss   //查看运行状态</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>每次修改 service 文件, 都必须执行 <figure class="highlight plain"><figcaption><span>daemon-reload``` 以重新加载； 修改 ss 的 config.json 文件不需要，但都要执行 ``` systemctl restart ss ```</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 问题排查</span><br><span class="line">- **出现 active running** 绿色代表可用（注意：终端的主题不一样，颜色可能不一样以 active running 关键字为准）</span><br><span class="line">```bash</span><br><span class="line">systemctl status ss.service</span><br></pre></td></tr></table></figure></p>
-<ul>
-<li><p>不能运行时，重启 SS 的自启服务文件试试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart ss.service</span><br></pre></td></tr></table></figure>
+<p>每次修改 service 文件都必须执行 systemctl daemon-reload 以重新加载； 只修改 ss 的 config.json 文件的话，只需要要执行 systemctl restart ss</p>
+<h1 id="问题排查"><a href="#问题排查" class="headerlink" title="问题排查"></a>问题排查</h1><ul>
+<li><p><strong>出现 active running</strong> 绿色代表可用（注意：终端的主题不一样，颜色可能不一样以 active running 关键字为准）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ss</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>显示 active running 但客户端连不上，请重启 VPS</p>
+<li><p>不能运行时，重启 SS 的自启服务文件试试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart ss</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>显示 active running 但客户端连不上， 请检查端口是否开放，然后重启 VPS</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo shutdown -r now</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>重启之后再次查看 SS 运行状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ss.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ss</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 <ul>
 <li><p>如果重启之后，显示 active running，但是客户端依然连接不上，这种情况有可能是开放端口的问题，请尝试文章前面的端口设置部分，尝试更换端口号，同时务必记得向防火墙开放该端口号。</p>
 </li>
-<li><p>如果重启之后，显示的红色，可能是配置文件的格式没有配置正确，或者相关插件配置错误，请仔细查看 Error 部分的日志确定问题所在，想插件所在的目录，插件的可执行行权限是否正确。</p>
+<li><p>如果重启之后，显示的红色，可能是配置文件的格式没有配置正确，或者相关插件配置错误，请仔细查看 Error 部分的日志确定问题所在，比如插件所在的目录，插件的可执行行权限是否正确。</p>
 </li>
 <li><p>仔细检查：编译过程是否出错（再编译一遍） 、 配置文件没有配置正确 、 端口没有开放 、插件目录不正确、 插件不是可执行权限、 插件配置 。</p>
 </li>
 </ul>
-</li>
-</ul>
 <h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><ul>
 <li><p>先停止运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop ss.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop ss</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>进入到安装目录进行 pull 更新安装</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> shadowsocks-libev</span><br><span class="line">git pull</span><br><span class="line">./configure make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>更新完记得启动</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start ss.service</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start ss</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="BBR-优化"><a href="#BBR-优化" class="headerlink" title="BBR 优化"></a>BBR 优化</h1><ul>
+<h1 id="另附"><a href="#另附" class="headerlink" title="另附"></a>另附</h1><h2 id="BBR-优化"><a href="#BBR-优化" class="headerlink" title="BBR 优化"></a>BBR 优化</h2><ul>
 <li><a href="https://www.vultr.com/docs/how-to-deploy-google-bbr-on-centos-7" target="_blank" rel="noopener">CentOS 安装 BBR</a></li>
 </ul>
-<h1 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h1><ul>
-<li><a href="https://gist.github.com/shuanghua/c9c448f9bd12ebbfd720b34f4e1dd5c6" target="_blank" rel="noopener">centos7 安装 v2ray-plugin </a></li>
-<li><a href="https://moshuanghua.com/2017/10/08/23-1-kcptun/">centos7 安装 kcptun </a></li>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
+<li><a href="https://gist.github.com/shuanghua/c9c448f9bd12ebbfd720b34f4e1dd5c6" target="_blank" rel="noopener">ss-libev 安装 v2ray-plugin 插件</a></li>
 </ul>
-<h1 id="附加"><a href="#附加" class="headerlink" title="附加"></a>附加</h1><ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><a href="https://moshuanghua.com/2019/10/11/23-4-debian10-snap-%E6%8A%98%E8%85%BE/">Debian 用 snap 快速安装 ss-libev</a></li>
 <li><a href="https://moshuanghua.com/2017/10/09/23-2-ubuntu%E6%A1%8C%E9%9D%A2%E7%89%88%E5%AE%89%E8%A3%85ss/">Ubuntu 16 桌面版 ss-libev 客户端</a></li>
 <li><a href="https://moshuanghua.com/2017/10/10/23-3-%E4%BF%AE%E6%94%B9ssh%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3/">修改默认的 ssh 22 端口</a></li>
-<li><a href="https://moshuanghua.com/2019/10/11/23-4-debian10-snap-%E6%8A%98%E8%85%BE/">Debian10 从 snap 安装 ss-libev</a></li>
 </ul>
 
       
@@ -424,7 +422,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 𝑺𝒂𝒎.𝑴𝒐
+    		&copy; 2020 𝑺𝒂𝒎.𝑴𝒐
     	</div>
       	<div class="footer-right">
       		<p>

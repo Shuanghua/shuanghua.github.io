@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="utf-8">
   
-  <title>Android View 点击事件传递完结篇 | 𝑺𝒂𝒎.𝑴𝒐</title>
+  <title>Android View 触摸事件传递完结篇 | 𝑺𝒂𝒎.𝑴𝒐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="再入 Android View 点击事件传递坑。">
 <meta name="keywords" content="Android">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android View 点击事件传递完结篇">
+<meta property="og:title" content="Android View 触摸事件传递完结篇">
 <meta property="og:url" content="https://moshuanghua.com/2017/12/09/27-Android-触摸点击事件完结篇/index.html">
 <meta property="og:site_name" content="𝑺𝒂𝒎.𝑴𝒐">
 <meta property="og:description" content="再入 Android View 点击事件传递坑。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-09T11:46:23.243Z">
+<meta property="og:updated_time" content="2020-06-28T07:26:34.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android View 点击事件传递完结篇">
+<meta name="twitter:title" content="Android View 触摸事件传递完结篇">
 <meta name="twitter:description" content="再入 Android View 点击事件传递坑。">
   
   
@@ -24,7 +24,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <script src="https://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
   
-</head>
+</head></html>
 <body>
   <div id="container">
     <div class="left-col">
@@ -186,7 +186,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android View 点击事件传递完结篇
+      Android View 触摸事件传递完结篇
     </h1>
   
 
@@ -217,6 +217,10 @@
 <li><p>知识点1：<br>事件序列：点击屏幕产生的一系列事件，这个事件序列中可能包含 down 、move 、up 等集合。<br>Android 会分别对这个事件序列中的某一个事件进行处理，每次分发一个事件，比如先分发 down, 等 down 被处理完，然后再分发 move, 总之就是得一个一个进行处理，不能同时处理。</p>
 </li>
 <li><p>知识点2：<br>View 的一系列事件都是先从上而下递归，如果这个事件没有被消耗掉，那么最后又会由下往上传递，最后交给 Activity 处理，我这里暂时称为空消耗。</p>
+</li>
+<li><p>知识点3：点击事件 onClick 是一个完整的事件序列集合，同时包含了 down 和 up, 如果该 view 消耗 down 事件，那么这个view 回调 onClick 的条件就不成立（也就是 setOnClickListener 不会被回调）； 同理如果没有消耗 up 事件，也是一样的。一般我们在 onTouch 方法决定 view 能否消耗某个事件。</p>
+</li>
+<li><p>知识点4：down 事件是所有事件的起始事件，如果 down 没有被消耗，那么后续其他的事件，诸如 move 和 up 就没有任何意义。</p>
 </li>
 </ul>
 <a id="more"></a>
@@ -250,8 +254,10 @@
 <blockquote>
 <p>这个是一个特殊的方法，我暂时称它为触摸事件的开关。因为它的返回值影响到 dispatchTouchEvent 方法里面代码的执行顺序以及决定 dispatchTouchEvent 的返回值 ，onTouch 比 onTouchEvent 先执行。当然，你也可以在它返回结束之前干点别的事情，</p>
 </blockquote>
-<p>结果返回 true 时：dispatchTouchEvent 直接返回 true（前提是一定要实现了 OnTouchListener 这个接口），后面的 onTouchEvent 一定不会被调用。</p>
-<p> 结果返回 false 时：onTouchEvent 一定被调用。</p>
+<p>结果返回 true 时：dispatchTouchEvent 直接返回 true（前提是一定要实现了 OnTouchListener 这个接口），此时后面的 onTouchEvent 一定不会被调用。（返回 true ，意味着该 view 的 onTouchEvent() 不会被调用，因为 onTouchEvent() 不会被调用，所以 onClick 也不会被调用）</p>
+<p>结果返回 false 时：onTouchEvent 一定被调用。</p>
+<p>常用法1: 一般这个方法用于对某一个 view 或 viewgroup 的触摸事件监听，比如布局里面有很多 view 和 viewgroup ,当 down 事件传到该 view 的时候，我们需要修改某些变量的值。</p>
+<p>常用法2: 决定该 view 或 viewgroup 能否消耗事件</p>
 <hr>
 <ul>
 <li><strong>boolean onTouchEvent(MotionEvent event){}</strong></li>
@@ -270,7 +276,7 @@
 <p>ViewGroup 提供了一个 requestDisallowInterceptTouchEvent(boolean disallowIntercept) 方法来禁用执行 onInterceptTouchEvent 拦截方法（requestDisallowInterceptTouchEvent 本身是接口 ViewParent 的一个抽象方法，ViewGroup 实现了该抽象方法）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void requestDisallowInterceptTouchEvent(boolean disallowIntercept) &#123;</span><br><span class="line"></span><br><span class="line">    if (disallowIntercept == ((mGroupFlags &amp; FLAG_DISALLOW_INTERCEPT) != 0)) &#123;</span><br><span class="line">        // We&apos;re already in this state, assume our ancestors are too</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (disallowIntercept) &#123;</span><br><span class="line">        mGroupFlags |= FLAG_DISALLOW_INTERCEPT;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        mGroupFlags &amp;= ~FLAG_DISALLOW_INTERCEPT;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Pass it up to our parent</span><br><span class="line">    if (mParent != null) &#123;</span><br><span class="line">        mParent.requestDisallowInterceptTouchEvent(disallowIntercept);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>dispatchTouchEvent 中还有的就是对子 View 的遍历，childView 等于空时调用 super.dispatchTouchEvent(event) ,否则调用 childView.dispatchTouchEvent(event)。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>关于 View 事件传递的分析到这里就结束，有很多具体的地方并没有讲， 将代码转成汉字需要大量的时间，故有的地方去领会即可。</p>
+<p>onInterceptTouchEvent &gt; onTouch &gt; onTouchEvent &gt; onClick</p>
 
       
     </div>
@@ -343,7 +349,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 𝑺𝒂𝒎.𝑴𝒐
+    		&copy; 2020 𝑺𝒂𝒎.𝑴𝒐
     	</div>
       	<div class="footer-right">
       		<p>
