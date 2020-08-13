@@ -4,6 +4,46 @@
 
     
   <url>
+    <loc>https://moshuanghua.com/2019/01/11/55-Android%E8%87%AA%E5%AE%9A%E4%B9%89View-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-08-13T01:17:59.453Z</lastmod>
+    <data>
+        <display>
+        <title>Android 自定义 View 学习笔记</title>
+        <pubTime>2019-01-10T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="https://moshuanghua.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://moshuanghua.com/2018/09/30/44-Android-ViewModel-%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2020-08-13T01:03:20.686Z</lastmod>
+    <data>
+        <display>
+        <title>ViewModel LiveData 笔记</title>
+        <pubTime>2018-09-29T16:00:00.000Z</pubTime>
+        
+        <tag>Android</tag>
+         
+         
+           
+             
+              <breadCrumb title="Android" url="https://moshuanghua.com/categories/Android/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://moshuanghua.com/2019/10/11/23-4-debian10-snap-%E6%8A%98%E8%85%BE/</loc>
     <lastmod>2020-07-20T10:56:45.857Z</lastmod>
     <data>
@@ -331,26 +371,6 @@
         <display>
         <title>Plaid 笔记</title>
         <pubTime>2019-04-11T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="https://moshuanghua.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://moshuanghua.com/2019/01/11/55-Android%E8%87%AA%E5%AE%9A%E4%B9%89View-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2019-07-11T15:20:04.395Z</lastmod>
-    <data>
-        <display>
-        <title>Android 自定义 View 学习笔记</title>
-        <pubTime>2019-01-10T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          
@@ -908,26 +928,6 @@
         <display>
         <title>Android 8.0 + 的 Service 使用笔记</title>
         <pubTime>2018-07-27T16:00:00.000Z</pubTime>
-        
-        <tag>Android</tag>
-         
-         
-           
-             
-              <breadCrumb title="Android" url="https://moshuanghua.com/categories/Android/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://moshuanghua.com/2018/09/30/44-Android-ViewModel-%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2019-04-09T11:32:26.161Z</lastmod>
-    <data>
-        <display>
-        <title>ViewModel LiveData 笔记</title>
-        <pubTime>2018-09-29T16:00:00.000Z</pubTime>
         
         <tag>Android</tag>
          

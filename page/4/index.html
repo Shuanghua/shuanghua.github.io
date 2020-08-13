@@ -426,7 +426,7 @@
     
     <div class="article-entry" itemprop="articleBody">	
       
-        <h2 id="ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。"><a href="#ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。" class="headerlink" title="ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。"></a>ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。</h2><p>看官方的 ViewModel 生命周期图，我们都知道 ViewModel 的生命周期和 Activity 或者 Fragment 差不多，这种理解不够严谨，因为有一个例外： 屏幕旋转的时候， Activity 会结束生命然后再重建生命，而此时 ViewModel 的生命依然存活；ViewModel 的生命存活时间大于了 Activity 的生命，该情况下，如果 ViewModel 持有了 Activity 的实例，就很容易造成内存泄漏。 </p>
+        <h2 id="ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。"><a href="#ViewModel-不要持有-View-Activity-Fragment-等这些生命周期短的实例，以免造成内存泄漏。" class="headerlink" title="ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。"></a>ViewModel 不要持有 View Activity Fragment 等这些生命周期短的实例，以免造成内存泄漏。</h2><p>看官方的 ViewModel 生命周期图，我们都知道 ViewModel 的生命周期和 Activity 或者 Fragment 差不多，但有一个例外： 屏幕旋转的时候， Activity 会结束生命然后再重建生命，而此时 ViewModel 的生命依然存活；ViewModel 的生命存活时间大于了 Activity 的生命，该情况下，如果 ViewModel 持有了 Activity 的实例，就很容易造成内存泄漏。 </p>
       
     </div>
     
